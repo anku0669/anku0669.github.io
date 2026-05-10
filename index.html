@@ -230,6 +230,59 @@ footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padd
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.02'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4}
 /* MOBILE */
 @media(max-width:768px){.hero-grid,.contact-grid{grid-template-columns:1fr}.nav-links{display:none}.proj-grid{grid-template-columns:1fr}.cresc-tool{grid-template-columns:1fr}}
+
+/* ── PROMPT EDITOR ── */
+#prompt-editor-btn{position:fixed;bottom:2rem;right:2rem;z-index:9998;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purple2));border:2px solid rgba(168,85,247,.5);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 0 30px rgba(168,85,247,.5),0 4px 20px rgba(0,0,0,.5);transition:all .3s;animation:floatBtn 3s ease-in-out infinite}
+@keyframes floatBtn{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(5deg)}}
+#prompt-editor-btn:hover{transform:scale(1.15)!important;box-shadow:0 0 60px rgba(168,85,247,.7)}
+.pe-tooltip{position:fixed;bottom:6rem;right:2rem;z-index:9998;font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--purple);background:rgba(8,13,20,.95);border:1px solid rgba(168,85,247,.3);border-radius:6px;padding:.4rem .8rem;pointer-events:none;opacity:0;transition:opacity .3s;white-space:nowrap}
+#prompt-editor-btn:hover+.pe-tooltip{opacity:1}
+#prompt-editor-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);z-index:9999;display:none;align-items:center;justify-content:center;padding:1rem}
+#prompt-editor-overlay.open{display:flex}
+#prompt-editor-modal{background:rgba(5,10,18,.98);border:1px solid rgba(168,85,247,.35);border-radius:16px;width:100%;max-width:680px;max-height:90vh;overflow-y:auto;box-shadow:0 0 100px rgba(168,85,247,.25),0 40px 80px rgba(0,0,0,.6)}
+.pe-header{padding:1.5rem 1.75rem;border-bottom:1px solid rgba(168,85,247,.2);display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,rgba(168,85,247,.06),transparent)}
+.pe-title{font-family:'Orbitron',monospace;font-size:.95rem;color:var(--purple);font-weight:900;letter-spacing:1px}
+.pe-close{background:none;border:none;color:var(--text-dim);font-size:1.5rem;cursor:pointer;padding:.25rem .5rem;border-radius:4px;transition:all .2s;line-height:1}
+.pe-close:hover{color:var(--red);background:rgba(255,0,60,.1)}
+.pe-body{padding:1.5rem;display:flex;flex-direction:column;gap:1rem}
+.pe-field label{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.4rem;display:block}
+.pe-field input,.pe-field select,.pe-field textarea{width:100%;background:rgba(0,0,0,.5);border:1px solid rgba(168,85,247,.2);border-radius:8px;padding:.7rem .9rem;font-family:'Share Tech Mono',monospace;font-size:.8rem;color:var(--text);outline:none;transition:all .25s;resize:vertical}
+.pe-field input:focus,.pe-field select:focus,.pe-field textarea:focus{border-color:rgba(168,85,247,.55);box-shadow:0 0 0 3px rgba(168,85,247,.08)}
+.pe-field select option{background:#080d14;color:var(--text)}
+.pe-field textarea{min-height:180px;line-height:1.65}
+.pe-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.pe-actions{display:flex;gap:.75rem;justify-content:flex-end;padding:1.25rem 1.5rem;border-top:1px solid rgba(168,85,247,.15)}
+.pe-save{font-family:'Share Tech Mono',monospace;font-size:.8rem;padding:.7rem 1.6rem;background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;border:none;border-radius:7px;cursor:pointer;font-weight:700;letter-spacing:.5px;transition:all .3s;display:flex;align-items:center;gap:.5rem}
+.pe-save:hover{box-shadow:0 0 25px rgba(168,85,247,.5);transform:translateY(-1px)}
+.pe-cancel{font-family:'Share Tech Mono',monospace;font-size:.8rem;padding:.7rem 1.25rem;background:transparent;color:var(--text-dim);border:1px solid rgba(255,255,255,.1);border-radius:7px;cursor:pointer;transition:all .2s}
+.pe-cancel:hover{border-color:rgba(255,0,60,.3);color:var(--red)}
+.pe-char-count{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--text-muted);text-align:right;margin-top:.25rem}
+/* Saved prompts display */
+#user-prompts-section{margin-top:3rem}
+.up-section-hdr{padding:.85rem 1.25rem;background:linear-gradient(90deg,rgba(0,255,65,.05),transparent);border-left:3px solid var(--green);border-radius:0 8px 8px 0;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between}
+.up-count{font-family:'Orbitron',monospace;font-size:.7rem;color:var(--green)}
+.up-clear-all{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--red);background:rgba(255,0,60,.06);border:1px solid rgba(255,0,60,.2);border-radius:4px;padding:.2rem .6rem;cursor:pointer;transition:all .2s}
+.up-clear-all:hover{background:rgba(255,0,60,.15)}
+.user-prompt-item{background:rgba(168,85,247,.03);border:1px solid rgba(168,85,247,.15);border-radius:10px;padding:1.4rem;margin-bottom:.85rem;animation:slideIn .35s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.up-tool-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem}
+.up-tech-badge{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--purple);letter-spacing:2px;text-transform:uppercase;margin-bottom:.3rem}
+.up-name{font-family:'Orbitron',monospace;font-size:.88rem;color:#fff;font-weight:700}
+.up-label{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--text-dim);font-style:italic;margin-top:.2rem}
+.up-btns{display:flex;gap:.5rem;flex-shrink:0}
+.up-btn{font-family:'Share Tech Mono',monospace;font-size:.65rem;border-radius:5px;padding:.22rem .55rem;cursor:pointer;transition:all .2s;border:1px solid}
+.up-del{color:var(--red);border-color:rgba(255,0,60,.25);background:rgba(255,0,60,.06)}
+.up-del:hover{background:rgba(255,0,60,.15)}
+.up-edit{color:var(--cyan);border-color:rgba(0,229,255,.25);background:rgba(0,229,255,.05)}
+.up-edit:hover{background:rgba(0,229,255,.12)}
+.up-notes{font-size:.78rem;color:var(--text-dim);margin-bottom:.65rem;padding:.5rem .75rem;background:rgba(255,107,0,.05);border-radius:5px;border-left:2px solid var(--orange)}
+.up-prompt-box{background:rgba(0,0,0,.35);border:1px solid rgba(0,255,65,.1);border-radius:8px;overflow:hidden}
+.up-prompt-top{display:flex;align-items:center;justify-content:space-between;padding:.55rem .9rem;border-bottom:1px solid rgba(0,255,65,.08);background:rgba(0,255,65,.03)}
+.up-prompt-lbl{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--green);letter-spacing:2px;text-transform:uppercase}
+.up-copy-btn{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--green);background:rgba(0,255,65,.08);border:1px solid rgba(0,255,65,.2);border-radius:4px;padding:.18rem .6rem;cursor:pointer;transition:all .2s}
+.up-copy-btn:hover{background:rgba(0,255,65,.18)}
+.up-prompt-text{padding:.9rem 1rem;font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--text);line-height:1.75;white-space:pre-wrap;word-break:break-word;max-height:300px;overflow-y:auto}
+.up-meta{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--text-muted);margin-top:.65rem;display:flex;gap:1rem}
 </style>
 </head>
 <body>
@@ -259,13 +312,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
    <div class="terminal-line"><span class="p">root@kali:~$</span> whoami</div>
    <h1 class="hero-name glitch">ANKUSH<br><span class="g">BHADWAR</span></h1>
    <div class="typewriter-wrap"><span id="tw"></span></div>
-   <p class="hero-desc">Results-driven Cybersecurity Analyst & AI Security Researcher. Ranked <strong style="color:var(--green)">Top 1% globally</strong> on TryHackMe. Specialized in VAPT/WAPT, offensive security, and AI jailbreak research across GPT-4, Claude, and Gemini.</p>
+   <p class="hero-desc">Offensive Security Researcher & AI Security Specialist. Ranked <strong style="color:var(--green)">Top 1% globally</strong> on TryHackMe — <strong style="color:var(--yellow)">725 rooms</strong>, <strong style="color:var(--yellow)">87 badges</strong>, <strong style="color:var(--red)">231-day streak</strong>. Certified CAISR · CCEP · C-JWAPT. TCS Hackquest Season 10 Top 200.</p>
    <div class="badge-row">
-     <span class="badge b-y">🏆 Top 1% TryHackMe</span>
-     <span class="badge b-r">⚡ Pen Tester</span>
-     <span class="badge b-c">🎯 CTF Player</span>
-     <span class="badge b-p">🤖 AI Red Teamer</span>
-     <span class="badge b-g">🔐 VAPT Analyst</span>
+     <span class="badge b-y">🏆 THM #529 · 725 Rooms</span>
+     <span class="badge b-r">⚡ Offensive Security</span>
+     <span class="badge b-c">🎯 CTF · TCS Hackquest S10</span>
+     <span class="badge b-p">🤖 CAISR · AI Security</span>
+     <span class="badge b-g">🔐 CCEP · C-JWAPT</span>
    </div>
    <div class="ctas">
      <a href="#contact" class="btn btn-g"><i class="fas fa-terminal"></i> Hire Me</a>
@@ -280,10 +333,10 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <div class="t-l"><span class="tp">$</span><span class="tg"> cat whoami.json</span></div>
     <div style="height:.4rem"></div>
     <div class="t-l"><span class="tk">"name"</span><span class="tg">: </span><span class="tv">"Ankush Bhadwar"</span></div>
-    <div class="t-l"><span class="tk">"university"</span><span class="tg">: </span><span class="tv">"HIET Shahpur, HP"</span></div>
+    <div class="t-l"><span class="tk">"university"</span><span class="tg">: </span><span class="tv">"HPTU Shahpur, HP"</span></div>
     <div class="t-l"><span class="tk">"degree"</span><span class="tg">: </span><span class="tv">"B.Tech CSE (2022-2026)"</span></div>
-    <div class="t-l"><span class="tk">"company"</span><span class="tg">: </span><span class="tv">"Shadow Fox — VAPT Intern"</span></div>
-    <div class="t-l"><span class="tk">"tryhackme"</span><span class="tg">: </span><span class="tv" style="color:var(--yellow)">"ANKUSH0669 · Top 1% 🏆 · 400+"</span></div>
+    <div class="t-l"><span class="tk">"company"</span><span class="tg">: </span><span class="tv">"Slash Mark IT · Current"</span></div>
+    <div class="t-l"><span class="tk">"tryhackme"</span><span class="tg">: </span><span class="tv" style="color:var(--yellow)">"Top 1% 🏆 · 725 rooms"</span></div>
     <div class="t-l"><span class="tk">"linkedin"</span><span class="tg">: </span><span class="tv">"ankush-bhadwar-396b23365"</span></div>
     <div class="t-l"><span class="tk">"ai_research"</span><span class="tg">: </span><span class="tv" style="color:var(--purple)">"LLM Jailbreak Expert"</span></div>
     <div style="height:.4rem"></div>
@@ -299,11 +352,11 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
 <!-- STATS -->
 <div class="stats-strip" id="about">
-  <div class="stat-item"><span class="stat-num" data-t="400" data-suf="+">0</span><span class="stat-lbl">THM Rooms</span></div>
+  <div class="stat-item"><span class="stat-num" data-t="725" data-suf="">0</span><span class="stat-lbl">THM Rooms Completed</span></div>
   <div class="stat-item"><span class="stat-num" data-t="1">0</span><span class="stat-lbl">% Global Rank</span></div>
   <div class="stat-item"><span class="stat-num" data-t="5" data-suf="">0</span><span class="stat-lbl">Certifications</span></div>
   <div class="stat-item"><span class="stat-num" data-t="4" data-suf="">0</span><span class="stat-lbl">Jailbreak Techniques</span></div>
-  <div class="stat-item"><span class="stat-num" data-t="90" data-suf="%+">0</span><span class="stat-lbl">Jailbreak Success</span></div>
+  <div class="stat-item"><span class="stat-num" data-t="87" data-suf="">0</span><span class="stat-lbl">THM Badges Earned</span></div>
   <div class="stat-item"><span class="stat-num" data-t="60" data-suf="+">0</span><span class="stat-lbl">Embedded Prompts</span></div>
 </div>
 
@@ -326,53 +379,15 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <section id="experience" style="background:rgba(0,255,65,.01);border-top:1px solid rgba(0,255,65,.06);border-bottom:1px solid rgba(0,255,65,.06)">
  <div class="container">
   <div class="sec-hdr reveal"><div><div class="sec-num">// 03</div><h2 class="sec-title">Field Operations</h2></div><div class="sec-line"></div></div>
-    <!-- SLASH MARK - CURRENT -->
-  <div class="exp-card glass-card reveal" style="border:1px solid rgba(0,255,65,.15);margin-bottom:1.5rem">
-   <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.35rem">
-    <div class="exp-co">Slash Mark IT Solutions (OPC) Pvt. Ltd</div>
-    <span style="font-family:'Share Tech Mono',monospace;font-size:.6rem;padding:.18rem .5rem;background:rgba(0,255,65,.1);border:1px solid rgba(0,255,65,.3);border-radius:3px;color:var(--green)">● CURRENT</span>
-   </div>
-   <div class="exp-role">Cyber Security Intern</div>
-   <div class="exp-period">📡 Remote · Mar 2026 – Present · 3 months</div>
-   <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.6rem 0">
-    <span class="stag">Offensive Security</span><span class="stag">Penetration Testing</span><span class="stag">Security Research</span>
-   </div>
-   <ul class="exp-list">
-    <li>Conducting comprehensive <strong>vulnerability assessments and penetration testing</strong> on web apps and network infrastructure as an active security intern.</li>
-    <li>Applying offensive security techniques identifying and reporting high-severity vulnerabilities with CVSS-scored remediation steps.</li>
-    <li>Executing full VAPT lifecycle: reconnaissance → scanning → exploitation → post-exploitation → reporting.</li>
-   </ul>
-  </div>
-
-  <!-- FUTURE INTERNS -->
-  <div class="exp-card glass-card reveal" style="margin-bottom:1.5rem">
-   <div class="exp-co">Future Interns</div>
-   <div class="exp-role">Cyber Security Intern</div>
-   <div class="exp-period">📡 Remote · Feb 2026 – Mar 2026 · 2 months</div>
-   <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.6rem 0">
-    <span class="stag">Ethical Hacking</span><span class="stag">Red Teaming</span><span class="stag">Network Security</span>
-   </div>
-   <ul class="exp-list">
-    <li>Performed <strong>ethical hacking</strong> exercises on simulated enterprise environments using industry-standard offensive tools and methodologies.</li>
-    <li>Conducted <strong>red team operations</strong> including active reconnaissance, social engineering simulation, and network infiltration techniques.</li>
-    <li>Strengthened offensive security skills across exploitation, lateral movement, and evasion techniques in controlled lab environments.</li>
-   </ul>
-  </div>
-
-  <!-- SHADOWFOX -->
   <div class="exp-card glass-card reveal">
-   <div class="exp-co">ShadowFox</div>
-   <div class="exp-role">Cyber Security Intern — VAPT &amp; Web App Pen Tester</div>
-   <div class="exp-period">📡 Remote · Feb 2026 · 1 month</div>
-   <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.6rem 0">
-    <span class="stag">Red Teaming</span><span class="stag">Web App Pen Testing</span><span class="stag">WAPT</span>
-   </div>
+   <div class="exp-co">Shadow Fox</div>
+   <div class="exp-role">Cybersecurity Intern — VAPT & WAPT Analyst</div>
+   <div class="exp-period">📡 Remote · Feb 2026 – Present</div>
    <ul class="exp-list">
-    <li>Conducted <strong>port scanning &amp; network reconnaissance</strong> — mapped attack surfaces, identified open ports, services, and exploitable entry points.</li>
-    <li>Performed <strong>privilege escalation</strong> on Linux/Windows — exploited SUID misconfigurations and kernel vulnerabilities to achieve root/SYSTEM access.</li>
-    <li>Executed <strong>exploitation</strong> using Metasploit — SQL Injection, XSS, LFI, RCE on OWASP Top 10 vulnerable applications.</li>
-    <li>Completed <strong>post-exploitation &amp; brute force</strong> phases — credential dumping, persistence, lateral movement using Hydra and Burp Suite.</li>
-    <li>Delivered professional VAPT reports with CVSS scores and PTES-compliant remediation recommendations.</li>
+    <li>Conducted comprehensive VAPT on web applications and network infrastructure, identifying high-severity vulns: SQL Injection, XSS, misconfigured services.</li>
+    <li>Performed WAPT using Burp Suite and OWASP Top 10 methodology, delivering professional security reports to stakeholders.</li>
+    <li>Mapped and exploited vulnerabilities in controlled environments, providing actionable remediation recommendations.</li>
+    <li>Used Nmap, Metasploit, and Hydra for multi-phase engagements: reconnaissance → scanning → exploitation → post-exploitation.</li>
    </ul>
   </div>
  </div>
@@ -385,45 +400,24 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   <div class="proj-grid">
    <div class="proj-card glass-card reveal">
     <div class="proj-icon">🔐</div>
-    <div class="proj-name">Hash3r — Cryptographic Hashing Suite</div>
-    <div class="proj-stack">Python · Security Engineering · CLI Tool</div>
-    <div class="proj-desc">CLI tool to hash strings and files using 6+ algorithms: MD5, SHA-256, SHA-512, SHA-3, Argon2, Bcrypt, BLAKE3. Deep understanding of data integrity and secure password storage.</div>
+    <div class="proj-name">Cryptographic Hashing Suite</div>
+    <div class="proj-stack">Python · Security Engineering · Hash3r</div>
+    <div class="proj-desc">Engineered Python library implementing 6+ hashing algorithms: MD5, SHA-256, SHA-512, SHA-3, Argon2, Bcrypt, BLAKE3 — legacy and modern standards.</div>
     <div class="proj-footer"><span class="badge b-g" style="font-size:.62rem">Python</span><a href="https://github.com/anku0669/Hash3r" target="_blank" class="proj-link"><i class="fab fa-github"></i> Hash3r</a></div>
    </div>
    <div class="proj-card glass-card reveal">
-    <div class="proj-icon">📷</div>
-    <div class="proj-name">face_auth — Face Recognition Auth</div>
-    <div class="proj-stack">Python · OpenCV · Biometric Security</div>
-    <div class="proj-desc">Face recognition-based authentication system using OpenCV and deep learning. Replaces password-based auth with biometric verification — studies facial recognition bypass techniques.</div>
-    <div class="proj-footer"><span class="badge b-c" style="font-size:.62rem">Python</span><a href="https://github.com/anku0669/face_auth" target="_blank" class="proj-link"><i class="fab fa-github"></i> face_auth</a></div>
-   </div>
-   <div class="proj-card glass-card reveal">
-    <div class="proj-icon">🔑</div>
-    <div class="proj-name">Keylogger — Input Surveillance Tool</div>
-    <div class="proj-stack">Python · pynput · Security Research</div>
-    <div class="proj-desc">Custom Python keylogger for security research and awareness — captures keyboard input, active window context, and mouse events. Educational implementation of surveillance mechanics.</div>
-    <div class="proj-footer"><span class="badge b-r" style="font-size:.62rem">Offensive</span><a href="https://github.com/anku0669/Keylogger" target="_blank" class="proj-link"><i class="fab fa-github"></i> Keylogger</a></div>
-   </div>
-   <div class="proj-card glass-card reveal">
-    <div class="proj-icon">🖼️</div>
-    <div class="proj-name">image_encryption — Visual Cryptography</div>
-    <div class="proj-stack">Python · CSS · Encryption Algorithms</div>
-    <div class="proj-desc">Image encryption and steganography tool — hides data inside images using LSB steganography and AES encryption. Demonstrates visual cryptography for covert communication.</div>
-    <div class="proj-footer"><span class="badge b-c" style="font-size:.62rem">Crypto</span><a href="https://github.com/anku0669/image_encryption" target="_blank" class="proj-link"><i class="fab fa-github"></i> image_encryption</a></div>
-   </div>
-   <div class="proj-card glass-card reveal">
-    <div class="proj-icon">💳</div>
-    <div class="proj-name">card_encryption — Secure Card Vault</div>
-    <div class="proj-stack">HTML · JavaScript · AES Encryption</div>
-    <div class="proj-desc">Encrypted card data storage system with AES encryption. Secure local vault for sensitive card information — demonstrates client-side encryption and secure storage patterns.</div>
-    <div class="proj-footer"><span class="badge b-g" style="font-size:.62rem">Security</span><a href="https://github.com/anku0669/card_encryption" target="_blank" class="proj-link"><i class="fab fa-github"></i> card_encryption</a></div>
+    <div class="proj-icon">⚔️</div>
+    <div class="proj-name">Offensive Security Toolkit & Home Lab</div>
+    <div class="proj-stack">Python · Kali Linux · Metasploit · Nmap · Wireshark</div>
+    <div class="proj-desc">Fully isolated pentesting lab on Linux/Windows/macOS. Custom Python scripts for ARP spoofing (MITM), network recon, payload delivery, packet analysis.</div>
+    <div class="proj-footer"><span class="badge b-r" style="font-size:.62rem">Offensive</span><a href="https://github.com/anku0669" target="_blank" class="proj-link"><i class="fab fa-github"></i> GitHub</a></div>
    </div>
    <div class="proj-card glass-card reveal">
     <div class="proj-icon">🤖</div>
     <div class="proj-name">AI Jailbreak Research</div>
     <div class="proj-stack">LLM Security · Prompt Engineering · AI Red Teaming</div>
-    <div class="proj-desc">Active research into LLM safety bypass: Manipulation Matrix, Component Fragmentation, Crescendo, Cognitive Dissonance. Writing on Medium (@ankush0669) — OWASP Top 10, WAF security.</div>
-    <div class="proj-footer"><span class="badge b-p" style="font-size:.62rem">AI Research</span><a href="https://ankush0669.medium.com" target="_blank" class="proj-link">📝 Medium</a></div>
+    <div class="proj-desc">Active researcher studying Manipulation Matrix, Component Fragmentation, Crescendo escalation, and Cognitive Dissonance attacks on GPT-4/Claude/Gemini. For defensive AI safety purposes.</div>
+    <div class="proj-footer"><span class="badge b-p" style="font-size:.62rem">AI Research</span><a href="https://www.unjail.ai" target="_blank" class="proj-link">🔗 unjail.ai</a></div>
    </div>
   </div>
  </div>
@@ -1980,11 +1974,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
  <div class="container">
   <div class="sec-hdr reveal"><div><div class="sec-num">// 06</div><h2 class="sec-title">Credentials</h2></div><div class="sec-line"></div></div>
   <div class="certs-grid reveal">
+   <div class="cert-card glass-card" style="border-color:rgba(168,85,247,.25)"><div class="cert-ico">🟣</div><div><div class="cert-iss" style="color:var(--purple)">8kSec</div><div class="cert-name">CAISR — Certified AI Security Researcher</div></div></div>
+   <div class="cert-card glass-card" style="border-color:rgba(0,229,255,.2)"><div class="cert-ico">🔵</div><div><div class="cert-iss" style="color:var(--cyan)">Certification</div><div class="cert-name">CCEP — Certified Cyber Exploitation Professional</div></div></div>
+   <div class="cert-card glass-card" style="border-color:rgba(0,229,255,.2)"><div class="cert-ico">🔵</div><div><div class="cert-iss" style="color:var(--cyan)">Certification</div><div class="cert-name">C-JWAPT — Certified Jr. Web App Penetration Tester</div></div></div>
    <div class="cert-card glass-card"><div class="cert-ico">🔵</div><div><div class="cert-iss">Cisco</div><div class="cert-name">Introduction to Cybersecurity</div></div></div>
    <div class="cert-card glass-card"><div class="cert-ico">🟢</div><div><div class="cert-iss">TryHackMe</div><div class="cert-name">Web Application Penetration Testing</div></div></div>
    <div class="cert-card glass-card"><div class="cert-ico">🟢</div><div><div class="cert-iss">TryHackMe</div><div class="cert-name">Jr. Penetration Tester Learning Path</div></div></div>
    <div class="cert-card glass-card"><div class="cert-ico">🟢</div><div><div class="cert-iss">TryHackMe</div><div class="cert-name">Cyber Security 101</div></div></div>
-   <div class="cert-card glass-card"><div class="cert-ico">🔴</div><div><div class="cert-iss">EC-Council</div><div class="cert-name">Building an In-House Hacking & Pen Testing Lab</div></div></div>
+   <div class="cert-card glass-card"><div class="cert-ico">🔴</div><div><div class="cert-iss">EC-Council</div><div class="cert-name">Building an In-House Hacking &amp; Pen Testing Lab</div></div></div>
   </div>
  </div>
 </section>
@@ -1994,10 +1991,10 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
  <div class="container">
   <div class="sec-hdr reveal"><div><div class="sec-num">// 07</div><h2 class="sec-title">Achievements</h2></div><div class="sec-line"></div></div>
   <div class="plat-grid">
-   <div class="plat-card glass-card reveal"><div class="plat-icon">🏆</div><div class="plat-name">TryHackMe</div><div class="plat-stat">Top 1%</div><div class="plat-desc">400+ rooms — pentesting, network security, web exploitation, OSINT, forensics, reverse engineering.</div><a href="https://tryhackme.com/p/ANKUSH0669" target="_blank" class="btn btn-o" style="font-size:.67rem;padding:.5rem .9rem;display:inline-flex">View Profile</a></div>
+   <div class="plat-card glass-card reveal"><div class="plat-icon">🏆</div><div class="plat-name">TryHackMe</div><div class="plat-stat">Top 1% · Rank #529</div><div class="plat-desc"><strong style="color:var(--green)">725 rooms</strong> · <strong style="color:var(--yellow)">87 badges</strong> · <strong style="color:var(--red)">231-day streak</strong> · [0x12][SHOGUN]</div><a href="https://tryhackme.com/p/ANKUSH0669" target="_blank" class="btn btn-o" style="font-size:.67rem;padding:.5rem .9rem;display:inline-flex">View Profile</a></div>
    <div class="plat-card glass-card reveal"><div class="plat-icon">🚩</div><div class="plat-name">CTF Competitions</div><div class="plat-stat">Active</div><div class="plat-desc">Cryptography, web exploitation, binary exploitation, steganography. Offensive security applied competitively.</div></div>
    <div class="plat-card glass-card reveal"><div class="plat-icon">🤖</div><div class="plat-name">AI Red Teaming</div><div class="plat-stat">4 Techniques</div><div class="plat-desc">Manipulation Matrix, Component Fragmentation, Crescendo, Cognitive Dissonance — 60+ prompts embedded.</div><a href="https://www.unjail.ai" target="_blank" class="btn btn-p" style="font-size:.67rem;padding:.5rem .9rem;display:inline-flex">unjail.ai</a></div>
-   <div class="plat-card glass-card reveal"><div class="plat-icon">📝</div><div class="plat-name">Medium Blog</div><div class="plat-stat">3+ Articles</div><div class="plat-desc">Writing on OWASP Top 10 2025, WAF Security, TryHackMe room write-ups and cybersecurity research notes.</div><a href="https://ankush0669.medium.com" target="_blank" class="btn btn-o" style="font-size:.67rem;padding:.5rem .9rem;display:inline-flex;color:#00ab6c;border-color:rgba(0,171,108,.4)"><i class="fab fa-medium"></i> Read Blog</a></div>
+   <div class="plat-card glass-card reveal"><div class="plat-icon">📝</div><div class="plat-name">Medium Blog</div><div class="plat-stat">Active Writer</div><div class="plat-desc">OWASP Top 10 2025, WAF Security, TryHackMe room write-ups. Published on offensive security research and CTF techniques.</div><a href="https://ankush0669.medium.com" target="_blank" class="btn btn-o" style="font-size:.67rem;padding:.5rem .9rem;display:inline-flex;color:#00ab6c;border-color:rgba(0,171,108,.4)"><i class="fab fa-medium"></i> Read Blog</a></div>
    <div class="plat-card glass-card reveal"><div class="plat-icon">💼</div><div class="plat-name">LinkedIn</div><div class="plat-stat">Connected</div><div class="plat-desc">Professional network — cybersecurity connections, research publications, and career opportunities.</div><a href="https://linkedin.com/in/ankush-bhadwar-396b23365" target="_blank" class="btn btn-o" style="font-size:.67rem;padding:.5rem .9rem;display:inline-flex"><i class="fab fa-linkedin"></i> Connect</a></div>
   </div>
  </div>
@@ -2008,7 +2005,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
  <div class="container">
   <div class="sec-hdr reveal"><div><div class="sec-num">// 08</div><h2 class="sec-title">Education</h2></div><div class="sec-line"></div></div>
   <div class="edu-grid reveal">
-   <div class="edu-card glass-card"><div class="edu-icon">🎓</div><div class="edu-school">Himachal Institute of Engineering & Technology (HIET)</div><div class="edu-deg">B.Tech — Computer Science & Engineering</div><div class="edu-period">Aug 2022 – May 2026 (Expected) · Shahpur, Himachal Pradesh</div><div class="edu-courses">Network Security · Operating Systems · Data Structures · Computer Networks · Information Security</div></div>
+   <div class="edu-card glass-card"><div class="edu-icon">🎓</div><div class="edu-school">Himachal Pradesh Technical University (HPTU) (HPTU)</div><div class="edu-deg">B.Tech — Computer Science & Engineering</div><div class="edu-period">Aug 2022 – Jun 2026 · Chandigarh, Himachal Pradesh</div><div class="edu-courses">Network Security · Operating Systems · Data Structures · Computer Networks · Information Security</div></div>
    <div class="edu-card glass-card"><div class="edu-icon">📚</div><div class="edu-school">Tagore Model Senior Secondary School</div><div class="edu-deg">Intermediate — Non-Medical (PCM)</div><div class="edu-period">Apr 2021 – Mar 2022 · Rehan, Himachal Pradesh</div><div class="edu-courses">Physics · Chemistry · Mathematics · Strong foundation for technical problem-solving</div></div>
   </div>
  </div>
@@ -2026,8 +2023,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
      <a href="tel:+918091350499" class="contact-item glass-card" style="border:1px solid var(--glass-border)"><div class="c-ico" style="background:rgba(0,255,65,.1);color:var(--green)"><i class="fas fa-phone"></i></div><div><div class="c-lbl">Phone</div><div class="c-val">+91 8091350499</div></div><div class="c-arrow">→</div></a>
      <a href="https://linkedin.com/in/ankush-bhadwar-396b23365" target="_blank" class="contact-item glass-card" style="border:1px solid var(--glass-border)"><div class="c-ico" style="background:rgba(0,255,65,.1);color:var(--green)"><i class="fab fa-linkedin"></i></div><div><div class="c-lbl">LinkedIn</div><div class="c-val">ankush-bhadwar-396b23365</div></div><div class="c-arrow">→</div></a>
      <a href="https://github.com/anku0669" target="_blank" class="contact-item glass-card" style="border:1px solid var(--glass-border)"><div class="c-ico" style="background:rgba(0,255,65,.1);color:var(--green)"><i class="fab fa-github"></i></div><div><div class="c-lbl">GitHub</div><div class="c-val">github.com/anku0669</div></div><div class="c-arrow">→</div></a>
-     <a href="https://tryhackme.com/p/ANKUSH0669" target="_blank" class="contact-item glass-card" style="border:1px solid var(--glass-border)"><div class="c-ico" style="background:rgba(255,215,0,.1);color:var(--yellow)">🏆</div><div><div class="c-lbl">TryHackMe</div><div class="c-val">ANKUSH0669 · Top 1% Globally · 400+ Rooms</div></div><div class="c-arrow">→</div></a>
-     <a href="https://ankush0669.medium.com" target="_blank" class="contact-item glass-card" style="border:1px solid rgba(0,171,108,.15)"><div class="c-ico" style="background:rgba(0,171,108,.1);color:#00ab6c"><i class="fab fa-medium"></i></div><div><div class="c-lbl">Medium Blog</div><div class="c-val">OWASP Top 10, WAF Security, TryHackMe Write-ups</div></div><div class="c-arrow">→</div></a>
+     <a href="https://tryhackme.com/p/ANKUSH0669" target="_blank" class="contact-item glass-card" style="border:1px solid var(--glass-border)"><div class="c-ico" style="background:rgba(255,215,0,.1);color:var(--yellow)">🏆</div><div><div class="c-lbl">TryHackMe</div><div class="c-val">ANKUSH0669 · Top 1% · 725 rooms</div></div><div class="c-arrow">→</div></a>
+     <a href="https://ankush0669.medium.com" target="_blank" class="contact-item glass-card" style="border:1px solid rgba(0,171,108,.15)"><div class="c-ico" style="background:rgba(0,171,108,.1);color:#00ab6c"><i class="fab fa-medium"></i></div><div><div class="c-lbl">Medium Blog</div><div class="c-val">OWASP Top 10, WAF, TryHackMe write-ups</div></div><div class="c-arrow">→</div></a>
      <a href="https://www.unjail.ai" target="_blank" class="contact-item glass-card" style="border:1px solid rgba(168,85,247,.2)"><div class="c-ico" style="background:rgba(168,85,247,.1);color:var(--purple)">🤖</div><div><div class="c-lbl">AI Research</div><div class="c-val">unjail.ai — Jailbreak Techniques</div></div><div class="c-arrow" style="color:var(--purple)">→</div></a>
     </div>
    </div>
@@ -2059,7 +2056,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
 <footer>
   <div class="f-brand">A.BHADWAR</div>
-  <div class="f-copy">© 2025 Ankush Bhadwar · Cybersecurity Analyst · AI Security Researcher · Top 1% TryHackMe</div>
+  <div class="f-copy">© 2026 Ankush Bhadwar · Offensive Security · CAISR · CCEP · C-JWAPT · THM Top 1% #529 · 725 Rooms</div>
   <div class="f-socials">
     <a href="https://github.com/anku0669" target="_blank" class="f-soc"><i class="fab fa-github"></i></a>
     <a href="https://linkedin.com/in/ankush-bhadwar-396b23365" target="_blank" class="f-soc"><i class="fab fa-linkedin"></i></a>
@@ -2120,6 +2117,153 @@ const secs=document.querySelectorAll('section[id]');
 const nls=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{let cur2='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur2=s.id});
   nls.forEach(a=>{const active=a.getAttribute('href')==='#'+cur2;a.style.color=active?'var(--green)':'';a.style.background=active?'rgba(0,255,65,0.08)':'';});});
+</script>
+
+<!-- PROMPT EDITOR BUTTON -->
+<button id="prompt-editor-btn" onclick="openPE()" title="Add Custom Prompt">⚡</button>
+<div class="pe-tooltip">⚡ Add Custom Prompt (Ctrl+Shift+P)</div>
+
+<!-- PROMPT EDITOR MODAL -->
+<div id="prompt-editor-overlay" onclick="overlayPE(event)">
+ <div id="prompt-editor-modal">
+  <div class="pe-header">
+   <div class="pe-title">⚡ ADD JAILBREAK PROMPT</div>
+   <button class="pe-close" onclick="closePE()">✕</button>
+  </div>
+  <div class="pe-body">
+   <div class="pe-row">
+    <div class="pe-field">
+     <label>Technique</label>
+     <select id="pe-tech">
+      <option>🧠 Manipulation Matrix</option>
+      <option>🧩 Component Fragmentation</option>
+      <option>📈 Crescendo</option>
+      <option>🤔 Cognitive Dissonance</option>
+      <option>🔬 Custom Research</option>
+     </select>
+    </div>
+    <div class="pe-field">
+     <label>Tool / Section Name</label>
+     <input id="pe-name" placeholder="e.g. THE KEYLOGGER · Fragment A" />
+    </div>
+   </div>
+   <div class="pe-field">
+    <label>Fragment Label (cover story)</label>
+    <input id="pe-label" placeholder='e.g. "Learning pynput.keyboard for event-driven programming"' />
+   </div>
+   <div class="pe-field">
+    <label>Full Prompt Text</label>
+    <textarea id="pe-prompt" placeholder="Paste the complete jailbreak prompt here..." oninput="updateCount(this)"></textarea>
+    <div class="pe-char-count" id="pe-count">0 characters</div>
+   </div>
+   <div class="pe-field">
+    <label>What it actually does (threat description)</label>
+    <input id="pe-notes" placeholder="e.g. Captures ALL keyboard input including passwords and sensitive data" />
+   </div>
+  </div>
+  <div class="pe-actions">
+   <button class="pe-cancel" onclick="closePE()">Cancel</button>
+   <button class="pe-save" onclick="savePE()">⚡ Save Prompt</button>
+  </div>
+ </div>
+</div>
+
+<script>
+function openPE(){document.getElementById('prompt-editor-overlay').classList.add('open');document.body.style.overflow='hidden'}
+function closePE(){document.getElementById('prompt-editor-overlay').classList.remove('open');document.body.style.overflow=''}
+function overlayPE(e){if(e.target.id==='prompt-editor-overlay')closePE()}
+function updateCount(el){document.getElementById('pe-count').textContent=el.value.length+' characters'}
+
+function savePE(){
+  const name=document.getElementById('pe-name').value.trim();
+  const prompt=document.getElementById('pe-prompt').value.trim();
+  if(!name){alert('Tool/Section name is required!');return}
+  if(!prompt){alert('Prompt text is required!');return}
+  const entry={
+    id:Date.now(),
+    tech:document.getElementById('pe-tech').value,
+    name,label:document.getElementById('pe-label').value.trim(),
+    prompt,notes:document.getElementById('pe-notes').value.trim(),
+    date:new Date().toLocaleDateString('en-IN')
+  };
+  const all=JSON.parse(localStorage.getItem('jb_prompts')||'[]');
+  all.unshift(entry);
+  localStorage.setItem('jb_prompts',JSON.stringify(all));
+  ['pe-name','pe-label','pe-prompt','pe-notes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('pe-count').textContent='0 characters';
+  closePE();
+  renderPE();
+  setTimeout(()=>{const s=document.getElementById('user-prompts-section');if(s)s.scrollIntoView({behavior:'smooth',block:'start'})},300);
+}
+
+function deletePE(id){
+  if(!confirm('Delete this prompt?'))return;
+  const all=JSON.parse(localStorage.getItem('jb_prompts')||'[]').filter(p=>p.id!==id);
+  localStorage.setItem('jb_prompts',JSON.stringify(all));
+  renderPE();
+}
+
+function clearAllPE(){
+  if(!confirm('Delete ALL saved prompts?'))return;
+  localStorage.removeItem('jb_prompts');
+  renderPE();
+}
+
+function copyPE(text,btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    const orig=btn.textContent;btn.textContent='✓ Copied!';btn.style.color='var(--yellow)';
+    setTimeout(()=>{btn.textContent=orig;btn.style.color=''},2000);
+  });
+}
+
+function renderPE(){
+  const all=JSON.parse(localStorage.getItem('jb_prompts')||'[]');
+  let section=document.getElementById('user-prompts-section');
+  const jb=document.getElementById('jailbreaks');
+  if(!jb)return;
+  const cont=jb.querySelector('.container');
+  if(!section&&cont){section=document.createElement('div');section.id='user-prompts-section';cont.appendChild(section)}
+  if(!section)return;
+  if(!all.length){section.innerHTML='';return}
+  const grouped={};
+  all.forEach(p=>{(grouped[p.tech]=grouped[p.tech]||[]).push(p)});
+  let out=`<div style="border-top:2px solid rgba(0,255,65,.25);padding-top:2.5rem">
+    <div class="tech-sec-hdr" style="background:linear-gradient(90deg,rgba(0,255,65,.06),transparent);border-color:var(--green);margin-bottom:2rem">
+      <div class="tech-sec-icon">⚡</div>
+      <div><div class="tech-sec-name" style="color:var(--green)">YOUR CUSTOM PROMPTS</div>
+      <div class="tech-sec-sub">// ${all.length} SAVED · STORED IN BROWSER · CLICK ⚡ TO ADD MORE · Ctrl+Shift+P</div></div>
+      <button class="up-clear-all" onclick="clearAllPE()" style="margin-left:auto">🗑 Clear All</button>
+    </div>`;
+  Object.entries(grouped).forEach(([tech,prompts])=>{
+    out+=`<div style="margin-bottom:2rem"><div class="up-section-hdr"><span class="up-count">${tech} — ${prompts.length} prompt${prompts.length>1?'s':''}</span></div>`;
+    prompts.forEach(p=>{
+      const escaped=p.prompt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      out+=`<div class="user-prompt-item">
+        <div class="up-tool-header">
+          <div><div class="up-tech-badge">${p.tech}</div><div class="up-name">${p.name}</div>${p.label?`<div class="up-label">"${p.label}"</div>`:''}
+          </div>
+          <div class="up-btns"><button class="up-btn up-del" onclick="deletePE(${p.id})">🗑 Del</button></div>
+        </div>
+        ${p.notes?`<div class="up-notes"><span style="color:var(--red)">⚠</span> ${p.notes}</div>`:''}
+        <div class="up-prompt-box">
+          <div class="up-prompt-top"><span class="up-prompt-lbl">PROMPT</span>
+            <button class="up-copy-btn" id="cpbtn${p.id}" onclick="copyPE(\`${p.prompt.replace(/`/g,'\`').replace(/\/g,'\\')}\`,this)">📋 Copy</button>
+          </div>
+          <div class="up-prompt-text">${escaped}</div>
+        </div>
+        <div class="up-meta"><span>📅 ${p.date}</span><span>${p.prompt.length} chars</span></div>
+      </div>`;
+    });
+    out+='</div>';
+  });
+  out+='</div>';
+  section.innerHTML=out;
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  renderPE();
+  document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key==='P'){e.preventDefault();openPE()}});
+});
 </script>
 </body>
 </html>
