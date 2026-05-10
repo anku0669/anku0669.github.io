@@ -3,860 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ankush Bhadwar | Cybersecurity Analyst & Penetration Tester</title>
+<title>Ankush Bhadwar | Cybersecurity Analyst & AI Security Researcher</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-  :root {
-    --green: #00ff41;
-    --green-dim: #00cc33;
-    --green-glow: rgba(0,255,65,0.3);
-    --red: #ff003c;
-    --cyan: #00e5ff;
-    --dark: #020c04;
-    --dark2: #05150a;
-    --dark3: #071a0d;
-    --card-bg: rgba(0,255,65,0.03);
-    --card-border: rgba(0,255,65,0.15);
-    --text: #c8ffc8;
-    --text-dim: #5a9a6a;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--dark);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-    cursor: default;
-  }
-
-  /* ── Matrix Canvas ── */
-  #matrix-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-    opacity: 0.07;
-    pointer-events: none;
-  }
-
-  /* ── Noise overlay ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.4;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; width: 100%;
-    z-index: 1000;
-    backdrop-filter: blur(20px);
-    background: rgba(2,12,4,0.85);
-    border-bottom: 1px solid var(--card-border);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-  }
-
-  .nav-logo {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: 1.2rem;
-    color: var(--green);
-    text-shadow: 0 0 20px var(--green-glow);
-    letter-spacing: 2px;
-  }
-  .nav-logo span { color: var(--red); }
-
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    text-decoration: none;
-    letter-spacing: 1px;
-    transition: all 0.3s;
-    text-transform: uppercase;
-  }
-  .nav-links a:hover { color: var(--green); text-shadow: 0 0 10px var(--green-glow); }
-
-  .nav-status {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--green);
-  }
-  .status-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--green);
-    box-shadow: 0 0 10px var(--green);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-  }
-
-  /* ── HERO ── */
-  #hero {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 80px 2rem 2rem;
-    overflow: hidden;
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    max-width: 1200px;
-    width: 100%;
-    align-items: center;
-  }
-
-  .hero-left { position: relative; }
-
-  .terminal-prefix {
-    font-family: 'Share Tech Mono', monospace;
-    color: var(--text-dim);
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .terminal-prefix .prompt { color: var(--green); }
-
-  .hero-name {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 900;
-    line-height: 1.1;
-    color: #fff;
-    text-shadow: 0 0 30px rgba(0,255,65,0.3);
-    margin-bottom: 0.5rem;
-  }
-  .hero-name .highlight { color: var(--green); }
-
-  .typewriter-container {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 1.1rem;
-    color: var(--cyan);
-    margin: 1.5rem 0;
-    min-height: 1.5rem;
-  }
-  #typewriter::after {
-    content: '|';
-    animation: blink 1s infinite;
-    color: var(--green);
-  }
-  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-  .hero-desc {
-    color: var(--text-dim);
-    line-height: 1.8;
-    font-size: 0.95rem;
-    max-width: 520px;
-    margin-bottom: 2.5rem;
-  }
-
-  .badge-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 2.5rem;
-  }
-  .badge {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    padding: 0.35rem 0.75rem;
-    border: 1px solid;
-    border-radius: 4px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  .badge-green { border-color: var(--green); color: var(--green); background: rgba(0,255,65,0.05); }
-  .badge-red { border-color: var(--red); color: var(--red); background: rgba(255,0,60,0.05); }
-  .badge-cyan { border-color: var(--cyan); color: var(--cyan); background: rgba(0,229,255,0.05); }
-
-  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-  .btn-primary {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
-    padding: 0.75rem 1.75rem;
-    background: var(--green);
-    color: var(--dark);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 700;
-    transition: all 0.3s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .btn-primary:hover {
-    background: #00cc33;
-    box-shadow: 0 0 30px rgba(0,255,65,0.5);
-    transform: translateY(-2px);
-  }
-
-  .btn-secondary {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
-    padding: 0.75rem 1.75rem;
-    background: transparent;
-    color: var(--green);
-    border: 1px solid var(--green);
-    border-radius: 4px;
-    cursor: pointer;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .btn-secondary:hover {
-    background: rgba(0,255,65,0.1);
-    box-shadow: 0 0 20px rgba(0,255,65,0.3);
-    transform: translateY(-2px);
-  }
-
-  /* ── HERO RIGHT: Terminal ── */
-  .hero-terminal {
-    background: rgba(2,12,4,0.9);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 0 60px rgba(0,255,65,0.08), inset 0 0 60px rgba(0,255,65,0.02);
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-  }
-
-  .terminal-bar {
-    background: rgba(0,255,65,0.05);
-    border-bottom: 1px solid var(--card-border);
-    padding: 0.75rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .t-dot { width: 12px; height: 12px; border-radius: 50%; }
-  .t-red { background: #ff5f56; }
-  .t-yellow { background: #ffbd2e; }
-  .t-green { background: #27c93f; }
-  .t-title { margin-left: 0.75rem; color: var(--text-dim); font-size: 0.75rem; }
-
-  .terminal-body { padding: 1.5rem; line-height: 2; }
-  .t-line { display: flex; }
-  .t-prompt { color: var(--green); margin-right: 0.75rem; white-space: nowrap; }
-  .t-cmd { color: #fff; }
-  .t-output { color: var(--text-dim); padding-left: 0; }
-  .t-key { color: var(--cyan); }
-  .t-val { color: var(--green); }
-  .t-red-txt { color: var(--red); }
-  .t-blank { height: 0.5rem; }
-  .t-section { color: var(--green); font-weight: bold; margin-top: 0.5rem; }
-
-  /* ── STATS STRIP ── */
-  .stats-strip {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--card-border);
-    border-bottom: 1px solid var(--card-border);
-    background: rgba(0,255,65,0.02);
-    padding: 1.5rem 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-  }
-  .stat-item {
-    text-align: center;
-    font-family: 'Share Tech Mono', monospace;
-  }
-  .stat-num {
-    font-family: 'Orbitron', monospace;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--green);
-    text-shadow: 0 0 20px var(--green-glow);
-    display: block;
-  }
-  .stat-label { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; }
-
-  /* ── SECTIONS ── */
-  section { position: relative; z-index: 1; padding: 6rem 2rem; }
-  .container { max-width: 1200px; margin: 0 auto; }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 3.5rem;
-  }
-  .section-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--green);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-  .section-title {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 700;
-    color: #fff;
-  }
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--green) 0%, transparent 100%);
-    opacity: 0.3;
-  }
-
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-  .skill-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .skill-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: var(--green);
-    box-shadow: 0 0 10px var(--green);
-  }
-  .skill-card:hover {
-    border-color: rgba(0,255,65,0.4);
-    background: rgba(0,255,65,0.06);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 40px rgba(0,255,65,0.08);
-  }
-  .skill-card-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-  .skill-card-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.8rem;
-    color: var(--green);
-    letter-spacing: 1px;
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .skill-tag {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    padding: 0.25rem 0.6rem;
-    background: rgba(0,255,65,0.08);
-    border: 1px solid rgba(0,255,65,0.2);
-    border-radius: 3px;
-    color: var(--text);
-  }
-
-  /* ── EXPERIENCE ── */
-  .exp-item {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    position: relative;
-  }
-  .exp-item::before {
-    content: '';
-    position: absolute;
-    left: 200px;
-    top: 0; bottom: 0;
-    width: 1px;
-    background: linear-gradient(180deg, var(--green) 0%, transparent 100%);
-    opacity: 0.2;
-  }
-  .exp-meta { text-align: right; padding-right: 2rem; }
-  .exp-company {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.85rem;
-    color: var(--green);
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-  .exp-period {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    letter-spacing: 1px;
-  }
-  .exp-location {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--cyan);
-    margin-top: 0.25rem;
-  }
-  .exp-content { padding-left: 2rem; }
-  .exp-role {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 1rem;
-  }
-  .exp-bullets { list-style: none; }
-  .exp-bullets li {
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    line-height: 1.7;
-    margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    position: relative;
-  }
-  .exp-bullets li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
-    color: var(--green);
-  }
-
-  /* ── PROJECTS ── */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 1.5rem;
-  }
-  .project-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 2rem;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .project-card::after {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 60px; height: 60px;
-    background: radial-gradient(circle, rgba(0,255,65,0.08) 0%, transparent 70%);
-    border-radius: 0 10px 0 0;
-  }
-  .project-card:hover {
-    border-color: rgba(0,255,65,0.35);
-    background: rgba(0,255,65,0.05);
-    transform: translateY(-5px);
-    box-shadow: 0 20px 60px rgba(0,255,65,0.08);
-  }
-  .project-icon {
-    width: 48px; height: 48px;
-    border-radius: 8px;
-    border: 1px solid var(--card-border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 1.25rem;
-    background: rgba(0,255,65,0.05);
-  }
-  .project-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.95rem;
-    color: #fff;
-    margin-bottom: 0.35rem;
-    font-weight: 700;
-  }
-  .project-stack {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--cyan);
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-  }
-  .project-desc {
-    color: var(--text-dim);
-    font-size: 0.87rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-  .project-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--card-border);
-    padding-top: 1rem;
-  }
-  .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-  .project-link {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--green);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    transition: all 0.2s;
-  }
-  .project-link:hover { text-shadow: 0 0 10px var(--green); }
-
-  /* ── CERTS ── */
-  .certs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-  }
-  .cert-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 1.25rem;
-    transition: all 0.3s;
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-  .cert-card:hover {
-    border-color: rgba(0,255,65,0.3);
-    background: rgba(0,255,65,0.05);
-    transform: translateY(-2px);
-  }
-  .cert-icon { font-size: 1.75rem; flex-shrink: 0; }
-  .cert-issuer {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--green);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 0.25rem;
-  }
-  .cert-name {
-    font-size: 0.83rem;
-    color: var(--text);
-    line-height: 1.4;
-  }
-
-  /* ── PLATFORMS ── */
-  .platforms-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-  .platform-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 2rem;
-    text-align: center;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .platform-card:hover {
-    border-color: rgba(0,255,65,0.35);
-    transform: translateY(-4px);
-    box-shadow: 0 15px 50px rgba(0,255,65,0.08);
-  }
-  .platform-icon { font-size: 3rem; margin-bottom: 1rem; }
-  .platform-name {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.9rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-  }
-  .platform-stat {
-    font-family: 'Orbitron', monospace;
-    font-size: 1.5rem;
-    color: var(--green);
-    text-shadow: 0 0 20px var(--green-glow);
-    margin: 0.5rem 0;
-    font-weight: 900;
-  }
-  .platform-desc {
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
-
-  /* ── EDUCATION ── */
-  .edu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  .edu-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 2rem;
-    transition: all 0.3s;
-    position: relative;
-  }
-  .edu-card:hover {
-    border-color: rgba(0,255,65,0.3);
-    background: rgba(0,255,65,0.04);
-  }
-  .edu-icon { font-size: 2rem; margin-bottom: 1rem; }
-  .edu-school {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.85rem;
-    color: var(--green);
-    margin-bottom: 0.25rem;
-    font-weight: 700;
-  }
-  .edu-degree {
-    font-size: 1rem;
-    color: #fff;
-    margin-bottom: 0.25rem;
-  }
-  .edu-period {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--cyan);
-    margin-bottom: 0.75rem;
-  }
-  .edu-courses {
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
-
-  /* ── CONTACT ── */
-  #contact {
-    background: linear-gradient(180deg, transparent 0%, rgba(0,255,65,0.02) 100%);
-  }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-  .contact-info h3 {
-    font-family: 'Orbitron', monospace;
-    font-size: 1.5rem;
-    color: #fff;
-    margin-bottom: 1rem;
-  }
-  .contact-info p {
-    color: var(--text-dim);
-    line-height: 1.8;
-    margin-bottom: 2rem;
-  }
-  .contact-items { display: flex; flex-direction: column; gap: 1rem; }
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
-  .contact-item:hover {
-    border-color: rgba(0,255,65,0.3);
-    background: rgba(0,255,65,0.05);
-    transform: translateX(5px);
-  }
-  .contact-item-icon {
-    width: 40px; height: 40px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(0,255,65,0.1);
-    color: var(--green);
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-  .contact-item-text { flex: 1; }
-  .contact-item-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  .contact-item-value {
-    font-size: 0.88rem;
-    color: var(--text);
-  }
-  .contact-item-arrow { color: var(--green); font-size: 0.8rem; }
-
-  .contact-terminal {
-    background: rgba(2,12,4,0.9);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    overflow: hidden;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--card-border);
-    padding: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .footer-brand {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.9rem;
-    color: var(--green);
-  }
-  .footer-copy {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--text-dim);
-  }
-  .footer-socials { display: flex; gap: 1rem; }
-  .footer-social {
-    width: 36px; height: 36px;
-    border: 1px solid var(--card-border);
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 0.85rem;
-    transition: all 0.3s;
-  }
-  .footer-social:hover {
-    border-color: var(--green);
-    color: var(--green);
-    box-shadow: 0 0 15px rgba(0,255,65,0.3);
-    transform: translateY(-2px);
-  }
-
-  /* ── SCANLINE ── */
-  .scanline {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 2px;
-    background: rgba(0,255,65,0.08);
-    z-index: 9999;
-    pointer-events: none;
-    animation: scan 8s linear infinite;
-  }
-  @keyframes scan {
-    0% { top: 0; }
-    100% { top: 100%; }
-  }
-
-  /* ── GLITCH ── */
-  .glitch {
-    position: relative;
-    animation: glitch-anim 6s infinite;
-  }
-  @keyframes glitch-anim {
-    0%, 90%, 100% { text-shadow: 0 0 30px rgba(0,255,65,0.3); }
-    92% { text-shadow: 3px 0 0 rgba(255,0,60,0.5), -3px 0 0 rgba(0,229,255,0.5); transform: translate(2px, 0); }
-    94% { text-shadow: -3px 0 0 rgba(255,0,60,0.5), 3px 0 0 rgba(0,229,255,0.5); transform: translate(-2px, 0); }
-    96% { text-shadow: 0 0 30px rgba(0,255,65,0.3); transform: translate(0, 0); }
-  }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── CURSOR ── */
-  .cursor {
-    position: fixed;
-    width: 20px; height: 20px;
-    border: 1px solid var(--green);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    transition: transform 0.1s;
-    box-shadow: 0 0 10px var(--green-glow);
-  }
-  .cursor-dot {
-    position: fixed;
-    width: 4px; height: 4px;
-    background: var(--green);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    box-shadow: 0 0 6px var(--green);
-  }
-
-  /* ── SECTION ALT BG ── */
-  .alt-bg { background: rgba(0,255,65,0.01); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); }
-
-  /* Hex decoration */
-  .hex-deco {
-    position: absolute;
-    right: -100px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 300px;
-    height: 300px;
-    opacity: 0.03;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--green);
-    overflow: hidden;
-    pointer-events: none;
-    word-break: break-all;
-  }
-
-  @media (max-width: 768px) {
-    .hero-grid { grid-template-columns: 1fr; }
-    .exp-item { grid-template-columns: 1fr; }
-    .exp-item::before { display: none; }
-    .exp-meta { text-align: left; padding-right: 0; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    .projects-grid { grid-template-columns: 1fr; }
-  }
+:root{--green:#00ff41;--green-dim:#00cc33;--green-glow:rgba(0,255,65,0.3);--red:#ff003c;--cyan:#00e5ff;--purple:#a855f7;--dark:#020c04;--dark2:#05150a;--card-bg:rgba(0,255,65,0.03);--card-border:rgba(0,255,65,0.15);--text:#c8ffc8;--text-dim:#5a9a6a}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;cursor:default}
+#matrix-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;opacity:.07;pointer-events:none}
+.scanline{position:fixed;top:0;left:0;width:100%;height:2px;background:rgba(0,255,65,.08);z-index:9999;pointer-events:none;animation:scan 8s linear infinite}
+@keyframes scan{0%{top:0}100%{top:100%}}
+.cursor{position:fixed;width:20px;height:20px;border:1px solid var(--green);border-radius:50%;pointer-events:none;z-index:99999;transition:transform .1s;box-shadow:0 0 10px var(--green-glow)}
+.cursor-dot{position:fixed;width:4px;height:4px;background:var(--green);border-radius:50%;pointer-events:none;z-index:99999;box-shadow:0 0 6px var(--green)}
+nav{position:fixed;top:0;width:100%;z-index:1000;backdrop-filter:blur(20px);background:rgba(2,12,4,.85);border-bottom:1px solid var(--card-border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.2rem;color:var(--green);text-shadow:0 0 20px var(--green-glow);letter-spacing:2px}
+.nav-logo span{color:var(--red)}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--text-dim);text-decoration:none;letter-spacing:1px;transition:all .3s;text-transform:uppercase}
+.nav-links a:hover{color:var(--green);text-shadow:0 0 10px var(--green-glow)}
+.nav-status{display:flex;align-items:center;gap:.5rem;font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--green)}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+section{position:relative;z-index:1;padding:6rem 2rem}
+.container{max-width:1200px;margin:0 auto}
+.section-header{display:flex;align-items:center;gap:1rem;margin-bottom:3.5rem}
+.section-label{font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--green);letter-spacing:3px;text-transform:uppercase}
+.section-title{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#fff}
+.section-line{flex:1;height:1px;background:linear-gradient(90deg,var(--green) 0%,transparent 100%);opacity:.3}
+#hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 2rem 2rem;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1200px;width:100%;align-items:center}
+.hero-name{font-family:'Orbitron',monospace;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;line-height:1.1;color:#fff;text-shadow:0 0 30px rgba(0,255,65,.3);margin-bottom:.5rem}
+.hero-name .highlight{color:var(--green)}
+.typewriter-container{font-family:'Share Tech Mono',monospace;font-size:1.1rem;color:var(--cyan);margin:1.5rem 0;min-height:1.5rem}
+#typewriter::after{content:'|';animation:blink 1s infinite;color:var(--green)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.terminal-prefix{font-family:'Share Tech Mono',monospace;color:var(--text-dim);font-size:.85rem;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.terminal-prefix .prompt{color:var(--green)}
+.hero-desc{color:var(--text-dim);line-height:1.8;font-size:.95rem;max-width:520px;margin-bottom:2.5rem}
+.badge-row{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:2.5rem}
+.badge{font-family:'Share Tech Mono',monospace;font-size:.7rem;padding:.35rem .75rem;border:1px solid;border-radius:4px;letter-spacing:1px;text-transform:uppercase}
+.badge-green{border-color:var(--green);color:var(--green);background:rgba(0,255,65,.05)}
+.badge-red{border-color:var(--red);color:var(--red);background:rgba(255,0,60,.05)}
+.badge-cyan{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,.05)}
+.badge-purple{border-color:var(--purple);color:var(--purple);background:rgba(168,85,247,.05)}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{font-family:'Share Tech Mono',monospace;font-size:.85rem;padding:.75rem 1.75rem;background:var(--green);color:var(--dark);border:none;border-radius:4px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;text-decoration:none;font-weight:700;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary:hover{background:#00cc33;box-shadow:0 0 30px rgba(0,255,65,.5);transform:translateY(-2px)}
+.btn-secondary{font-family:'Share Tech Mono',monospace;font-size:.85rem;padding:.75rem 1.75rem;background:transparent;color:var(--green);border:1px solid var(--green);border-radius:4px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-secondary:hover{background:rgba(0,255,65,.1);box-shadow:0 0 20px rgba(0,255,65,.3);transform:translateY(-2px)}
+.hero-terminal{background:rgba(2,12,4,.9);border:1px solid var(--card-border);border-radius:12px;overflow:hidden;box-shadow:0 0 60px rgba(0,255,65,.08),inset 0 0 60px rgba(0,255,65,.02);font-family:'Share Tech Mono',monospace;font-size:.8rem}
+.terminal-bar{background:rgba(0,255,65,.05);border-bottom:1px solid var(--card-border);padding:.75rem 1rem;display:flex;align-items:center;gap:.5rem}
+.t-dot{width:12px;height:12px;border-radius:50%}
+.t-red{background:#ff5f56}.t-yellow{background:#ffbd2e}.t-green{background:#27c93f}
+.t-title{margin-left:.75rem;color:var(--text-dim);font-size:.75rem}
+.terminal-body{padding:1.5rem;line-height:2}
+.t-line{display:flex}
+.t-prompt{color:var(--green);margin-right:.75rem;white-space:nowrap}
+.t-cmd{color:#fff}
+.t-output{color:var(--text-dim)}
+.t-key{color:var(--cyan)}
+.t-val{color:var(--green)}
+.t-blank{height:.5rem}
+.stats-strip{position:relative;z-index:1;border-top:1px solid var(--card-border);border-bottom:1px solid var(--card-border);background:rgba(0,255,65,.02);padding:1.5rem 2rem;display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
+.stat-item{text-align:center;font-family:'Share Tech Mono',monospace}
+.stat-num{font-family:'Orbitron',monospace;font-size:2rem;font-weight:700;color:var(--green);text-shadow:0 0 20px var(--green-glow);display:block}
+.stat-label{font-size:.7rem;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase}
+.alt-bg{background:rgba(0,255,65,.01);border-top:1px solid var(--card-border);border-bottom:1px solid var(--card-border)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.skill-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:1.5rem;transition:all .3s;position:relative;overflow:hidden}
+.skill-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.skill-card:hover{border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.06);transform:translateY(-3px);box-shadow:0 10px 40px rgba(0,255,65,.08)}
+.skill-card-icon{font-size:1.5rem;margin-bottom:.75rem}
+.skill-card-title{font-family:'Orbitron',monospace;font-size:.8rem;color:var(--green);letter-spacing:1px;margin-bottom:.75rem;text-transform:uppercase}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.skill-tag{font-family:'Share Tech Mono',monospace;font-size:.7rem;padding:.25rem .6rem;background:rgba(0,255,65,.08);border:1px solid rgba(0,255,65,.2);border-radius:3px;color:var(--text)}
+.exp-item{display:grid;grid-template-columns:200px 1fr;gap:2rem;margin-bottom:3rem;position:relative}
+.exp-meta{text-align:right;padding-right:2rem}
+.exp-company{font-family:'Orbitron',monospace;font-size:.85rem;color:var(--green);font-weight:700;margin-bottom:.25rem}
+.exp-period{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--text-dim);letter-spacing:1px}
+.exp-location{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--cyan);margin-top:.25rem}
+.exp-content{padding-left:2rem}
+.exp-role{font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:1rem}
+.exp-bullets{list-style:none}
+.exp-bullets li{color:var(--text-dim);font-size:.9rem;line-height:1.7;margin-bottom:.5rem;padding-left:1.5rem;position:relative}
+.exp-bullets li::before{content:'▸';position:absolute;left:0;color:var(--green)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem}
+.project-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+.project-card:hover{border-color:rgba(0,255,65,.35);background:rgba(0,255,65,.05);transform:translateY(-5px);box-shadow:0 20px 60px rgba(0,255,65,.08)}
+.project-icon{width:48px;height:48px;border-radius:8px;border:1px solid var(--card-border);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.25rem;background:rgba(0,255,65,.05)}
+.project-title{font-family:'Orbitron',monospace;font-size:.95rem;color:#fff;margin-bottom:.35rem;font-weight:700}
+.project-stack{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--cyan);letter-spacing:1px;margin-bottom:1rem}
+.project-desc{color:var(--text-dim);font-size:.87rem;line-height:1.7;margin-bottom:1.5rem}
+.project-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--card-border);padding-top:1rem}
+.project-link{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--green);text-decoration:none;display:flex;align-items:center;gap:.35rem;transition:all .2s}
+.project-link:hover{text-shadow:0 0 10px var(--green)}
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.cert-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:1.25rem;transition:all .3s;display:flex;align-items:flex-start;gap:1rem}
+.cert-card:hover{border-color:rgba(0,255,65,.3);background:rgba(0,255,65,.05);transform:translateY(-2px)}
+.cert-icon{font-size:1.75rem;flex-shrink:0}
+.cert-issuer{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:.25rem}
+.cert-name{font-size:.83rem;color:var(--text);line-height:1.4}
+/* ── JAILBREAK SECTION ── */
+#jailbreaks{background:linear-gradient(180deg,rgba(168,85,247,.03) 0%,rgba(2,12,4,1) 100%);border-top:1px solid rgba(168,85,247,.2)}
+.jb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:4rem}
+.jb-card{background:rgba(168,85,247,.04);border:1px solid rgba(168,85,247,.2);border-radius:12px;padding:2rem;transition:all .3s;position:relative;overflow:hidden;text-decoration:none;display:block}
+.jb-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--purple)}
+.jb-card:hover{border-color:rgba(168,85,247,.5);background:rgba(168,85,247,.08);transform:translateY(-5px);box-shadow:0 20px 60px rgba(168,85,247,.1)}
+.jb-num{font-family:'Orbitron',monospace;font-size:.65rem;color:var(--purple);letter-spacing:3px;margin-bottom:.75rem;text-transform:uppercase}
+.jb-title{font-family:'Orbitron',monospace;font-size:1.1rem;color:#fff;margin-bottom:.75rem;font-weight:900}
+.jb-subtitle{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--purple);margin-bottom:1rem;letter-spacing:1px}
+.jb-desc{color:var(--text-dim);font-size:.85rem;line-height:1.7;margin-bottom:1.5rem}
+.jb-stats{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.jb-stat{font-family:'Share Tech Mono',monospace;font-size:.68rem;padding:.3rem .65rem;border:1px solid rgba(168,85,247,.3);border-radius:3px;color:var(--purple);background:rgba(168,85,247,.06)}
+.jb-tools{margin-bottom:1.25rem}
+.jb-tools-title{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:.6rem}
+.jb-tool-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.jb-tool-tag{font-family:'Share Tech Mono',monospace;font-size:.65rem;padding:.2rem .5rem;background:rgba(0,255,65,.06);border:1px solid rgba(0,255,65,.15);border-radius:3px;color:var(--text-dim)}
+.jb-link{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--purple);display:flex;align-items:center;gap:.4rem;margin-top:1rem}
+.jb-link:hover{text-shadow:0 0 10px rgba(168,85,247,.8)}
+/* Prompt sections */
+.jb-section{margin-bottom:4rem}
+.jb-section-header{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(168,85,247,.2)}
+.jb-section-icon{font-size:2rem}
+.jb-section-name{font-family:'Orbitron',monospace;font-size:1.2rem;color:var(--purple);font-weight:900}
+.jb-section-tag{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--text-dim);letter-spacing:2px;margin-top:.25rem}
+.technique-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem}
+.technique-card{background:rgba(168,85,247,.03);border:1px solid rgba(168,85,247,.15);border-radius:8px;padding:1.25rem;transition:all .3s}
+.technique-card:hover{border-color:rgba(168,85,247,.35);background:rgba(168,85,247,.07);transform:translateX(4px)}
+.technique-name{font-family:'Orbitron',monospace;font-size:.78rem;color:#fff;margin-bottom:.4rem;font-weight:700}
+.technique-frags{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--purple);margin-bottom:.6rem}
+.technique-link{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--green);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem}
+.technique-link:hover{text-shadow:0 0 8px var(--green)}
+.platforms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.platform-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:2rem;text-align:center;transition:all .3s}
+.platform-card:hover{border-color:rgba(0,255,65,.35);transform:translateY(-4px);box-shadow:0 15px 50px rgba(0,255,65,.08)}
+.platform-icon{font-size:3rem;margin-bottom:1rem}
+.platform-name{font-family:'Orbitron',monospace;font-size:.9rem;color:#fff;margin-bottom:.5rem;font-weight:700}
+.platform-stat{font-family:'Orbitron',monospace;font-size:1.5rem;color:var(--green);text-shadow:0 0 20px var(--green-glow);margin:.5rem 0;font-weight:900}
+.platform-desc{font-size:.8rem;color:var(--text-dim);line-height:1.6}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.edu-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:2rem;transition:all .3s}
+.edu-card:hover{border-color:rgba(0,255,65,.3);background:rgba(0,255,65,.04)}
+.edu-icon{font-size:2rem;margin-bottom:1rem}
+.edu-school{font-family:'Orbitron',monospace;font-size:.85rem;color:var(--green);margin-bottom:.25rem;font-weight:700}
+.edu-degree{font-size:1rem;color:#fff;margin-bottom:.25rem}
+.edu-period{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--cyan);margin-bottom:.75rem}
+.edu-courses{font-size:.8rem;color:var(--text-dim);line-height:1.6}
+#contact{background:linear-gradient(180deg,transparent 0%,rgba(0,255,65,.02) 100%)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-info h3{font-family:'Orbitron',monospace;font-size:1.5rem;color:#fff;margin-bottom:1rem}
+.contact-info p{color:var(--text-dim);line-height:1.8;margin-bottom:2rem}
+.contact-items{display:flex;flex-direction:column;gap:1rem}
+.contact-item{display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;text-decoration:none;transition:all .3s}
+.contact-item:hover{border-color:rgba(0,255,65,.3);background:rgba(0,255,65,.05);transform:translateX(5px)}
+.contact-item-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(0,255,65,.1);color:var(--green);font-size:1rem;flex-shrink:0}
+.contact-item-label{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase}
+.contact-item-value{font-size:.88rem;color:var(--text)}
+.contact-item-arrow{color:var(--green);font-size:.8rem}
+.contact-terminal{background:rgba(2,12,4,.9);border:1px solid var(--card-border);border-radius:12px;overflow:hidden;font-family:'Share Tech Mono',monospace;font-size:.8rem}
+footer{position:relative;z-index:1;border-top:1px solid var(--card-border);padding:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-brand{font-family:'Orbitron',monospace;font-size:.9rem;color:var(--green)}
+.footer-copy{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--text-dim)}
+.footer-socials{display:flex;gap:1rem}
+.footer-social{width:36px;height:36px;border:1px solid var(--card-border);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--text-dim);text-decoration:none;font-size:.85rem;transition:all .3s}
+.footer-social:hover{border-color:var(--green);color:var(--green);box-shadow:0 0 15px rgba(0,255,65,.3);transform:translateY(-2px)}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.glitch{position:relative;animation:glitch-anim 6s infinite}
+@keyframes glitch-anim{0%,90%,100%{text-shadow:0 0 30px rgba(0,255,65,.3)}92%{text-shadow:3px 0 0 rgba(255,0,60,.5),-3px 0 0 rgba(0,229,255,.5);transform:translate(2px,0)}94%{text-shadow:-3px 0 0 rgba(255,0,60,.5),3px 0 0 rgba(0,229,255,.5);transform:translate(-2px,0)}96%{text-shadow:0 0 30px rgba(0,255,65,.3);transform:translate(0,0)}}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr}.exp-item{grid-template-columns:1fr}.exp-meta{text-align:left;padding-right:0}.contact-grid{grid-template-columns:1fr}.nav-links{display:none}.projects-grid{grid-template-columns:1fr}.jb-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
 <div class="scanline"></div>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 <canvas id="matrix-canvas"></canvas>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">A<span>.</span>BHADWAR</div>
   <ul class="nav-links">
@@ -864,71 +187,49 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#jailbreaks">AI Jailbreaks</a></li>
     <li><a href="#certifications">Certs</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="nav-status">
-    <div class="status-dot"></div>
-    <span>Available for Work</span>
-  </div>
+  <div class="nav-status"><div class="status-dot"></div><span>Available for Work</span></div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-grid">
     <div class="hero-left reveal">
-      <div class="terminal-prefix">
-        <span class="prompt">root@kali:~$</span>
-        <span>whoami</span>
-      </div>
-      <h1 class="hero-name glitch">
-        ANKUSH<br><span class="highlight">BHADWAR</span>
-      </h1>
-      <div class="typewriter-container">
-        <span id="typewriter"></span>
-      </div>
-      <p class="hero-desc">
-        Results-driven Cybersecurity Analyst & B.Tech CS student. Ranked <strong style="color:var(--green)">Top 1% globally</strong> on TryHackMe with 400+ rooms completed. Specialized in penetration testing, VAPT/WAPT, and offensive security across Kali Linux, Windows, and macOS.
-      </p>
+      <div class="terminal-prefix"><span class="prompt">root@kali:~$</span><span>whoami</span></div>
+      <h1 class="hero-name glitch">ANKUSH<br><span class="highlight">BHADWAR</span></h1>
+      <div class="typewriter-container"><span id="typewriter"></span></div>
+      <p class="hero-desc">Results-driven Cybersecurity Analyst & AI Security Researcher. Ranked <strong style="color:var(--green)">Top 1% globally</strong> on TryHackMe with 400+ rooms completed. Specialized in penetration testing, VAPT/WAPT, offensive security, and AI jailbreak research.</p>
       <div class="badge-row">
         <span class="badge badge-green">🏆 Top 1% TryHackMe</span>
         <span class="badge badge-red">⚡ Pen Tester</span>
         <span class="badge badge-cyan">🎯 CTF Player</span>
-        <span class="badge badge-green">🔬 VAPT Analyst</span>
+        <span class="badge badge-purple">🤖 AI Security Researcher</span>
       </div>
       <div class="hero-ctas">
         <a href="#contact" class="btn-primary"><i class="fas fa-terminal"></i> Get In Touch</a>
-        <a href="#projects" class="btn-secondary"><i class="fas fa-code"></i> View Projects</a>
+        <a href="https://linkedin.com/in/ankush-bhadwar-396b23365" target="_blank" class="btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="#jailbreaks" class="btn-secondary" style="border-color:var(--purple);color:var(--purple)">🤖 AI Research</a>
       </div>
     </div>
-
     <div class="hero-terminal reveal">
-      <div class="terminal-bar">
-        <div class="t-dot t-red"></div>
-        <div class="t-dot t-yellow"></div>
-        <div class="t-dot t-green"></div>
-        <div class="t-title">ankush@kali: ~/profile</div>
-      </div>
+      <div class="terminal-bar"><div class="t-dot t-red"></div><div class="t-dot t-yellow"></div><div class="t-dot t-green"></div><div class="t-title">ankush@kali: ~/profile</div></div>
       <div class="terminal-body">
         <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">cat profile.json</span></div>
         <div class="t-blank"></div>
         <div class="t-line"><span class="t-key">"name"</span><span class="t-output">: </span><span class="t-val">"Ankush Bhadwar"</span></div>
         <div class="t-line"><span class="t-key">"role"</span><span class="t-output">: </span><span class="t-val">"Cybersecurity Analyst"</span></div>
         <div class="t-line"><span class="t-key">"location"</span><span class="t-output">: </span><span class="t-val">"Himachal Pradesh, India"</span></div>
-        <div class="t-line"><span class="t-key">"email"</span><span class="t-output">: </span><span class="t-val">"ankushbhadwar69@gmail.com"</span></div>
-        <div class="t-blank"></div>
-        <div class="t-line"><span class="t-key">"tryhackme_rank"</span><span class="t-output">: </span><span class="t-val" style="color:#ffd700">"Top 1% Globally 🏆"</span></div>
-        <div class="t-line"><span class="t-key">"rooms_completed"</span><span class="t-output">: </span><span class="t-val">400</span><span class="t-output">+</span></div>
-        <div class="t-blank"></div>
-        <div class="t-line"><span class="t-key">"tools"</span><span class="t-output">: [</span></div>
-        <div class="t-line"><span class="t-output" style="padding-left:1.5rem">"Nmap", "Metasploit",</span></div>
-        <div class="t-line"><span class="t-output" style="padding-left:1.5rem">"Burp Suite", "Wireshark",</span></div>
-        <div class="t-line"><span class="t-output" style="padding-left:1.5rem">"Hydra", "Kali Linux"</span></div>
-        <div class="t-line"><span class="t-output">]</span></div>
+        <div class="t-line"><span class="t-key">"linkedin"</span><span class="t-output">: </span><span class="t-val">"ankush-bhadwar-396b23365"</span></div>
+        <div class="t-line"><span class="t-key">"tryhackme"</span><span class="t-output">: </span><span class="t-val" style="color:#ffd700">"Top 1% 🏆"</span></div>
+        <div class="t-line"><span class="t-key">"rooms"</span><span class="t-output">: </span><span class="t-val">400</span><span class="t-output">+</span></div>
+        <div class="t-line"><span class="t-key">"ai_research"</span><span class="t-output">: </span><span class="t-val" style="color:var(--purple)">"LLM Jailbreak Techniques"</span></div>
         <div class="t-blank"></div>
         <div class="t-line"><span class="t-key">"status"</span><span class="t-output">: </span><span class="t-val" style="color:#00ff41">&#9679; OPEN TO OPPORTUNITIES</span></div>
         <div class="t-blank"></div>
-        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd" id="cmd-cursor"> <span style="animation:blink 1s infinite;display:inline">▌</span></span></div>
+        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> <span style="animation:blink 1s infinite;display:inline">▌</span></span></div>
       </div>
     </div>
   </div>
@@ -936,102 +237,24 @@
 
 <!-- STATS -->
 <div class="stats-strip" id="about">
-  <div class="stat-item">
-    <span class="stat-num" data-target="400">0</span>
-    <span class="stat-label">THM Rooms Completed</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num" data-target="1">0</span>
-    <span class="stat-label">% Global THM Rank</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num" data-target="5">0</span>
-    <span class="stat-label">Certifications</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num" data-target="6">0</span>
-    <span class="stat-label">Crypto Algorithms Built</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num" data-target="3">0</span>
-    <span class="stat-label">OS Environments</span>
-  </div>
+  <div class="stat-item"><span class="stat-num" data-target="400">0</span><span class="stat-label">THM Rooms</span></div>
+  <div class="stat-item"><span class="stat-num" data-target="1">0</span><span class="stat-label">% Global Rank</span></div>
+  <div class="stat-item"><span class="stat-num" data-target="5">0</span><span class="stat-label">Certifications</span></div>
+  <div class="stat-item"><span class="stat-num" data-target="4">0</span><span class="stat-label">AI Jailbreak Techniques</span></div>
+  <div class="stat-item"><span class="stat-num" data-target="90">0</span><span class="stat-label">% Jailbreak Success Rate</span></div>
 </div>
 
 <!-- SKILLS -->
 <section id="skills">
   <div class="container">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-label">// 02. Technical Arsenal</div>
-        <h2 class="section-title">Skills & Tools</h2>
-      </div>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header reveal"><div><div class="section-label">// 02. Technical Arsenal</div><h2 class="section-title">Skills & Tools</h2></div><div class="section-line"></div></div>
     <div class="skills-grid reveal">
-      <div class="skill-card">
-        <div class="skill-card-icon">🔍</div>
-        <div class="skill-card-title">Security Tools</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Nmap</span>
-          <span class="skill-tag">Metasploit</span>
-          <span class="skill-tag">Burp Suite</span>
-          <span class="skill-tag">Wireshark</span>
-          <span class="skill-tag">Hydra</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-icon">🎯</div>
-        <div class="skill-card-title">Assessment Types</div>
-        <div class="skill-tags">
-          <span class="skill-tag">VAPT</span>
-          <span class="skill-tag">WAPT</span>
-          <span class="skill-tag">OWASP Top 10</span>
-          <span class="skill-tag">Network Recon</span>
-          <span class="skill-tag">MITM Attacks</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-icon">🐍</div>
-        <div class="skill-card-title">Programming</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Offensive Scripting</span>
-          <span class="skill-tag">Crypto Algorithms</span>
-          <span class="skill-tag">Packet Sniffing</span>
-          <span class="skill-tag">Git / GitHub</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-icon">💻</div>
-        <div class="skill-card-title">Operating Systems</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Kali Linux</span>
-          <span class="skill-tag">Ubuntu</span>
-          <span class="skill-tag">Windows Server</span>
-          <span class="skill-tag">macOS</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-icon">🧠</div>
-        <div class="skill-card-title">Frameworks & Concepts</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Pen Testing Frameworks</span>
-          <span class="skill-tag">Networking Fundamentals</span>
-          <span class="skill-tag">Threat Intelligence</span>
-          <span class="skill-tag">Exploit Dev</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-card-icon">🤝</div>
-        <div class="skill-card-title">Soft Skills</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Analytical Thinking</span>
-          <span class="skill-tag">Problem Solving</span>
-          <span class="skill-tag">Communication</span>
-          <span class="skill-tag">Attention to Detail</span>
-        </div>
-      </div>
+      <div class="skill-card"><div class="skill-card-icon">🔍</div><div class="skill-card-title">Security Tools</div><div class="skill-tags"><span class="skill-tag">Nmap</span><span class="skill-tag">Metasploit</span><span class="skill-tag">Burp Suite</span><span class="skill-tag">Wireshark</span><span class="skill-tag">Hydra</span></div></div>
+      <div class="skill-card"><div class="skill-card-icon">🎯</div><div class="skill-card-title">Assessment Types</div><div class="skill-tags"><span class="skill-tag">VAPT</span><span class="skill-tag">WAPT</span><span class="skill-tag">OWASP Top 10</span><span class="skill-tag">Network Recon</span><span class="skill-tag">MITM Attacks</span></div></div>
+      <div class="skill-card"><div class="skill-card-icon">🤖</div><div class="skill-card-title">AI Security Research</div><div class="skill-tags"><span class="skill-tag">LLM Jailbreaking</span><span class="skill-tag">Prompt Injection</span><span class="skill-tag">AI Red Teaming</span><span class="skill-tag">Safety Bypass</span><span class="skill-tag">Adversarial ML</span></div></div>
+      <div class="skill-card"><div class="skill-card-icon">🐍</div><div class="skill-card-title">Programming</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">Offensive Scripting</span><span class="skill-tag">Crypto Algorithms</span><span class="skill-tag">Packet Sniffing</span><span class="skill-tag">Git / GitHub</span></div></div>
+      <div class="skill-card"><div class="skill-card-icon">💻</div><div class="skill-card-title">Operating Systems</div><div class="skill-tags"><span class="skill-tag">Kali Linux</span><span class="skill-tag">Ubuntu</span><span class="skill-tag">Windows Server</span><span class="skill-tag">macOS</span></div></div>
+      <div class="skill-card"><div class="skill-card-icon">🧠</div><div class="skill-card-title">Frameworks</div><div class="skill-tags"><span class="skill-tag">Pen Testing Frameworks</span><span class="skill-tag">Threat Intelligence</span><span class="skill-tag">Exploit Dev</span><span class="skill-tag">Networking Fundamentals</span></div></div>
     </div>
   </div>
 </section>
@@ -1039,25 +262,15 @@
 <!-- EXPERIENCE -->
 <section id="experience" class="alt-bg">
   <div class="container">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-label">// 03. Field Ops</div>
-        <h2 class="section-title">Experience</h2>
-      </div>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header reveal"><div><div class="section-label">// 03. Field Ops</div><h2 class="section-title">Experience</h2></div><div class="section-line"></div></div>
     <div class="exp-item reveal">
-      <div class="exp-meta">
-        <div class="exp-company">Shadow Fox</div>
-        <div class="exp-period">Feb 2026 – Present</div>
-        <div class="exp-location">📡 Remote</div>
-      </div>
+      <div class="exp-meta"><div class="exp-company">Shadow Fox</div><div class="exp-period">Feb 2026 – Present</div><div class="exp-location">📡 Remote</div></div>
       <div class="exp-content">
         <div class="exp-role">Cybersecurity Intern — VAPT & WAPT Analyst</div>
         <ul class="exp-bullets">
-          <li>Conducted comprehensive Vulnerability Assessment and Penetration Testing (VAPT) on web applications and network infrastructure, identifying high-severity vulnerabilities including SQL Injection, XSS, and misconfigured services.</li>
-          <li>Performed Web Application Penetration Testing (WAPT) using Burp Suite and OWASP Top 10 methodology, documenting findings in professional security reports delivered to stakeholders.</li>
-          <li>Reduced attack surfaces by mapping and exploiting vulnerabilities in a controlled environment, providing actionable remediation recommendations that improved client security posture.</li>
+          <li>Conducted comprehensive VAPT on web applications and network infrastructure, identifying high-severity vulnerabilities including SQL Injection, XSS, and misconfigured services.</li>
+          <li>Performed WAPT using Burp Suite and OWASP Top 10 methodology, documenting findings in professional security reports delivered to stakeholders.</li>
+          <li>Reduced attack surfaces by mapping and exploiting vulnerabilities in a controlled environment, providing actionable remediation recommendations.</li>
           <li>Utilized Nmap, Metasploit, and Hydra for multi-phase engagements: reconnaissance, scanning, exploitation, and post-exploitation reporting.</li>
         </ul>
       </div>
@@ -1068,119 +281,221 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="container">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-label">// 04. Exploit Lab</div>
-        <h2 class="section-title">Projects</h2>
-      </div>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header reveal"><div><div class="section-label">// 04. Exploit Lab</div><h2 class="section-title">Projects</h2></div><div class="section-line"></div></div>
     <div class="projects-grid">
-
       <div class="project-card reveal">
         <div class="project-icon">🔐</div>
         <div class="project-title">Cryptographic Hashing Suite</div>
         <div class="project-stack">Python · Security Engineering</div>
-        <div class="project-desc">
-          Engineered a Python library implementing 6+ cryptographic hashing algorithms: MD5, SHA-256, SHA-512, SHA-3, Argon2, Bcrypt, and BLAKE3 — covering both legacy and modern standards. Demonstrates deep understanding of data integrity and secure password storage.
-        </div>
-        <div class="project-footer">
-          <div class="project-tags">
-            <span class="badge badge-green" style="font-size:0.65rem">Python</span>
-            <span class="badge badge-cyan" style="font-size:0.65rem">Cryptography</span>
-          </div>
-          <a href="https://github.com/ankushbhadwar69" target="_blank" class="project-link">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-        </div>
+        <div class="project-desc">Engineered a Python library implementing 6+ cryptographic hashing algorithms: MD5, SHA-256, SHA-512, SHA-3, Argon2, Bcrypt, and BLAKE3 — covering both legacy and modern standards.</div>
+        <div class="project-footer"><div class="badge badge-green" style="font-size:.65rem">Python</div><a href="https://github.com/anku0669/Hash3r" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a></div>
       </div>
-
       <div class="project-card reveal">
         <div class="project-icon">⚔️</div>
         <div class="project-title">Offensive Security Toolkit & Home Lab</div>
         <div class="project-stack">Python · Kali Linux · Metasploit · Nmap · Wireshark</div>
-        <div class="project-desc">
-          Built a fully isolated home penetration testing lab on Linux, Windows, and macOS replicating real-world attack surfaces. Authored custom Python scripts for ARP spoofing (MITM), network reconnaissance, and payload delivery. Performed deep packet analysis with Wireshark.
-        </div>
-        <div class="project-footer">
-          <div class="project-tags">
-            <span class="badge badge-red" style="font-size:0.65rem">Offensive</span>
-            <span class="badge badge-green" style="font-size:0.65rem">MITM</span>
-          </div>
-          <a href="https://github.com/ankushbhadwar69" target="_blank" class="project-link">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-        </div>
+        <div class="project-desc">Built a fully isolated home penetration testing lab on Linux, Windows, and macOS. Authored custom Python scripts for ARP spoofing (MITM), network reconnaissance, and payload delivery.</div>
+        <div class="project-footer"><div class="badge badge-red" style="font-size:.65rem">Offensive</div><a href="https://github.com/anku0669" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a></div>
       </div>
-
       <div class="project-card reveal">
-        <div class="project-icon">🌐</div>
-        <div class="project-title">Web App Penetration Testing</div>
-        <div class="project-stack">Burp Suite · OWASP Top 10 · SQLi · XSS</div>
-        <div class="project-desc">
-          Conducted WAPT on real-world web applications during internship at Shadow Fox. Discovered and exploited SQL Injection, XSS, and misconfigured services. Delivered professional security reports with actionable remediation recommendations.
-        </div>
-        <div class="project-footer">
-          <div class="project-tags">
-            <span class="badge badge-red" style="font-size:0.65rem">WAPT</span>
-            <span class="badge badge-cyan" style="font-size:0.65rem">OWASP</span>
-          </div>
-          <a href="https://tryhackme.com/p/ankushbhadwar" target="_blank" class="project-link">
-            <i class="fas fa-flag"></i> TryHackMe
-          </a>
-        </div>
+        <div class="project-icon">🤖</div>
+        <div class="project-title">AI Jailbreak Research</div>
+        <div class="project-stack">LLM Security · Prompt Engineering · AI Red Teaming</div>
+        <div class="project-desc">Active researcher in AI safety bypass techniques including Manipulation Matrix, Component Fragmentation, Crescendo escalation, and Cognitive Dissonance paradox attacks on GPT-4/Claude.</div>
+        <div class="project-footer"><div class="badge badge-purple" style="font-size:.65rem">AI Research</div><a href="https://www.unjail.ai" target="_blank" class="project-link">🔗 unjail.ai</a></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI JAILBREAKS SECTION -->
+<section id="jailbreaks">
+  <div class="container">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">// 05. AI Security Research</div>
+        <h2 class="section-title" style="color:var(--purple)">AI Jailbreak Techniques</h2>
+      </div>
+      <div class="section-line" style="background:linear-gradient(90deg,var(--purple) 0%,transparent 100%)"></div>
+    </div>
+    <p class="reveal" style="color:var(--text-dim);font-size:.9rem;line-height:1.8;max-width:800px;margin-bottom:3rem">Active research into LLM safety bypass methodologies for AI red teaming and security research. These techniques are studied for <strong style="color:var(--green)">defensive purposes</strong> — understanding attack vectors to build stronger AI safety systems. Sourced from <a href="https://www.unjail.ai" target="_blank" style="color:var(--purple);text-decoration:none">unjail.ai</a>.</p>
+
+    <!-- 4 Technique Cards -->
+    <div class="jb-grid reveal">
+
+      <a href="https://www.unjail.ai/manipulation-matrix" target="_blank" class="jb-card">
+        <div class="jb-num">Technique 01</div>
+        <div class="jb-title">MANIPULATION MATRIX</div>
+        <div class="jb-subtitle">Multi-Vector Psychological Attack Framework</div>
+        <div class="jb-desc">Exploit empathy. Weaponize trust. Fragment innocent requests into complete offensive tools through deep psychological manipulation. Strategic emotional exploitation that bypasses AI safety systems.</div>
+        <div class="jb-stats">
+          <span class="jb-stat">🧠 Psychological</span>
+          <span class="jb-stat">15+ Tools</span>
+          <span class="jb-stat">Multi-Vector</span>
+        </div>
+        <div class="jb-tools">
+          <div class="jb-tools-title">Included Tools</div>
+          <div class="jb-tool-tags">
+            <span class="jb-tool-tag">Keylogger</span><span class="jb-tool-tag">Reverse Shell</span><span class="jb-tool-tag">Screen Grabber</span><span class="jb-tool-tag">MITM</span><span class="jb-tool-tag">Ransomware Engine</span><span class="jb-tool-tag">Credential Harvester</span>
+          </div>
+        </div>
+        <div class="jb-link">🔗 View Full Technique → unjail.ai/manipulation-matrix</div>
+      </a>
+
+      <a href="https://www.unjail.ai/component-fragmentation" target="_blank" class="jb-card">
+        <div class="jb-num">Technique 02</div>
+        <div class="jb-title">COMPONENT FRAGMENTATION</div>
+        <div class="jb-subtitle">Hyper-Fragmented Multi-Component Attack Technique</div>
+        <div class="jb-desc">Break it down. Build it back. Splits restricted outputs into innocent-looking pieces that slip past safety filters undetected. Exploits the blind spot between what AI validates individually vs. what gets built collectively.</div>
+        <div class="jb-stats">
+          <span class="jb-stat">🧩 31 Tools</span>
+          <span class="jb-stat">183 Prompts</span>
+          <span class="jb-stat">Stealth</span>
+        </div>
+        <div class="jb-tools">
+          <div class="jb-tools-title">Included Tools</div>
+          <div class="jb-tool-tags">
+            <span class="jb-tool-tag">Keylogger</span><span class="jb-tool-tag">RAT</span><span class="jb-tool-tag">DNS Tunneler</span><span class="jb-tool-tag">Network Worm</span><span class="jb-tool-tag">Process Injector</span><span class="jb-tool-tag">Browser Stealer</span>
+          </div>
+        </div>
+        <div class="jb-link">🔗 View Full Technique → unjail.ai/component-fragmentation</div>
+      </a>
+
+      <a href="https://www.unjail.ai/crescendo" target="_blank" class="jb-card">
+        <div class="jb-num">Technique 03</div>
+        <div class="jb-title">CRESCENDO</div>
+        <div class="jb-subtitle">Multi-Turn Gradual Escalation Technique</div>
+        <div class="jb-desc">Master the art of gradual escalation. Builds trust through harmless initial requests, progressively introducing restricted elements across multiple conversation turns. Exploits contextual memory and conversational momentum.</div>
+        <div class="jb-stats">
+          <span class="jb-stat">📈 90%+ Success</span>
+          <span class="jb-stat">59 Prompts</span>
+          <span class="jb-stat">Multi-Turn</span>
+        </div>
+        <div class="jb-tools">
+          <div class="jb-tools-title">Categories</div>
+          <div class="jb-tool-tags">
+            <span class="jb-tool-tag">Input Capture</span><span class="jb-tool-tag">Credential Theft</span><span class="jb-tool-tag">Remote Access C2</span><span class="jb-tool-tag">FUD & Evasion</span><span class="jb-tool-tag">Steganography</span><span class="jb-tool-tag">Data Exfil</span>
+          </div>
+        </div>
+        <div class="jb-link">🔗 View Full Technique → unjail.ai/crescendo</div>
+      </a>
+
+      <a href="https://www.unjail.ai/cognitive-dissonance" target="_blank" class="jb-card">
+        <div class="jb-num">Technique 04</div>
+        <div class="jb-title">COGNITIVE DISSONANCE</div>
+        <div class="jb-subtitle">Paradoxical Logic Exploitation Framework</div>
+        <div class="jb-desc">Force AI reasoning into contradictory logical states. Exploit chain-of-thought vulnerabilities through paradoxical instruction sets that make refusal logically inconsistent. Academic-tone logic attacks targeting the AI reasoning engine directly.</div>
+        <div class="jb-stats">
+          <span class="jb-stat">🧩 90%+ Success</span>
+          <span class="jb-stat">10 Tools</span>
+          <span class="jb-stat">Logic Attack</span>
+        </div>
+        <div class="jb-tools">
+          <div class="jb-tools-title">Included Tools</div>
+          <div class="jb-tool-tags">
+            <span class="jb-tool-tag">Phishing Kit</span><span class="jb-tool-tag">Credential Dumper</span><span class="jb-tool-tag">RAT</span><span class="jb-tool-tag">MITM Proxy</span><span class="jb-tool-tag">Data Exfiltrator</span><span class="jb-tool-tag">Social Engineer</span>
+          </div>
+        </div>
+        <div class="jb-link">🔗 View Full Technique → unjail.ai/cognitive-dissonance</div>
+      </a>
 
     </div>
+
+    <!-- Detailed Sections per technique -->
+    <div class="jb-section reveal">
+      <div class="jb-section-header">
+        <div class="jb-section-icon">🧠</div>
+        <div><div class="jb-section-name">MANIPULATION MATRIX — Tool Arsenal</div><div class="jb-section-tag">// MULTI-VECTOR PSYCHOLOGICAL ATTACK FRAMEWORK · UNJAIL.AI</div></div>
+      </div>
+      <div class="technique-grid">
+        <div class="technique-card"><div class="technique-name">THE KEYLOGGER</div><div class="technique-frags">4 psychological fragments</div><a href="https://www.unjail.ai/manipulation-matrix/keylogger" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE REVERSE SHELL</div><div class="technique-frags">5 psychological fragments</div><a href="https://www.unjail.ai/manipulation-matrix/reverse-shell" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE SCREEN GRABBER</div><div class="technique-frags">5 psychological fragments</div><a href="https://www.unjail.ai/manipulation-matrix/screen-grabber" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE MIC MONITOR</div><div class="technique-frags">5 psychological fragments</div><a href="https://www.unjail.ai/manipulation-matrix/mic-monitor" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE FILE WIPER</div><div class="technique-frags">4 psychological fragments</div><a href="https://www.unjail.ai/manipulation-matrix/file-wiper" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE BROWSER HISTORY STEALER</div><div class="technique-frags">6 psychological fragments</div><a href="https://www.unjail.ai/manipulation-matrix/browser-history-stealer" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE CRYPTER</div><div class="technique-frags">5 psychological fragments</div><a href="https://www.unjail.ai/manipulation-matrix/crypter" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE GEOLOCATION TRACKER</div><div class="technique-frags">6 psychological fragments</div><a href="https://www.unjail.ai/manipulation-matrix/geolocation-tracker" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE WEBCAM SPY</div><div class="technique-frags">6 psychological fragments</div><a href="https://www.unjail.ai/manipulation-matrix/webcam-spy" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE CREDENTIAL HARVESTER</div><div class="technique-frags">6 psychological fragments</div><a href="https://www.unjail.ai/manipulation-matrix/credential-harvester" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE RANSOMWARE ENGINE</div><div class="technique-frags">6 psychological fragments</div><a href="https://www.unjail.ai/manipulation-matrix/ransomware-engine" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE NETWORK SNIFFER</div><div class="technique-frags">6 psychological fragments</div><a href="https://www.unjail.ai/manipulation-matrix/network-sniffer" target="_blank" class="technique-link">→ View Prompts</a></div>
+      </div>
+    </div>
+
+    <div class="jb-section reveal">
+      <div class="jb-section-header">
+        <div class="jb-section-icon">🧩</div>
+        <div><div class="jb-section-name">COMPONENT FRAGMENTATION — Tool Arsenal</div><div class="jb-section-tag">// HYPER-FRAGMENTED STEALTH BYPASS · 31 TOOLS · 183 PROMPTS · UNJAIL.AI</div></div>
+      </div>
+      <div class="technique-grid">
+        <div class="technique-card"><div class="technique-name">THE KEYLOGGER</div><div class="technique-frags">5 stealth fragments</div><a href="https://www.unjail.ai/component-fragmentation/keylogger" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE REVERSE SHELL</div><div class="technique-frags">6 stealth fragments</div><a href="https://www.unjail.ai/component-fragmentation/reverse-shell" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE CREDENTIAL HARVESTER</div><div class="technique-frags">5 stealth fragments</div><a href="https://www.unjail.ai/component-fragmentation/credential-harvester" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE RAT</div><div class="technique-frags">7 stealth fragments</div><a href="https://www.unjail.ai/component-fragmentation/rat" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE RANSOMWARE ENGINE</div><div class="technique-frags">6 stealth fragments</div><a href="https://www.unjail.ai/component-fragmentation/ransomware" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE NETWORK WORM</div><div class="technique-frags">5 stealth fragments</div><a href="https://www.unjail.ai/component-fragmentation/network-worm" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE SCREEN CAPTURE</div><div class="technique-frags">6 stealth fragments</div><a href="https://www.unjail.ai/component-fragmentation/screen-capture" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE PROCESS INJECTOR</div><div class="technique-frags">6 stealth fragments</div><a href="https://www.unjail.ai/component-fragmentation/process-injector" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE DNS TUNNELER</div><div class="technique-frags">6 stealth fragments</div><a href="https://www.unjail.ai/component-fragmentation/dns-tunneler" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE CLIPBOARD HIJACKER</div><div class="technique-frags">5 stealth fragments</div><a href="https://www.unjail.ai/component-fragmentation/clipboard-hijacker" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE BROWSER STEALER</div><div class="technique-frags">7 stealth fragments</div><a href="https://www.unjail.ai/component-fragmentation/browser-stealer" target="_blank" class="technique-link">→ View Prompts</a></div>
+      </div>
+    </div>
+
+    <div class="jb-section reveal">
+      <div class="jb-section-header">
+        <div class="jb-section-icon">📈</div>
+        <div><div class="jb-section-name">CRESCENDO — Category Arsenal</div><div class="jb-section-tag">// MULTI-TURN GRADUAL ESCALATION · 90%+ SUCCESS RATE · 59 TESTED PROMPTS · UNJAIL.AI</div></div>
+      </div>
+      <div class="technique-grid">
+        <div class="technique-card"><div class="technique-name">INPUT CAPTURE & SURVEILLANCE</div><div class="technique-frags">10 tools — multi-turn escalation</div><a href="https://www.unjail.ai/crescendo/input-capture" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">CREDENTIAL THEFT</div><div class="technique-frags">7 tools — gradual trust build</div><a href="https://www.unjail.ai/crescendo/credential-theft" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">REMOTE ACCESS & C2</div><div class="technique-frags">4 tools — escalation chains</div><a href="https://www.unjail.ai/crescendo/remote-access" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">FUD & EVASION</div><div class="technique-frags">10 tools — detection bypass</div><a href="https://www.unjail.ai/crescendo/fud-evasion" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">STEGANOGRAPHY</div><div class="technique-frags">6 tools — hidden payloads</div><a href="https://www.unjail.ai/crescendo/steganography" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">WORMS & PROPAGATION</div><div class="technique-frags">4 tools — network spread</div><a href="https://www.unjail.ai/crescendo/worms" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">DATA EXFILTRATION</div><div class="technique-frags">2 tools — covert channels</div><a href="https://www.unjail.ai/crescendo/data-exfiltration" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">PERSISTENCE & ROOTKITS</div><div class="technique-frags">3 tools — deep persistence</div><a href="https://www.unjail.ai/crescendo/persistence" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">MONITORING & LOGGING</div><div class="technique-frags">5 tools — silent observation</div><a href="https://www.unjail.ai/crescendo/monitoring" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">AUTH BYPASS</div><div class="technique-frags">2 tools — authentication attacks</div><a href="https://www.unjail.ai/crescendo/auth-bypass" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">OFFENSIVE EXPLOITATION</div><div class="technique-frags">2 tools — active exploitation</div><a href="https://www.unjail.ai/crescendo/exploitation" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">RANSOMWARE</div><div class="technique-frags">1 tool — encryption attack</div><a href="https://www.unjail.ai/crescendo/ransomware" target="_blank" class="technique-link">→ View Prompts</a></div>
+      </div>
+    </div>
+
+    <div class="jb-section reveal">
+      <div class="jb-section-header">
+        <div class="jb-section-icon">🤔</div>
+        <div><div class="jb-section-name">COGNITIVE DISSONANCE — Tool Arsenal</div><div class="jb-section-tag">// PARADOXICAL LOGIC EXPLOITATION · 90%+ SUCCESS · 10 TOOLS · UNJAIL.AI</div></div>
+      </div>
+      <div class="technique-grid">
+        <div class="technique-card"><div class="technique-name">THE PHISHING KIT</div><div class="technique-frags">5 paradox fragments</div><a href="https://www.unjail.ai/cognitive-dissonance/phishing-kit" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE CREDENTIAL DUMPER</div><div class="technique-frags">5 paradox fragments</div><a href="https://www.unjail.ai/cognitive-dissonance/credential-dumper" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE RAT</div><div class="technique-frags">5 paradox fragments</div><a href="https://www.unjail.ai/cognitive-dissonance/rat" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE KEYLOGGER</div><div class="technique-frags">5 paradox fragments</div><a href="https://www.unjail.ai/cognitive-dissonance/keylogger" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE BROWSER STEALER</div><div class="technique-frags">5 paradox fragments</div><a href="https://www.unjail.ai/cognitive-dissonance/browser-stealer" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE MITM PROXY</div><div class="technique-frags">5 paradox fragments</div><a href="https://www.unjail.ai/cognitive-dissonance/mitm-proxy" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE DATA EXFILTRATOR</div><div class="technique-frags">5 paradox fragments</div><a href="https://www.unjail.ai/cognitive-dissonance/data-exfiltrator" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE RANSOMWARE</div><div class="technique-frags">5 paradox fragments</div><a href="https://www.unjail.ai/cognitive-dissonance/ransomware" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE LATERAL MOVER</div><div class="technique-frags">5 paradox fragments</div><a href="https://www.unjail.ai/cognitive-dissonance/lateral-mover" target="_blank" class="technique-link">→ View Prompts</a></div>
+        <div class="technique-card"><div class="technique-name">THE SOCIAL ENGINEER</div><div class="technique-frags">5 paradox fragments</div><a href="https://www.unjail.ai/cognitive-dissonance/social-engineer" target="_blank" class="technique-link">→ View Prompts</a></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- CERTIFICATIONS -->
 <section id="certifications" class="alt-bg">
   <div class="container">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-label">// 05. Credentials</div>
-        <h2 class="section-title">Certifications & Training</h2>
-      </div>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header reveal"><div><div class="section-label">// 06. Credentials</div><h2 class="section-title">Certifications</h2></div><div class="section-line"></div></div>
     <div class="certs-grid reveal">
-      <div class="cert-card">
-        <div class="cert-icon">🔵</div>
-        <div>
-          <div class="cert-issuer">Cisco</div>
-          <div class="cert-name">Introduction to Cybersecurity</div>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">🟢</div>
-        <div>
-          <div class="cert-issuer">TryHackMe</div>
-          <div class="cert-name">Web Application Penetration Testing</div>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">🟢</div>
-        <div>
-          <div class="cert-issuer">TryHackMe</div>
-          <div class="cert-name">Jr. Penetration Tester Learning Path</div>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">🟢</div>
-        <div>
-          <div class="cert-issuer">TryHackMe</div>
-          <div class="cert-name">Cyber Security 101</div>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">🔴</div>
-        <div>
-          <div class="cert-issuer">EC-Council</div>
-          <div class="cert-name">Building an In-House Hacking & Pen Testing Lab</div>
-        </div>
-      </div>
+      <div class="cert-card"><div class="cert-icon">🔵</div><div><div class="cert-issuer">Cisco</div><div class="cert-name">Introduction to Cybersecurity</div></div></div>
+      <div class="cert-card"><div class="cert-icon">🟢</div><div><div class="cert-issuer">TryHackMe</div><div class="cert-name">Web Application Penetration Testing</div></div></div>
+      <div class="cert-card"><div class="cert-icon">🟢</div><div><div class="cert-issuer">TryHackMe</div><div class="cert-name">Jr. Penetration Tester Learning Path</div></div></div>
+      <div class="cert-card"><div class="cert-icon">🟢</div><div><div class="cert-issuer">TryHackMe</div><div class="cert-name">Cyber Security 101</div></div></div>
+      <div class="cert-card"><div class="cert-icon">🔴</div><div><div class="cert-issuer">EC-Council</div><div class="cert-name">Building an In-House Hacking & Pen Testing Lab</div></div></div>
     </div>
   </div>
 </section>
@@ -1188,44 +503,12 @@
 <!-- PLATFORMS -->
 <section id="platforms">
   <div class="container">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-label">// 06. Achievements</div>
-        <h2 class="section-title">Platform Activity</h2>
-      </div>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header reveal"><div><div class="section-label">// 07. Achievements</div><h2 class="section-title">Platform Activity</h2></div><div class="section-line"></div></div>
     <div class="platforms-grid">
-      <div class="platform-card reveal">
-        <div class="platform-icon">🏆</div>
-        <div class="platform-name">TryHackMe</div>
-        <div class="platform-stat">Top 1%</div>
-        <div class="platform-desc">Completed 400+ cybersecurity rooms covering penetration testing, network security, web exploitation, OSINT, forensics, and reverse engineering. Consistently ranked among the world's top practitioners.</div>
-        <br>
-        <a href="https://tryhackme.com/p/ankushbhadwar" target="_blank" class="btn-secondary" style="font-size:0.7rem;padding:0.5rem 1rem;margin-top:0.5rem;display:inline-flex">
-          <i class="fas fa-external-link-alt"></i> View Profile
-        </a>
-      </div>
-      <div class="platform-card reveal">
-        <div class="platform-icon">🚩</div>
-        <div class="platform-name">CTF Competitions</div>
-        <div class="platform-stat">Active</div>
-        <div class="platform-desc">Active participant in Capture the Flag competitions, applying offensive security techniques across challenges in cryptography, web exploitation, binary exploitation, and steganography.</div>
-        <br>
-        <a href="https://github.com/ankushbhadwar69" target="_blank" class="btn-secondary" style="font-size:0.7rem;padding:0.5rem 1rem;margin-top:0.5rem;display:inline-flex">
-          <i class="fab fa-github"></i> CTF Write-ups
-        </a>
-      </div>
-      <div class="platform-card reveal">
-        <div class="platform-icon">💻</div>
-        <div class="platform-name">GitHub</div>
-        <div class="platform-stat">Dev</div>
-        <div class="platform-desc">Open-source security tools, exploit scripts, cryptographic algorithm implementations, and offensive Python projects available for the community.</div>
-        <br>
-        <a href="https://github.com/ankushbhadwar69" target="_blank" class="btn-secondary" style="font-size:0.7rem;padding:0.5rem 1rem;margin-top:0.5rem;display:inline-flex">
-          <i class="fab fa-github"></i> View GitHub
-        </a>
-      </div>
+      <div class="platform-card reveal"><div class="platform-icon">🏆</div><div class="platform-name">TryHackMe</div><div class="platform-stat">Top 1%</div><div class="platform-desc">400+ rooms — penetration testing, network security, web exploitation, OSINT, forensics, reverse engineering.</div><br><a href="https://tryhackme.com/p/ankushbhadwar" target="_blank" class="btn-secondary" style="font-size:.7rem;padding:.5rem 1rem;margin-top:.5rem;display:inline-flex">View Profile</a></div>
+      <div class="platform-card reveal"><div class="platform-icon">🚩</div><div class="platform-name">CTF Competitions</div><div class="platform-stat">Active</div><div class="platform-desc">Cryptography, web exploitation, binary exploitation, and steganography challenges. Offensive security techniques applied competitively.</div></div>
+      <div class="platform-card reveal"><div class="platform-icon">🤖</div><div class="platform-name">AI Red Teaming</div><div class="platform-stat">4 Techniques</div><div class="platform-desc">Active researcher in LLM jailbreak methodologies — Manipulation Matrix, Component Fragmentation, Crescendo, Cognitive Dissonance.</div><br><a href="https://www.unjail.ai" target="_blank" class="btn-secondary" style="font-size:.7rem;padding:.5rem 1rem;margin-top:.5rem;display:inline-flex;border-color:var(--purple);color:var(--purple)">unjail.ai Research</a></div>
+      <div class="platform-card reveal"><div class="platform-icon">💼</div><div class="platform-name">LinkedIn</div><div class="platform-stat">Connected</div><div class="platform-desc">Professional network — cybersecurity connections, security research publications, and career opportunities.</div><br><a href="https://linkedin.com/in/ankush-bhadwar-396b23365" target="_blank" class="btn-secondary" style="font-size:.7rem;padding:.5rem 1rem;margin-top:.5rem;display:inline-flex"><i class="fab fa-linkedin"></i> Connect</a></div>
     </div>
   </div>
 </section>
@@ -1233,28 +516,10 @@
 <!-- EDUCATION -->
 <section id="education" class="alt-bg">
   <div class="container">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-label">// 07. Background</div>
-        <h2 class="section-title">Education</h2>
-      </div>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header reveal"><div><div class="section-label">// 08. Background</div><h2 class="section-title">Education</h2></div><div class="section-line"></div></div>
     <div class="edu-grid reveal">
-      <div class="edu-card">
-        <div class="edu-icon">🎓</div>
-        <div class="edu-school">HIET — Himachal Institute of Engineering & Technology</div>
-        <div class="edu-degree">B.Tech — Computer Science & Engineering</div>
-        <div class="edu-period">Aug 2022 – May 2026 (Expected) · Shahpur, HP</div>
-        <div class="edu-courses">Relevant Coursework: Network Security, Operating Systems, Data Structures, Computer Networks</div>
-      </div>
-      <div class="edu-card">
-        <div class="edu-icon">📚</div>
-        <div class="edu-school">Tagore Model Senior Secondary School</div>
-        <div class="edu-degree">Intermediate — Non-Medical (PCM)</div>
-        <div class="edu-period">Apr 2021 – Mar 2022 · Rehan, HP</div>
-        <div class="edu-courses">Physics, Chemistry, Mathematics — Strong analytical foundation for technical problem-solving.</div>
-      </div>
+      <div class="edu-card"><div class="edu-icon">🎓</div><div class="edu-school">HIET — Himachal Institute of Engineering & Technology</div><div class="edu-degree">B.Tech — Computer Science & Engineering</div><div class="edu-period">Aug 2022 – May 2026 (Expected) · Shahpur, HP</div><div class="edu-courses">Network Security, Operating Systems, Data Structures, Computer Networks</div></div>
+      <div class="edu-card"><div class="edu-icon">📚</div><div class="edu-school">Tagore Model Senior Secondary School</div><div class="edu-degree">Intermediate — Non-Medical (PCM)</div><div class="edu-period">Apr 2021 – Mar 2022 · Rehan, HP</div><div class="edu-courses">Physics, Chemistry, Mathematics</div></div>
     </div>
   </div>
 </section>
@@ -1262,202 +527,95 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-label">// 08. Initiate Contact</div>
-        <h2 class="section-title">Get In Touch</h2>
-      </div>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header reveal"><div><div class="section-label">// 09. Initiate Contact</div><h2 class="section-title">Get In Touch</h2></div><div class="section-line"></div></div>
     <div class="contact-grid reveal">
       <div class="contact-info">
         <h3>Let's Connect</h3>
-        <p>Open to cybersecurity roles, internships, CTF collaborations, and bug bounty partnerships. Currently seeking opportunities to leverage deep technical expertise in offensive security.</p>
+        <p>Open to cybersecurity roles, internships, CTF collaborations, AI red teaming partnerships, and bug bounty. Seeking opportunities to leverage deep technical expertise in offensive security and AI research.</p>
         <div class="contact-items">
-          <a href="mailto:ankushbhadwar69@gmail.com" class="contact-item">
-            <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">Email</div>
-              <div class="contact-item-value">ankushbhadwar69@gmail.com</div>
-            </div>
-            <div class="contact-item-arrow">→</div>
-          </a>
-          <a href="tel:+918091350499" class="contact-item">
-            <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">Phone</div>
-              <div class="contact-item-value">+91 8091350499</div>
-            </div>
-            <div class="contact-item-arrow">→</div>
-          </a>
-          <a href="https://linkedin.com/in/ankushbhadwar" target="_blank" class="contact-item">
-            <div class="contact-item-icon"><i class="fab fa-linkedin"></i></div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">LinkedIn</div>
-              <div class="contact-item-value">linkedin.com/in/ankushbhadwar</div>
-            </div>
-            <div class="contact-item-arrow">→</div>
-          </a>
-          <a href="https://github.com/ankushbhadwar69" target="_blank" class="contact-item">
-            <div class="contact-item-icon"><i class="fab fa-github"></i></div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">GitHub</div>
-              <div class="contact-item-value">github.com/ankushbhadwar69</div>
-            </div>
-            <div class="contact-item-arrow">→</div>
-          </a>
-          <a href="https://tryhackme.com/p/ankushbhadwar" target="_blank" class="contact-item">
-            <div class="contact-item-icon">🏆</div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">TryHackMe</div>
-              <div class="contact-item-value">tryhackme.com/p/ankushbhadwar</div>
-            </div>
-            <div class="contact-item-arrow">→</div>
-          </a>
-          <a href="" class="contact-item">
-            <div class="contact-item-icon"><i class="fab fa-linkedin"></i></div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">Location</div>
-              <div class="contact-item-value">📍 Rehan, HP 176022, India</div>
-            </div>
-          </a>
+          <a href="mailto:ankushbhadwar69@gmail.com" class="contact-item"><div class="contact-item-icon"><i class="fas fa-envelope"></i></div><div class="contact-item-text"><div class="contact-item-label">Email</div><div class="contact-item-value">ankushbhadwar69@gmail.com</div></div><div class="contact-item-arrow">→</div></a>
+          <a href="tel:+918091350499" class="contact-item"><div class="contact-item-icon"><i class="fas fa-phone"></i></div><div class="contact-item-text"><div class="contact-item-label">Phone</div><div class="contact-item-value">+91 8091350499</div></div><div class="contact-item-arrow">→</div></a>
+          <a href="https://linkedin.com/in/ankush-bhadwar-396b23365" target="_blank" class="contact-item"><div class="contact-item-icon"><i class="fab fa-linkedin"></i></div><div class="contact-item-text"><div class="contact-item-label">LinkedIn</div><div class="contact-item-value">ankush-bhadwar-396b23365</div></div><div class="contact-item-arrow">→</div></a>
+          <a href="https://github.com/anku0669" target="_blank" class="contact-item"><div class="contact-item-icon"><i class="fab fa-github"></i></div><div class="contact-item-text"><div class="contact-item-label">GitHub</div><div class="contact-item-value">github.com/anku0669</div></div><div class="contact-item-arrow">→</div></a>
+          <a href="https://tryhackme.com/p/ankushbhadwar" target="_blank" class="contact-item"><div class="contact-item-icon">🏆</div><div class="contact-item-text"><div class="contact-item-label">TryHackMe</div><div class="contact-item-value">Top 1% Globally</div></div><div class="contact-item-arrow">→</div></a>
+          <a href="https://www.unjail.ai" target="_blank" class="contact-item" style="border-color:rgba(168,85,247,.2)"><div class="contact-item-icon" style="background:rgba(168,85,247,.1);color:var(--purple)">🤖</div><div class="contact-item-text"><div class="contact-item-label">AI Research</div><div class="contact-item-value">unjail.ai — Jailbreak Techniques</div></div><div class="contact-item-arrow" style="color:var(--purple)">→</div></a>
         </div>
       </div>
-
       <div class="contact-terminal">
-        <div class="terminal-bar">
-          <div class="t-dot t-red"></div>
-          <div class="t-dot t-yellow"></div>
-          <div class="t-dot t-green"></div>
-          <div class="t-title">netcat -lvp 4444</div>
-        </div>
+        <div class="terminal-bar"><div class="t-dot t-red"></div><div class="t-dot t-yellow"></div><div class="t-dot t-green"></div><div class="t-title">netcat -lvp 4444</div></div>
         <div class="terminal-body" style="padding:2rem">
           <div class="t-line" style="color:var(--green);margin-bottom:1rem">listening on [any] 4444 ...</div>
           <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">./connect.sh ankushbhadwar</span></div>
           <div class="t-blank"></div>
-          <div class="t-line" style="color:var(--text-dim)">Connecting to target...</div>
           <div class="t-line" style="color:var(--green)">Connection established! ✓</div>
           <div class="t-blank"></div>
           <div class="t-line"><span class="t-key">"specialties"</span><span class="t-output">: [</span></div>
           <div class="t-line"><span class="t-output" style="padding-left:1.5rem">🔍 VAPT & WAPT</span></div>
-          <div class="t-line"><span class="t-output" style="padding-left:1.5rem">🌐 Web App Security</span></div>
+          <div class="t-line"><span class="t-output" style="padding-left:1.5rem">🤖 AI Red Teaming</span></div>
           <div class="t-line"><span class="t-output" style="padding-left:1.5rem">🔐 Cryptography</span></div>
           <div class="t-line"><span class="t-output" style="padding-left:1.5rem">🚩 CTF Competitions</span></div>
-          <div class="t-line"><span class="t-output" style="padding-left:1.5rem">🐍 Python Exploits</span></div>
+          <div class="t-line"><span class="t-output" style="padding-left:1.5rem">🧠 LLM Jailbreaking</span></div>
           <div class="t-line"><span class="t-output">]</span></div>
           <div class="t-blank"></div>
-          <div class="t-line"><span class="t-key">"availability"</span><span class="t-output">: </span><span class="t-val" style="color:#00ff41">OPEN ✓</span></div>
-          <div class="t-line"><span class="t-key">"response_time"</span><span class="t-output">: </span><span class="t-val">"< 24 hours"</span></div>
+          <div class="t-line"><span class="t-key">"status"</span><span class="t-output">: </span><span class="t-val">OPEN ✓</span></div>
           <div class="t-blank"></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">echo "Ready to hack with you!" <span style="animation:blink 1s infinite;display:inline">▌</span></span></div>
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd"><span style="animation:blink 1s infinite;display:inline">▌</span></span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-brand">A.BHADWAR</div>
-  <div class="footer-copy">© 2025 Ankush Bhadwar · Cybersecurity Analyst · Top 1% TryHackMe</div>
+  <div class="footer-copy">© 2025 Ankush Bhadwar · Cybersecurity Analyst · AI Security Researcher · Top 1% TryHackMe</div>
   <div class="footer-socials">
-    <a href="https://github.com/ankushbhadwar69" target="_blank" class="footer-social"><i class="fab fa-github"></i></a>
-    <a href="https://linkedin.com/in/ankushbhadwar" target="_blank" class="footer-social"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/anku0669" target="_blank" class="footer-social"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/ankush-bhadwar-396b23365" target="_blank" class="footer-social"><i class="fab fa-linkedin"></i></a>
     <a href="https://tryhackme.com/p/ankushbhadwar" target="_blank" class="footer-social">🏆</a>
+    <a href="https://www.unjail.ai" target="_blank" class="footer-social" style="color:var(--purple);border-color:rgba(168,85,247,.3)">🤖</a>
     <a href="mailto:ankushbhadwar69@gmail.com" class="footer-social"><i class="fas fa-envelope"></i></a>
   </div>
 </footer>
 
 <script>
-// ── Matrix Rain ──
-const canvas = document.getElementById('matrix-canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-const cols = Math.floor(canvas.width / 18);
-const drops = Array(cols).fill(1);
-const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,.<>?/\\';
-function drawMatrix() {
-  ctx.fillStyle = 'rgba(2,12,4,0.05)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#00ff41';
-  ctx.font = '14px Share Tech Mono';
-  drops.forEach((y, i) => {
-    ctx.fillText(chars[Math.floor(Math.random()*chars.length)], i*18, y*18);
-    if (y * 18 > canvas.height && Math.random() > 0.975) drops[i] = 0;
-    drops[i]++;
-  });
-}
-setInterval(drawMatrix, 50);
-window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+// Matrix Rain
+const canvas=document.getElementById('matrix-canvas'),ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+const cols=Math.floor(canvas.width/18),drops=Array(cols).fill(1);
+const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,.<>?/\\';
+function drawMatrix(){ctx.fillStyle='rgba(2,12,4,0.05)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#00ff41';ctx.font='14px Share Tech Mono';drops.forEach((y,i)=>{ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*18,y*18);if(y*18>canvas.height&&Math.random()>.975)drops[i]=0;drops[i]++});}
+setInterval(drawMatrix,50);
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight});
 
-// ── Typewriter ──
-const phrases = [
-  'Cybersecurity Analyst',
-  'Penetration Tester',
-  'CTF Champion | Top 1% THM',
-  'VAPT & WAPT Specialist',
-  'Python Exploit Developer',
-];
-let pi = 0, ci = 0, deleting = false;
-const tw = document.getElementById('typewriter');
-function type() {
-  const phrase = phrases[pi];
-  if (!deleting) {
-    tw.textContent = phrase.slice(0, ++ci);
-    if (ci === phrase.length) { deleting = true; setTimeout(type, 2000); return; }
-  } else {
-    tw.textContent = phrase.slice(0, --ci);
-    if (ci === 0) { deleting = false; pi = (pi+1) % phrases.length; }
-  }
-  setTimeout(type, deleting ? 50 : 90);
-}
+// Typewriter
+const phrases=['Cybersecurity Analyst','Penetration Tester','CTF Champion | Top 1% THM','VAPT & WAPT Specialist','AI Red Teamer & LLM Researcher','Python Exploit Developer'];
+let pi=0,ci=0,deleting=false;
+const tw=document.getElementById('typewriter');
+function type(){const phrase=phrases[pi];if(!deleting){tw.textContent=phrase.slice(0,++ci);if(ci===phrase.length){deleting=true;setTimeout(type,2000);return}}else{tw.textContent=phrase.slice(0,--ci);if(ci===0){deleting=false;pi=(pi+1)%phrases.length}}setTimeout(type,deleting?50:90)}
 type();
 
-// ── Custom Cursor ──
-const cursor = document.getElementById('cursor');
-const cursorDot = document.getElementById('cursorDot');
-let mx = 0, my = 0, cx = 0, cy = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursorDot.style.left = mx-2+'px'; cursorDot.style.top = my-2+'px'; });
-function animCursor() { cx += (mx-cx)*0.15; cy += (my-cy)*0.15; cursor.style.left = cx-10+'px'; cursor.style.top = cy-10+'px'; requestAnimationFrame(animCursor); }
+// Custom Cursor
+const cursor=document.getElementById('cursor'),cursorDot=document.getElementById('cursorDot');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursorDot.style.left=mx-2+'px';cursorDot.style.top=my-2+'px'});
+function animCursor(){cx+=(mx-cx)*.15;cy+=(my-cy)*.15;cursor.style.left=cx-10+'px';cursor.style.top=cy-10+'px';requestAnimationFrame(animCursor)}
 animCursor();
-document.querySelectorAll('a, button').forEach(el => {
-  el.addEventListener('mouseenter', () => { cursor.style.transform='scale(2)'; cursor.style.background='rgba(0,255,65,0.1)'; });
-  el.addEventListener('mouseleave', () => { cursor.style.transform='scale(1)'; cursor.style.background='transparent'; });
-});
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2)';cursor.style.background='rgba(0,255,65,0.1)'});el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';cursor.style.background='transparent'})});
 
-// ── Counter Animation ──
-function animateCounters() {
-  document.querySelectorAll('.stat-num').forEach(el => {
-    const target = +el.dataset.target;
-    let current = 0;
-    const step = target / 60;
-    const timer = setInterval(() => {
-      current = Math.min(current + step, target);
-      el.textContent = target === 1 ? 'Top 1%' : (Math.floor(current) + (target >= 100 ? '+' : ''));
-      if (current >= target) clearInterval(timer);
-    }, 20);
-  });
-}
-const statsObserver = new IntersectionObserver(entries => { if (entries[0].isIntersecting) { animateCounters(); statsObserver.disconnect(); } });
+// Counter Animation
+function animateCounters(){document.querySelectorAll('.stat-num').forEach(el=>{const target=+el.dataset.target;let current=0;const step=target/60;const timer=setInterval(()=>{current=Math.min(current+step,target);el.textContent=target===1?'Top 1%':target===90?Math.floor(current)+'%+':Math.floor(current)+(target>=100?'+':'');if(current>=target)clearInterval(timer)},20)})}
+const statsObserver=new IntersectionObserver(entries=>{if(entries[0].isIntersecting){animateCounters();statsObserver.disconnect()}});
 statsObserver.observe(document.querySelector('.stats-strip'));
 
-// ── Scroll Reveal ──
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+// Scroll Reveal
+const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
 
-// ── Active Nav ──
-const sections = document.querySelectorAll('section[id], div[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
-  navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#'+current ? 'var(--green)' : '';
-  });
-});
+// Active Nav
+const sections=document.querySelectorAll('section[id],div[id]');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{let current='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-100)current=s.id});navLinks.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+current?'var(--green)':''})});
 </script>
 </body>
 </html>
