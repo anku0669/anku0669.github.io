@@ -325,6 +325,53 @@ section{padding:120px 0;position:relative}
 @media (hover:none){.lab-controls button{cursor:pointer}}
 .lab-controls button:hover{color:var(--accent);border-color:var(--line-3)}
 .lab-controls button.active{color:var(--accent);background:rgba(0,255,156,0.08);border-color:rgba(0,255,156,0.3)}
+.lab-controls .add-btn{margin-left:auto;color:var(--accent);background:rgba(0,255,156,0.06);border-color:rgba(0,255,156,0.25);display:inline-flex;align-items:center;gap:6px;font-weight:600}
+.lab-controls .add-btn:hover{background:rgba(0,255,156,0.12);border-color:var(--accent)}
+.lab-controls .add-btn svg{width:12px;height:12px}
+@media (max-width:640px){.lab-controls .add-btn{margin-left:0;width:100%;justify-content:center;margin-top:4px}}
+
+.prompt.user-prompt::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--cyan));z-index:1}
+.prompt{position:relative}
+.prompt .pf .del{color:#ff6b6b;margin-left:auto;margin-right:0}
+.prompt .pf .del:hover{color:#ff6b6b;border-color:rgba(255,107,107,0.4);background:rgba(255,107,107,0.06)}
+.prompt.user-prompt .pf .tags{margin-left:0}
+.prompt.user-prompt .pf .tags::before{content:"saved locally · ";color:var(--accent);opacity:.8}
+
+/* Modal */
+.modal-bg{position:fixed;inset:0;z-index:200;background:rgba(7,8,9,0.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:none;align-items:flex-start;justify-content:center;padding:80px 24px 24px;overflow-y:auto}
+.modal-bg.open{display:flex;animation:modalIn .3s ease}
+@keyframes modalIn{from{opacity:0}to{opacity:1}}
+.modal{background:var(--panel);border:1px solid var(--line-2);border-radius:var(--r-lg);width:min(620px,100%);overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.8);font-family:'JetBrains Mono',monospace;animation:modalSlide .35s cubic-bezier(.2,.7,.2,1)}
+@keyframes modalSlide{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+.modal-h{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,0.02)}
+.modal-h .dots{display:flex;gap:5px}
+.modal-h .dots i{width:8px;height:8px;border-radius:50%;background:#3a4252}
+.modal-h .dots i:nth-child(1){background:#ff5f56}.modal-h .dots i:nth-child(2){background:#ffbd2e}.modal-h .dots i:nth-child(3){background:#27c93f}
+.modal-h .t{color:var(--muted);font-size:12px;margin-left:10px;flex:1}
+.modal-h .x{background:transparent;border:0;color:var(--muted);font-size:18px;cursor:none;padding:0 6px}
+@media (hover:none){.modal-h .x{cursor:pointer}}
+.modal-h .x:hover{color:var(--accent)}
+.modal-b{padding:24px}
+.modal-b h3{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:6px;color:var(--text)}
+.modal-b .sub{font-size:12.5px;color:var(--muted);margin-bottom:22px}
+.modal-b label{display:block;margin-bottom:16px}
+.modal-b .lab{font-size:12px;color:var(--accent);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.modal-b .lab::before{content:">";font-weight:700}
+.modal-b input,.modal-b textarea,.modal-b select{width:100%;background:rgba(0,0,0,0.35);border:1px solid var(--line-2);border-radius:8px;padding:11px 14px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;transition:all .2s;resize:vertical;font-feature-settings:"ss01"}
+.modal-b input:focus,.modal-b textarea:focus,.modal-b select:focus{border-color:var(--accent);background:rgba(0,255,156,0.03);box-shadow:0 0 0 3px rgba(0,255,156,0.08)}
+.modal-b select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2300ff9c' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.modal-b .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.modal-b .row{grid-template-columns:1fr}}
+.modal-f{padding:16px 20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;background:rgba(255,255,255,0.015)}
+.modal-f .hint{font-size:11px;color:var(--dim)}
+.modal-f .acts{display:flex;gap:8px}
+.modal-f .btn-cancel{background:transparent;border:1px solid var(--line-2);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:12px;padding:9px 16px;border-radius:8px;cursor:none}
+@media (hover:none){.modal-f .btn-cancel{cursor:pointer}}
+.modal-f .btn-cancel:hover{color:var(--text);border-color:var(--line-3)}
+.modal-f .btn-save{background:var(--accent);color:#000;border:0;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12px;padding:9px 18px;border-radius:8px;cursor:none;display:inline-flex;align-items:center;gap:6px}
+@media (hover:none){.modal-f .btn-save{cursor:pointer}}
+.modal-f .btn-save:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(0,255,156,0.5)}
+.modal-f .btn-save svg{width:12px;height:12px}
 
 .prompts{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 @media (max-width:840px){.prompts{grid-template-columns:1fr}}
@@ -752,8 +799,8 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
         <h3>Cloud</h3>
         <div class="badges">
           <span class="badge">Azure</span><span class="badge">IAM</span><span class="badge">Defender</span>
-          <span class="badge">Entra ID</span><span class="badge">Cloud Sec</span><span class="badge">AZ-500</span>
-          <span class="badge">SC-900</span>
+          <span class="badge">Entra ID</span><span class="badge">Cloud Sec</span><span class="badge">AWS IAM</span>
+          <span class="badge">SC-100</span>
         </div>
       </div>
 
@@ -790,40 +837,38 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
 
     <div class="timeline">
       <div class="tl reveal">
-        <div class="when">Mar 2026 — Present</div>
-        <h3>Cybersecurity Analyst / Security Researcher</h3>
-        <div class="org">ShadowFox · Remote</div>
+        <div class="when">Mar 2026 — Present · 3 mos</div>
+        <h3>Cyber Security Internship</h3>
+        <div class="org">Slash Mark IT Solutions (OPC) Pvt. Ltd · Remote</div>
         <ul>
-          <li>Conducting API security assessments against authentication workflows and authorization models</li>
-          <li>Performing cloud security analysis in Azure environments — IAM, role assignments, misconfig hunts</li>
-          <li>Building automation scripts for reconnaissance and attack-surface mapping</li>
-          <li>Identifying OWASP Top 10 vulnerabilities in production web applications</li>
-          <li>Simulating attacker behavior using offensive tooling and enumeration pipelines</li>
+          <li>Conducting end-to-end security assessments across web applications and internal services</li>
+          <li>Hands-on vulnerability research, exploitation, and CVSS-scored reporting</li>
+          <li>Building offensive automation around reconnaissance and attack-surface mapping</li>
         </ul>
-        <div class="stack"><span>Burp Suite</span><span>Azure</span><span>Python</span><span>Nmap</span><span>JWT</span></div>
+        <div class="stack"><span>VAPT</span><span>Burp Suite</span><span>Python</span><span>OWASP</span></div>
       </div>
 
       <div class="tl reveal">
-        <div class="when">2026 — Internship</div>
-        <h3>Cybersecurity Intern</h3>
+        <div class="when">Feb 2026 — Mar 2026 · 2 mos</div>
+        <h3>Cyber Security Intern</h3>
         <div class="org">Future Interns · Remote</div>
         <ul>
-          <li>Built brute-force defense labs; analyzed credential-stuffing patterns with Hydra and Burp Intruder</li>
-          <li>Worked with Linux infrastructure, containers, and network analysis tools</li>
-          <li>Documented attack paths and hardening recommendations</li>
+          <li>Practical red team engagements simulating adversary kill chains</li>
+          <li>Offensive workflow training: ethical hacking, exploitation labs, post-exploitation tradecraft</li>
         </ul>
-        <div class="stack"><span>Hydra</span><span>Linux</span><span>Docker</span><span>Wireshark</span></div>
+        <div class="stack"><span>Ethical Hacking</span><span>Red Teaming</span><span>Metasploit</span></div>
       </div>
 
       <div class="tl reveal">
-        <div class="when">2025 — Internship</div>
-        <h3>Cybersecurity Intern</h3>
-        <div class="org">InternPe · Remote</div>
+        <div class="when">Feb 2026 · 1 mo</div>
+        <h3>Cyber Security Intern</h3>
+        <div class="org">ShadowFox · Remote</div>
         <ul>
-          <li>Hands-on with network reconnaissance, vulnerability scanning, and Linux exploitation labs</li>
-          <li>Practiced Wireshark traffic analysis and Metasploit-based exploitation in controlled environments</li>
+          <li>Web application penetration testing against staged client targets</li>
+          <li>Red team engagements with focus on auth bypass, IDOR, and injection chains</li>
+          <li>Delivered reproducible PoCs and prioritized remediation guidance</li>
         </ul>
-        <div class="stack"><span>Metasploit</span><span>Nmap</span><span>Linux</span></div>
+        <div class="stack"><span>Web App Pentest</span><span>Red Teaming</span><span>Burp Suite</span></div>
       </div>
 
       <div class="tl reveal">
@@ -951,6 +996,11 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
       <button data-filter="cloud">cloud security</button>
       <button data-filter="threat">threat modeling</button>
       <button data-filter="workflow">pentesting workflows</button>
+      <button data-filter="custom">// my prompts</button>
+      <button class="add-btn" id="openAddPrompt" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
+        add prompt
+      </button>
     </div>
 
     <div class="prompts" id="prompts"></div>
@@ -967,36 +1017,89 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
     </div>
 
     <div class="cert-cat reveal">
-      <div class="cert-cat-h"><span class="num mono">01</span><h3>Cloud Security</h3></div>
+      <div class="cert-cat-h"><span class="num mono">01</span><h3>Offensive Security & Penetration Testing</h3></div>
       <div class="certs-grid">
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>AZ-500 Path</h4><span>Microsoft Azure Security</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>SC-900 Path</h4><span>Microsoft Security Fundamentals</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>Azure Defender Operations</h4><span>Microsoft Learn</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>C-JWAPT — Jr Web App Pen Tester</h4><span>Sturtle Security · Mar 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>CCEP — Certified Cybersec Educator</h4><span>Red Team Leaders · Dec 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Offensive IAM Exploitation</h4><span>Red Team Leaders · Mar 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>CompTIA Pentest+ Path</h4><span>TryHackMe · Feb 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Jr Penetration Tester</h4><span>TryHackMe · Feb 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Web Application Pentesting</h4><span>TryHackMe · Feb 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Web App Red Teaming</h4><span>TryHackMe · Feb 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Advanced Endpoint Investigations</h4><span>TryHackMe · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>SOC Level 1</h4><span>TryHackMe · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Web Fundamentals</h4><span>TryHackMe · Feb 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Cyber Security 101</h4><span>TryHackMe · Feb 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Coldstart</h4><span>TryHackMe · Jan 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Cyber Security Internship</h4><span>ShadowFox · Feb 2026</span></div></div>
       </div>
     </div>
 
     <div class="cert-cat reveal">
-      <div class="cert-cat-h"><span class="num mono">02</span><h3>Offensive Security</h3></div>
+      <div class="cert-cat-h"><span class="num mono">02</span><h3>AI Security Research</h3></div>
       <div class="certs-grid">
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Jr Penetration Tester</h4><span>TryHackMe Learning Path</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Web Fundamentals</h4><span>TryHackMe</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Pre-Security Path</h4><span>TryHackMe</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Cyber Security 101</h4><span>TryHackMe</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>API Security Testing</h4><span>Self-study + PortSwigger Academy</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Ethical Hacking Foundations</h4><span>Self-paced training</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7 17l3-3M12 22a10 10 0 0 0 7-17l-3 3"/><circle cx="12" cy="12" r="3"/></svg></div><div class="info"><h4>CAISR — AI Security & Risk</h4><span>Red Team Leaders · Feb 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7 17l3-3M12 22a10 10 0 0 0 7-17l-3 3"/><circle cx="12" cy="12" r="3"/></svg></div><div class="info"><h4>AI Security</h4><span>TryHackMe · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7 17l3-3M12 22a10 10 0 0 0 7-17l-3 3"/><circle cx="12" cy="12" r="3"/></svg></div><div class="info"><h4>AI Tools Workshop</h4><span>Be10x · Mar 2026</span></div></div>
       </div>
     </div>
 
     <div class="cert-cat reveal">
-      <div class="cert-cat-h"><span class="num mono">03</span><h3>Networking & Infrastructure</h3></div>
+      <div class="cert-cat-h"><span class="num mono">03</span><h3>Claude · MCP · Agent Engineering</h3></div>
       <div class="certs-grid">
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Linux Fundamentals</h4><span>TryHackMe</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Networking Foundations</h4><span>TryHackMe</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Container Security Basics</h4><span>Docker + Self-study</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>AI Fluency Framework & Foundations</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Teaching the AI Fluency Framework</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>AI Fluency for Educators</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>AI Capabilities and Limitations</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Introduction to Claude Cowork</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Introduction to Agent Skills</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Introduction to Subagents</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Claude Code in Action</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Building with the Claude API</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Claude with Google Cloud Vertex AI</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Claude in Amazon Bedrock</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Introduction to Model Context Protocol</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>MCP: Advanced Topics</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>MCP Automation in Production</h4><span>Hugging Face · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Fundamentals of MCP</h4><span>Hugging Face · Apr 2026</span></div></div>
       </div>
     </div>
 
-    <p class="sec-sub reveal mono" style="margin-top:24px;font-size:12.5px">// note: drop your LinkedIn cert list and I'll wire each one with verifier links + issue dates.</p>
+    <div class="cert-cat reveal">
+      <div class="cert-cat-h"><span class="num mono">04</span><h3>Cloud & Infrastructure</h3></div>
+      <div class="certs-grid">
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>AWS Identity & Access Management</h4><span>Amazon Web Services · Nov 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>AWS Security Governance at Scale</h4><span>Amazon Web Services · Nov 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>AWS for VMware Administrators</h4><span>Amazon Web Services · Nov 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Networking Devices & Initial Config</h4><span>Cisco · Nov 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Introduction to Cybersecurity</h4><span>Cisco · Nov 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Cybersecurity Fundamentals</h4><span>IBM · Nov 2025</span></div></div>
+      </div>
+    </div>
+
+    <div class="cert-cat reveal">
+      <div class="cert-cat-h"><span class="num mono">05</span><h3>CTFs · Simulations · Workshops</h3></div>
+      <div class="certs-grid">
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>Capture the Flag</h4><span>SkillBit (MetaCTF) · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>MetaCTF December 2025 Flash CTF</h4><span>SkillBit · Dec 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>Network Cable</h4><span>LetsDefend · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>Advent of Cyber 2025</h4><span>TryHackMe · Dec 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>Advent of Cyber 2024</h4><span>TryHackMe · Oct 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>Advent of Cyber 2023</h4><span>TryHackMe · Oct 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>Advent of Cyber 2022</h4><span>TryHackMe · Nov 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>In-house Hacking & Pentesting Lab</h4><span>EC-Council</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Dark Web, Anonymity & Crypto</h4><span>EC-Council</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Cybersecurity Analyst Simulation</h4><span>Tata Group · Jul 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Cybersecurity Job Simulation</h4><span>Deloitte · Jul 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Cyber Security Management</h4><span>ANZ · Jul 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Shield Up: Cybersecurity Sim</h4><span>AIG · Jul 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Cybersecurity Job Simulation</h4><span>NY Jobs CEO Council · Jul 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Learn Python & Ethical Hacking</h4><span>Udemy · Oct 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Java 17 Masterclass</h4><span>Udemy · Oct 2024</span></div></div>
+      </div>
+    </div>
+
+    <p class="sec-sub reveal mono" style="margin-top:24px;font-size:12.5px">// 50+ verified certifications · sourced from LinkedIn licenses_and_certifications</p>
   </div>
 </section>
 
@@ -1080,6 +1183,63 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
     </div>
   </div>
 </section>
+
+<!-- ============= ADD PROMPT MODAL ============= -->
+<div class="modal-bg" id="addModal" role="dialog" aria-modal="true" aria-label="Add new prompt">
+  <div class="modal">
+    <div class="modal-h">
+      <div class="dots"><i></i><i></i><i></i></div>
+      <span class="t">~/lab/new_prompt.md</span>
+      <button class="x" id="closeAddPrompt" aria-label="Close">×</button>
+    </div>
+    <div class="modal-b">
+      <h3>Add a prompt to your lab</h3>
+      <p class="sub">Stored locally in your browser (localStorage). Refresh-safe. Use it as your personal workflow vault.</p>
+      <form id="addForm" onsubmit="return savePrompt(event)">
+        <label>
+          <span class="lab">title</span>
+          <input type="text" name="title" required maxlength="120" placeholder="e.g. Burp Suite session-fixation hunter" autocomplete="off"/>
+        </label>
+        <div class="row">
+          <label>
+            <span class="lab">category</span>
+            <select name="cat" required>
+              <option value="recon">Recon</option>
+              <option value="web">Web Security</option>
+              <option value="api">API Testing</option>
+              <option value="cloud">Cloud Security</option>
+              <option value="threat">Threat Modeling</option>
+              <option value="workflow">Pentesting Workflow</option>
+              <option value="custom">Custom / Other</option>
+            </select>
+          </label>
+          <label>
+            <span class="lab">difficulty</span>
+            <select name="diff" required>
+              <option value="easy">EASY</option>
+              <option value="medium" selected>MEDIUM</option>
+              <option value="hard">HARD</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          <span class="lab">prompt body</span>
+          <textarea name="body" required rows="9" placeholder="Paste your prompt. Markdown-style headings (§ AUTH MODEL etc.) render nicely."></textarea>
+        </label>
+      </form>
+    </div>
+    <div class="modal-f">
+      <span class="hint">// saved to this device only</span>
+      <div class="acts">
+        <button type="button" class="btn-cancel" id="cancelAddPrompt">cancel</button>
+        <button type="submit" form="addForm" class="btn-save">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>
+          save prompt
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ============= INTERACTIVE TERMINAL ============= -->
 <button class="iterm-tab mono" id="itermTab" aria-label="Open terminal">$_</button>
@@ -1322,58 +1482,145 @@ Be ruthless about deduplication. Don't pad the output.`
   }
 ];
 
-(function renderPrompts(){
+/* ============== USER PROMPTS (localStorage) ============== */
+const STORAGE_KEY = 'ankush_prompts_v1';
+function loadUserPrompts(){
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+  catch(e){ return []; }
+}
+function saveUserPrompts(list){
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
+  catch(e){ console.warn('localStorage save failed', e); }
+}
+function getAllPrompts(){
+  const user = loadUserPrompts().map(p => ({...p, user: true}));
+  return [...user, ...PROMPTS];
+}
+
+const CAT_LABELS = {recon:'Recon', web:'Web Security', api:'API Testing', cloud:'Cloud Security', threat:'Threat Modeling', workflow:'Pentesting Workflow', custom:'Custom'};
+
+let currentFilter = 'all';
+
+function renderPrompts(filter){
+  currentFilter = filter || currentFilter;
   const grid = document.getElementById('prompts');
-  const ctrl = document.getElementById('labCtrl');
-  function render(filter){
-    grid.innerHTML = '';
-    PROMPTS.filter(p => filter==='all' || p.cat===filter).forEach(p => {
-      const el = document.createElement('div');
-      el.className = 'prompt';
-      el.dataset.cat = p.cat;
-      const diffClass = p.diff==='hard' ? ' hard' : '';
-      el.innerHTML = `
-        <div class="ph">
-          <div class="dots"><i></i><i></i><i></i></div>
-          <span class="file">~/lab/${p.file}</span>
-          <span class="diff${diffClass}">${p.diff.toUpperCase()}</span>
-        </div>
-        <div class="pt">
-          <div class="cat">// ${p.catLabel}</div>
-          <div class="ttl">${p.title}</div>
-          <div class="body" id="b-${p.id}">${escapeHtml(p.body)}</div>
-        </div>
-        <div class="pf">
-          <button class="copy" data-id="${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>copy</button>
-          <button class="expand" data-id="${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>expand</button>
-          <span class="tags"><span>#${p.cat}</span></span>
-        </div>`;
-      grid.appendChild(el);
-    });
-    grid.querySelectorAll('.copy').forEach(btn => btn.addEventListener('click', e => {
-      const id = btn.dataset.id; const p = PROMPTS.find(x => x.id===id);
-      navigator.clipboard.writeText(p.body).then(() => {
-        const orig = btn.innerHTML;
-        btn.classList.add('ok');
-        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>copied';
-        setTimeout(() => {btn.classList.remove('ok'); btn.innerHTML = orig}, 1600);
-      });
-    }));
-    grid.querySelectorAll('.expand').forEach(btn => btn.addEventListener('click', () => {
-      const card = btn.closest('.prompt'); card.classList.toggle('open');
-      btn.innerHTML = card.classList.contains('open')
-        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>collapse'
-        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>expand';
-    }));
-  }
-  ctrl.addEventListener('click', e => {
-    if (e.target.tagName !== 'BUTTON') return;
-    ctrl.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-    e.target.classList.add('active');
-    render(e.target.dataset.filter);
+  const all = getAllPrompts();
+  const filtered = all.filter(p => {
+    if (currentFilter === 'all') return true;
+    if (currentFilter === 'custom') return p.user === true;
+    return p.cat === currentFilter;
   });
-  render('all');
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="mono" style="grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--muted);border:1px dashed var(--line-2);border-radius:14px;font-size:13px">// no prompts in this category yet — click <span style="color:var(--accent)">+ add prompt</span> to seed one</div>`;
+    return;
+  }
+  grid.innerHTML = '';
+  filtered.forEach(p => {
+    const el = document.createElement('div');
+    el.className = 'prompt' + (p.user ? ' user-prompt' : '');
+    el.dataset.cat = p.cat;
+    const diffClass = p.diff === 'hard' ? ' hard' : '';
+    const file = p.file || (p.title || 'prompt').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,28) + '.md';
+    const catLabel = p.catLabel || CAT_LABELS[p.cat] || p.cat;
+    const delBtn = p.user ? `<button class="del" data-id="${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>delete</button>` : '';
+    el.innerHTML = `
+      <div class="ph">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <span class="file">~/lab/${escapeHtml(file)}</span>
+        <span class="diff${diffClass}">${escapeHtml((p.diff||'medium').toUpperCase())}</span>
+      </div>
+      <div class="pt">
+        <div class="cat">// ${escapeHtml(catLabel)}${p.user ? ' · saved' : ''}</div>
+        <div class="ttl">${escapeHtml(p.title)}</div>
+        <div class="body">${escapeHtml(p.body)}</div>
+      </div>
+      <div class="pf">
+        <button class="copy" data-id="${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>copy</button>
+        <button class="expand" data-id="${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>expand</button>
+        <span class="tags"><span>#${escapeHtml(p.cat)}</span></span>
+        ${delBtn}
+      </div>`;
+    grid.appendChild(el);
+  });
+
+  grid.querySelectorAll('.copy').forEach(btn => btn.addEventListener('click', () => {
+    const id = btn.dataset.id; const p = getAllPrompts().find(x => x.id === id);
+    if (!p) return;
+    navigator.clipboard.writeText(p.body).then(() => {
+      const orig = btn.innerHTML;
+      btn.classList.add('ok');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>copied';
+      setTimeout(() => { btn.classList.remove('ok'); btn.innerHTML = orig; }, 1600);
+    });
+  }));
+  grid.querySelectorAll('.expand').forEach(btn => btn.addEventListener('click', () => {
+    const card = btn.closest('.prompt'); card.classList.toggle('open');
+    btn.innerHTML = card.classList.contains('open')
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>collapse'
+      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>expand';
+  }));
+  grid.querySelectorAll('.del').forEach(btn => btn.addEventListener('click', () => {
+    const id = btn.dataset.id;
+    if (!confirm('Delete this prompt? This only removes it from your browser.')) return;
+    saveUserPrompts(loadUserPrompts().filter(p => p.id !== id));
+    renderPrompts();
+  }));
+}
+
+(function initLab(){
+  const ctrl = document.getElementById('labCtrl');
+  ctrl.addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn || btn.id === 'openAddPrompt') return;
+    ctrl.querySelectorAll('button:not(.add-btn)').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderPrompts(btn.dataset.filter);
+  });
+  renderPrompts('all');
 })();
+
+/* ============== ADD PROMPT MODAL ============== */
+(function initAddPrompt(){
+  const modal = document.getElementById('addModal');
+  const openBtn = document.getElementById('openAddPrompt');
+  const closeBtn = document.getElementById('closeAddPrompt');
+  const cancelBtn = document.getElementById('cancelAddPrompt');
+  const form = document.getElementById('addForm');
+  function open(){ modal.classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(() => form.querySelector('input[name="title"]').focus(), 100); }
+  function close(){ modal.classList.remove('open'); document.body.style.overflow = ''; form.reset(); }
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  cancelBtn.addEventListener('click', close);
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
+  window.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+  window.__closeAddModal = close;
+})();
+
+function savePrompt(e){
+  e.preventDefault();
+  const f = e.target;
+  const data = {
+    id: 'u_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6),
+    title: f.title.value.trim(),
+    cat: f.cat.value,
+    catLabel: CAT_LABELS[f.cat.value] || 'Custom',
+    diff: f.diff.value,
+    body: f.body.value.trim(),
+    createdAt: Date.now()
+  };
+  if (!data.title || !data.body) return false;
+  const list = loadUserPrompts();
+  list.unshift(data);
+  saveUserPrompts(list);
+  window.__closeAddModal();
+  // jump to custom filter to show new prompt
+  const ctrl = document.getElementById('labCtrl');
+  ctrl.querySelectorAll('button:not(.add-btn)').forEach(b => b.classList.toggle('active', b.dataset.filter === 'custom'));
+  renderPrompts('custom');
+  // scroll to lab
+  document.getElementById('lab').scrollIntoView({behavior:'smooth', block:'start'});
+  return false;
+}
 
 function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
@@ -1431,12 +1678,14 @@ function submitForm(e){
   [5] web_enumeration_engine          (medium)
   [6] container_escape_research_lab   (expert)
   → see #projects`,
-    certs: ()=>`  cloud         : AZ-500 · SC-900 · Defender Operations
-  offensive     : Jr Pentester · Web Fundamentals · API Sec · Ethical Hacking
-  infrastructure: Linux · Networking · Container Sec
-  → see #certs`,
+    certs: ()=>`  offensive : C-JWAPT · CCEP · CompTIA Pentest+ · Jr Pentester · Web App Pentest
+  ai sec    : CAISR · AI Security · AI Tools Workshop
+  claude/mcp: 13 Anthropic certs · MCP Fundamentals + Production (Hugging Face)
+  cloud     : AWS IAM · AWS Security Governance · Cisco · IBM Cybersec Fundamentals
+  ctfs      : MetaCTF · Advent of Cyber 2022-2025 · 5 job simulations
+  total     : 50+ verified certs → see #certs`,
     skills: ()=>`  offensive : Burp Suite, OWASP, JWT, API, SSRF, SQLi, XSS, Auth, Metasploit
-  cloud     : Azure, IAM, Defender, Entra ID, AZ-500, SC-900
+  cloud     : Azure, AWS IAM, Defender, Entra ID, Cloud Sec
   infra     : Linux, Docker, Containers, Nginx, Nmap, Wireshark
   programming: Python, Bash, JS, PowerShell, Automation, Git`,
     contact: ()=>`  email   : ankushbhadwar69@gmail.com
