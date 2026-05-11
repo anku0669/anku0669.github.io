@@ -887,6 +887,24 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
         <div class="stack"><span>TryHackMe</span><span>Medium</span><span>GitHub</span></div>
       </div>
     </div>
+
+    <!-- Education sub-block -->
+    <div class="edu-block reveal">
+      <div class="edu-tag mono">// education</div>
+      <div class="edu-card">
+        <div class="edu-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
+        </div>
+        <div class="edu-info">
+          <div class="edu-when mono">Aug 2022 — Jun 2026</div>
+          <h3>Himachal Pradesh Technical University (HPTU)</h3>
+          <p>Bachelor of Technology · B.Tech, Computer Science and Engineering</p>
+          <div class="edu-stack">
+            <span>B.Tech</span><span>CSE</span><span>Networking</span><span>OS</span><span>DBMS</span><span>Security</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1548,6 +1566,36 @@ Format: structured. Cite the JWT field in every claim.`
 Be ruthless about deduplication. Don't pad the output.`
   }
 ];
+
+/* ============== EDUCATION ============== */
+.edu-block{margin-top:56px;max-width:900px}
+.edu-tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);text-transform:uppercase;letter-spacing:0.22em;margin-bottom:18px;display:inline-flex;align-items:center;gap:10px}
+.edu-tag::before{content:"";width:24px;height:1px;background:var(--accent)}
+.edu-card{
+  display:flex;gap:24px;align-items:flex-start;
+  background:var(--glass);border:1px solid var(--line-2);border-radius:var(--r-lg);
+  padding:28px;backdrop-filter:blur(14px);position:relative;overflow:hidden;
+  transition:all .35s cubic-bezier(.2,.7,.2,1);
+}
+.edu-card::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(500px 220px at 100% 0%, rgba(0,212,255,0.08), transparent);
+  pointer-events:none;
+}
+.edu-card:hover{border-color:var(--line-3);background:var(--glass-2);transform:translateY(-3px)}
+.edu-icon{
+  width:56px;height:56px;border-radius:14px;flex-shrink:0;
+  background:rgba(0,255,156,0.08);border:1px solid rgba(0,255,156,0.2);
+  color:var(--accent);display:grid;place-items:center;position:relative;
+}
+.edu-icon svg{width:26px;height:26px}
+.edu-info{flex:1}
+.edu-when{font-size:11.5px;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px}
+.edu-info h3{font-size:20px;font-weight:600;letter-spacing:-0.015em;margin-bottom:6px;line-height:1.25}
+.edu-info p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+.edu-stack{display:flex;flex-wrap:wrap;gap:5px}
+.edu-stack span{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--line)}
+@media (max-width:600px){.edu-card{flex-direction:column;gap:16px;padding:22px}.edu-icon{width:48px;height:48px}}
 
 /* ============== USER PROMPTS (localStorage + GitHub sync) ============== */
 const STORAGE_KEY = 'ankush_prompts_v1';
