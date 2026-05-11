@@ -1352,9 +1352,27 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
 
 <script>
 /* ============== BOOT ============== */
-window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('boot').classList.add('gone'), 2400);
-});
+(function(){
+  const boot = document.getElementById('boot');
+  if (!boot) return;
+  let hidden = false;
+  function hideBoot(){
+    if (hidden) return;
+    hidden = true;
+    boot.classList.add('gone');
+  }
+  // Primary: hide 2.4s after DOMContentLoaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(hideBoot, 2400));
+  } else {
+    setTimeout(hideBoot, 2400);
+  }
+  // Failsafe: hide after 3.5s no matter what
+  setTimeout(hideBoot, 3500);
+  // Click anywhere on the boot to skip
+  boot.addEventListener('click', hideBoot);
+  boot.style.cursor = 'pointer';
+})();
 
 /* ============== CURSOR ============== */
 (function(){
