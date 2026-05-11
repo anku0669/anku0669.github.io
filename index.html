@@ -83,14 +83,9 @@ a:hover{color:var(--accent)}
 @media (hover:none){.cursor,.cursor-dot{display:none}}
 
 /* ============ BOOT LOADER ============ */
-.boot{position:fixed;inset:0;z-index:9998;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:opacity .6s ease, visibility .6s;animation:autoHideBoot 0s 4s forwards;cursor:pointer}
-@keyframes autoHideBoot{to{opacity:0;visibility:hidden;pointer-events:none}}
+.boot{position:fixed;inset:0;z-index:9998;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:opacity .6s ease, visibility .6s;cursor:pointer}
 .boot.gone{opacity:0;visibility:hidden;pointer-events:none}
-.boot .logo{
-  font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;
-  color:var(--accent);letter-spacing:-0.02em;
-  text-shadow:0 0 24px rgba(0,255,156,0.4);
-}
+.boot .logo{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:var(--accent);letter-spacing:-0.02em;text-shadow:0 0 24px rgba(0,255,156,0.4)}
 .boot .lines{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);text-align:left;min-height:120px;width:min(440px,90vw)}
 .boot .lines .l{opacity:0;animation:bootline .35s forwards}
 .boot .lines .l .ok{color:var(--accent)}
@@ -105,14 +100,7 @@ a:hover{color:var(--accent)}
 @keyframes bootbar{to{width:100%}}
 
 /* ============ NAV ============ */
-.nav{
-  position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:60;
-  display:flex;align-items:center;gap:4px;padding:8px 8px 8px 14px;
-  background:rgba(11,15,22,0.7);backdrop-filter:blur(20px) saturate(160%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);
-  border:1px solid var(--line-2);border-radius:999px;
-  box-shadow:0 12px 40px -10px rgba(0,0,0,0.6);
-}
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:4px;padding:8px 8px 8px 14px;background:rgba(11,15,22,0.7);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid var(--line-2);border-radius:999px;box-shadow:0 12px 40px -10px rgba(0,0,0,0.6)}
 .nav .brand{display:flex;align-items:center;gap:8px;padding-right:12px;border-right:1px solid var(--line-2);margin-right:6px}
 .nav .brand .blip{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:blip 2s infinite}
 @keyframes blip{0%,100%{opacity:1}50%{opacity:.3}}
@@ -128,13 +116,8 @@ a:hover{color:var(--accent)}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
 section{padding:120px 0;position:relative}
 @media (max-width:720px){section{padding:90px 0}}
-
 .sec-head{margin-bottom:56px;max-width:780px}
-.sec-tag{
-  font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);
-  text-transform:uppercase;letter-spacing:0.22em;margin-bottom:16px;
-  display:inline-flex;align-items:center;gap:10px;
-}
+.sec-tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);text-transform:uppercase;letter-spacing:0.22em;margin-bottom:16px;display:inline-flex;align-items:center;gap:10px}
 .sec-tag::before{content:"";width:24px;height:1px;background:var(--accent)}
 .sec-title{font-size:clamp(34px,5.2vw,58px);font-weight:700;letter-spacing:-0.035em;line-height:1.02;margin-bottom:16px}
 .sec-title .grad{background:linear-gradient(110deg,#fff 30%,var(--accent) 75%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -144,30 +127,19 @@ section{padding:120px 0;position:relative}
 .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding-top:120px;padding-bottom:80px}
 .hero-grid{display:grid;grid-template-columns:1.2fr 0.9fr;gap:60px;align-items:center;width:100%}
 @media (max-width:980px){.hero-grid{grid-template-columns:1fr;gap:48px}}
-
-.hero .status{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:7px 14px;border-radius:999px;
-  background:var(--glass);border:1px solid var(--line-2);
-  font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);
-  margin-bottom:28px;letter-spacing:0.04em;
-}
+.hero .status{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;background:var(--glass);border:1px solid var(--line-2);font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);margin-bottom:28px;letter-spacing:0.04em}
 .hero .status .live{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(0,255,156,.7);animation:pulse 2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,255,156,.7)}70%{box-shadow:0 0 0 10px rgba(0,255,156,0)}100%{box-shadow:0 0 0 0 rgba(0,255,156,0)}}
-
 .hero h1{font-size:clamp(48px,8.4vw,108px);line-height:0.94;letter-spacing:-0.045em;font-weight:700;margin-bottom:22px}
 .hero h1 .last{background:linear-gradient(110deg,#fff 40%,var(--accent) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
 .hero h1 .dot{color:var(--accent)}
-
 .hero .role-line{font-family:'JetBrains Mono',monospace;font-size:14.5px;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .hero .role-line .pr{color:var(--accent)}
 .hero .role-line .caret{display:inline-block;width:9px;height:16px;background:var(--accent);animation:blink 1.1s steps(1) infinite;vertical-align:-2px;margin-left:4px}
 @keyframes blink{50%{opacity:0}}
-
 .hero .headline{font-size:18.5px;color:var(--text);font-weight:500;letter-spacing:-0.01em;margin-bottom:24px;max-width:560px}
 .hero .headline .accent{color:var(--accent)}
 .hero .lead{color:var(--muted);font-size:15.5px;max-width:560px;margin-bottom:36px}
-
 .hero .actions{display:flex;gap:10px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:12px;font-weight:600;font-size:14px;transition:all .25s cubic-bezier(.2,.7,.2,1);cursor:none;border:1px solid transparent;font-family:'Space Grotesk',sans-serif}
 @media (hover:none){.btn{cursor:pointer}}
@@ -179,7 +151,7 @@ section{padding:120px 0;position:relative}
 .btn-tertiary{background:transparent;color:var(--muted);padding:13px 16px}
 .btn-tertiary:hover{color:var(--accent)}
 
-/* hero right side: ops panel */
+/* hero ops panel */
 .ops{position:relative;height:520px}
 @media (max-width:980px){.ops{height:420px;margin-top:20px}}
 .ops .ring{position:absolute;inset:0;border:1px dashed var(--line-3);border-radius:50%;opacity:.5;animation:spinslow 40s linear infinite}
@@ -192,12 +164,7 @@ section{padding:120px 0;position:relative}
 .ops .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--accent), transparent 70%);opacity:.4;filter:blur(10px)}
 .ops .core::after{content:"";position:absolute;inset:35%;border-radius:50%;background:var(--accent);box-shadow:0 0 20px var(--accent);animation:pulse 2s infinite}
 .ops .node{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
-.ops .term-float{
-  position:absolute;background:rgba(11,15,22,0.92);border:1px solid var(--line-2);
-  border-radius:10px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;
-  color:var(--muted);backdrop-filter:blur(10px);box-shadow:0 16px 50px -12px rgba(0,0,0,.7);
-  animation:float 6s ease-in-out infinite;
-}
+.ops .term-float{position:absolute;background:rgba(11,15,22,0.92);border:1px solid var(--line-2);border-radius:10px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);backdrop-filter:blur(10px);box-shadow:0 16px 50px -12px rgba(0,0,0,.7);animation:float 6s ease-in-out infinite}
 .ops .term-float .h{display:flex;gap:4px;margin-bottom:6px}
 .ops .term-float .h b{width:7px;height:7px;border-radius:50%;background:#3a4252}
 .ops .term-float .h b:nth-child(1){background:#ff5f56}
@@ -210,12 +177,8 @@ section{padding:120px 0;position:relative}
 @media (max-width:1100px){.ops .tf3{display:none}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
-/* hero stats strip */
-.hero-stats{
-  grid-column:1/-1;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
-  margin-top:60px;border-top:1px solid var(--line);padding-top:28px;
-}
+/* hero stats */
+.hero-stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px;border-top:1px solid var(--line);padding-top:28px}
 .hero-stats .s{padding-right:24px;border-right:1px solid var(--line)}
 .hero-stats .s:last-child{border-right:0}
 .hero-stats .n{font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:700;letter-spacing:-0.02em;line-height:1}
@@ -226,21 +189,12 @@ section{padding:120px 0;position:relative}
 /* ============ ABOUT ============ */
 .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:48px;align-items:start}
 @media (max-width:880px){.about-grid{grid-template-columns:1fr}}
-
-.about-visual{
-  position:relative;aspect-ratio:1/1.05;border-radius:var(--r-lg);
-  background:var(--panel);border:1px solid var(--line-2);overflow:hidden;
-  background-image:
-    linear-gradient(rgba(0,255,156,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,156,0.04) 1px, transparent 1px);
-  background-size:24px 24px;
-}
+.about-visual{position:relative;aspect-ratio:1/1.05;border-radius:var(--r-lg);background:var(--panel);border:1px solid var(--line-2);overflow:hidden;background-image:linear-gradient(rgba(0,255,156,0.04) 1px, transparent 1px),linear-gradient(90deg, rgba(0,255,156,0.04) 1px, transparent 1px);background-size:24px 24px}
 .about-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 70%, rgba(0,255,156,0.15), transparent 60%)}
 .about-visual .hood{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:60%}
 .about-visual .corner{position:absolute;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);opacity:.7}
 .about-visual .c1{top:14px;left:14px}.about-visual .c2{top:14px;right:14px}.about-visual .c3{bottom:14px;left:14px}.about-visual .c4{bottom:14px;right:14px}
 .about-visual .label{position:absolute;left:14px;bottom:38px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em}
-
 .about-text p{color:var(--muted);font-size:17px;margin-bottom:18px}
 .about-text p strong{color:var(--text);font-weight:500}
 .about-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(0,255,156,0.06);border:1px solid rgba(0,255,156,0.18);color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:11.5px;margin-bottom:18px}
@@ -253,26 +207,13 @@ section{padding:120px 0;position:relative}
 .skills-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 @media (max-width:1000px){.skills-cats{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.skills-cats{grid-template-columns:1fr}}
-.skill-cat{
-  background:var(--glass);border:1px solid var(--line-2);border-radius:var(--r-lg);
-  padding:24px;backdrop-filter:blur(14px);position:relative;overflow:hidden;
-  transition:all .35s cubic-bezier(.2,.7,.2,1);
-}
+.skill-cat{background:var(--glass);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:24px;backdrop-filter:blur(14px);position:relative;overflow:hidden;transition:all .35s cubic-bezier(.2,.7,.2,1)}
 .skill-cat:hover{border-color:var(--line-3);transform:translateY(-3px);background:var(--glass-2)}
-.skill-cat .ic{
-  width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
-  background:rgba(0,255,156,0.08);border:1px solid rgba(0,255,156,0.2);
-  color:var(--accent);margin-bottom:14px;
-}
+.skill-cat .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:rgba(0,255,156,0.08);border:1px solid rgba(0,255,156,0.2);color:var(--accent);margin-bottom:14px}
 .skill-cat .ic svg{width:18px;height:18px}
 .skill-cat h3{font-size:15.5px;font-weight:600;margin-bottom:14px;letter-spacing:-0.01em}
 .skill-cat .badges{display:flex;flex-wrap:wrap;gap:5px}
-.skill-cat .badge{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  padding:4px 9px;border-radius:6px;
-  background:rgba(255,255,255,0.04);color:var(--muted);
-  border:1px solid var(--line);transition:all .2s;
-}
+.skill-cat .badge{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 9px;border-radius:6px;background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--line);transition:all .2s}
 .skill-cat .badge:hover{color:var(--accent);border-color:var(--line-3);background:rgba(0,255,156,0.06)}
 
 /* ============ EXPERIENCE ============ */
@@ -290,16 +231,28 @@ section{padding:120px 0;position:relative}
 .tl .stack{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
 .tl .stack span{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--line)}
 
+/* ============ EDUCATION ============ */
+.edu-block{margin-top:56px;max-width:900px}
+.edu-tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);text-transform:uppercase;letter-spacing:0.22em;margin-bottom:18px;display:inline-flex;align-items:center;gap:10px}
+.edu-tag::before{content:"";width:24px;height:1px;background:var(--accent)}
+.edu-card{display:flex;gap:24px;align-items:flex-start;background:var(--glass);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:28px;backdrop-filter:blur(14px);position:relative;overflow:hidden;transition:all .35s cubic-bezier(.2,.7,.2,1)}
+.edu-card::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 220px at 100% 0%,rgba(0,212,255,0.08),transparent);pointer-events:none}
+.edu-card:hover{border-color:var(--line-3);background:var(--glass-2);transform:translateY(-3px)}
+.edu-icon{width:56px;height:56px;border-radius:14px;flex-shrink:0;background:rgba(0,255,156,0.08);border:1px solid rgba(0,255,156,0.2);color:var(--accent);display:grid;place-items:center;position:relative}
+.edu-icon svg{width:26px;height:26px}
+.edu-info{flex:1}
+.edu-when{font-size:11.5px;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px}
+.edu-info h3{font-size:20px;font-weight:600;letter-spacing:-0.015em;margin-bottom:6px;line-height:1.25}
+.edu-info p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+.edu-stack{display:flex;flex-wrap:wrap;gap:5px}
+.edu-stack span{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--line)}
+@media (max-width:600px){.edu-card{flex-direction:column;gap:16px;padding:22px}.edu-icon{width:48px;height:48px}}
+
 /* ============ PROJECTS ============ */
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media (max-width:1000px){.proj-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:640px){.proj-grid{grid-template-columns:1fr}}
-.proj{
-  background:var(--glass);border:1px solid var(--line-2);border-radius:var(--r-lg);
-  padding:24px;position:relative;overflow:hidden;backdrop-filter:blur(14px);
-  transition:all .35s cubic-bezier(.2,.7,.2,1);
-  display:flex;flex-direction:column;min-height:280px;
-}
+.proj{background:var(--glass);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:24px;position:relative;overflow:hidden;backdrop-filter:blur(14px);transition:all .35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;min-height:280px}
 .proj::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .3s}
 .proj::after{content:"";position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(0,255,156,0.10),transparent 70%);top:-60px;right:-60px;opacity:0;transition:opacity .35s;pointer-events:none}
 .proj:hover{transform:translateY(-4px);border-color:var(--line-3)}
@@ -318,11 +271,7 @@ section{padding:120px 0;position:relative}
 
 /* ============ AI PROMPT LAB ============ */
 .lab-controls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
-.lab-controls button{
-  font-family:'JetBrains Mono',monospace;font-size:11.5px;
-  padding:7px 13px;border-radius:8px;border:1px solid var(--line-2);
-  background:var(--glass);color:var(--muted);cursor:none;transition:all .2s;
-}
+.lab-controls button{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:7px 13px;border-radius:8px;border:1px solid var(--line-2);background:var(--glass);color:var(--muted);cursor:none;transition:all .2s}
 @media (hover:none){.lab-controls button{cursor:pointer}}
 .lab-controls button:hover{color:var(--accent);border-color:var(--line-3)}
 .lab-controls button.active{color:var(--accent);background:rgba(0,255,156,0.08);border-color:rgba(0,255,156,0.3)}
@@ -334,7 +283,6 @@ section{padding:120px 0;position:relative}
 .lab-controls .sync-btn.connected{background:rgba(0,255,156,0.08);border-color:rgba(0,255,156,0.3);color:var(--accent)}
 .lab-controls .sync-btn.connected::before{content:"●  ";font-size:8px;vertical-align:2px}
 @media (max-width:640px){.lab-controls .add-btn{margin-left:0;width:100%;justify-content:center;margin-top:4px}.lab-controls .sync-btn{width:100%;justify-content:center}}
-
 .prompt.user-prompt::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--cyan));z-index:1}
 .prompt{position:relative}
 .prompt .pf .del{color:#ff6b6b;margin-left:auto;margin-right:0}
@@ -380,10 +328,7 @@ section{padding:120px 0;position:relative}
 
 .prompts{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 @media (max-width:840px){.prompts{grid-template-columns:1fr}}
-.prompt{
-  background:rgba(11,15,22,0.92);border:1px solid var(--line-2);border-radius:var(--r-lg);
-  overflow:hidden;backdrop-filter:blur(14px);transition:all .3s;display:flex;flex-direction:column;
-}
+.prompt{background:rgba(11,15,22,0.92);border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;backdrop-filter:blur(14px);transition:all .3s;display:flex;flex-direction:column}
 .prompt:hover{border-color:var(--line-3)}
 .prompt .ph{display:flex;align-items:center;gap:8px;padding:12px 16px;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--line)}
 .prompt .ph .dots{display:flex;gap:4px;margin-right:4px}
@@ -404,11 +349,7 @@ section{padding:120px 0;position:relative}
 .prompt .body .k{color:var(--accent)}
 .prompt .body .c{color:var(--dim)}
 .prompt .pf{display:flex;align-items:center;gap:6px;padding:12px 16px;border-top:1px solid var(--line)}
-.prompt .pf button{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  padding:6px 11px;border-radius:7px;border:1px solid var(--line-2);
-  background:transparent;color:var(--muted);cursor:none;display:inline-flex;align-items:center;gap:5px;transition:all .2s;
-}
+.prompt .pf button{font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 11px;border-radius:7px;border:1px solid var(--line-2);background:transparent;color:var(--muted);cursor:none;display:inline-flex;align-items:center;gap:5px;transition:all .2s}
 @media (hover:none){.prompt .pf button{cursor:pointer}}
 .prompt .pf button:hover{color:var(--accent);border-color:var(--line-3);background:rgba(0,255,156,0.05)}
 .prompt .pf button svg{width:11px;height:11px}
@@ -425,10 +366,7 @@ section{padding:120px 0;position:relative}
 .certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media (max-width:900px){.certs-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.certs-grid{grid-template-columns:1fr}}
-.cert{
-  background:var(--glass);border:1px solid var(--line-2);border-radius:var(--r-md);
-  padding:18px 20px;backdrop-filter:blur(10px);transition:all .3s;position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;
-}
+.cert{background:var(--glass);border:1px solid var(--line-2);border-radius:var(--r-md);padding:18px 20px;backdrop-filter:blur(10px);transition:all .3s;position:relative;overflow:hidden;display:flex;align-items:center;gap:14px}
 .cert::before{content:"";position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,255,156,0.08),transparent);transition:left .6s}
 .cert:hover{border-color:var(--line-3);transform:translateY(-2px);background:var(--glass-2)}
 .cert:hover::before{left:150%}
@@ -440,10 +378,7 @@ section{padding:120px 0;position:relative}
 /* ============ ACHIEVEMENTS ============ */
 .ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 @media (max-width:900px){.ach-grid{grid-template-columns:repeat(2,1fr)}}
-.ach{
-  background:var(--glass);border:1px solid var(--line-2);border-radius:var(--r-lg);
-  padding:28px 24px;text-align:center;backdrop-filter:blur(14px);transition:all .3s;position:relative;overflow:hidden;
-}
+.ach{background:var(--glass);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:28px 24px;text-align:center;backdrop-filter:blur(14px);transition:all .3s;position:relative;overflow:hidden}
 .ach::before{content:"";position:absolute;inset:0;background:radial-gradient(120px 80px at 50% 0%, rgba(0,255,156,0.12), transparent);opacity:0;transition:opacity .35s}
 .ach:hover{border-color:var(--line-3);transform:translateY(-3px)}
 .ach:hover::before{opacity:1}
@@ -470,7 +405,6 @@ section{padding:120px 0;position:relative}
 .soc{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,0.03);border:1px solid var(--line-2);color:var(--muted);transition:all .25s}
 .soc:hover{color:var(--accent);border-color:var(--line-3);background:rgba(0,255,156,0.06);transform:translateY(-2px)}
 .soc svg{width:16px;height:16px}
-
 .contact-right{font-family:'JetBrains Mono',monospace}
 .term-h{display:flex;align-items:center;gap:8px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:18px}
 .term-h .dots{display:flex;gap:5px}
@@ -481,33 +415,16 @@ section{padding:120px 0;position:relative}
 .cform label{display:block}
 .cform .lab{font-size:12px;color:var(--accent);margin-bottom:5px;display:flex;align-items:center;gap:6px}
 .cform .lab::before{content:">";font-weight:700}
-.cform input,.cform textarea{
-  width:100%;background:rgba(0,0,0,0.3);border:1px solid var(--line-2);border-radius:8px;
-  padding:11px 14px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;
-  outline:none;transition:all .2s;resize:vertical;
-}
+.cform input,.cform textarea{width:100%;background:rgba(0,0,0,0.3);border:1px solid var(--line-2);border-radius:8px;padding:11px 14px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;transition:all .2s;resize:vertical}
 .cform input:focus,.cform textarea:focus{border-color:var(--accent);background:rgba(0,255,156,0.03);box-shadow:0 0 0 3px rgba(0,255,156,0.08)}
-.cform .submit{
-  align-self:flex-start;display:inline-flex;align-items:center;gap:8px;
-  background:var(--accent);color:#000;font-weight:700;font-size:13px;
-  padding:11px 20px;border-radius:10px;border:0;cursor:none;
-  font-family:'JetBrains Mono',monospace;transition:all .25s;
-}
+.cform .submit{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#000;font-weight:700;font-size:13px;padding:11px 20px;border-radius:10px;border:0;cursor:none;font-family:'JetBrains Mono',monospace;transition:all .25s}
 @media (hover:none){.cform .submit{cursor:pointer}}
 .cform .submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(0,255,156,0.5)}
 .cform .submit svg{width:13px;height:13px}
 .cform-out{font-size:12px;color:var(--accent);margin-top:8px;min-height:18px}
 
 /* ============ INTERACTIVE TERMINAL ============ */
-.iterm{
-  position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:55;
-  width:min(720px, 92vw);background:rgba(11,15,22,0.92);border:1px solid var(--line-2);
-  border-radius:14px;backdrop-filter:blur(20px) saturate(160%);
-  box-shadow:0 20px 60px -12px rgba(0,0,0,0.7);
-  font-family:'JetBrains Mono',monospace;font-size:12.5px;
-  transition:transform .4s cubic-bezier(.2,.7,.2,1), opacity .3s;
-  opacity:0;transform:translate(-50%, 40px);pointer-events:none;
-}
+.iterm{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:55;width:min(720px, 92vw);background:rgba(11,15,22,0.92);border:1px solid var(--line-2);border-radius:14px;backdrop-filter:blur(20px) saturate(160%);box-shadow:0 20px 60px -12px rgba(0,0,0,0.7);font-family:'JetBrains Mono',monospace;font-size:12.5px;transition:transform .4s cubic-bezier(.2,.7,.2,1), opacity .3s;opacity:0;transform:translate(-50%, 40px);pointer-events:none}
 .iterm.open{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 .iterm .ih{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line)}
 .iterm .ih .dots{display:flex;gap:5px}
@@ -527,14 +444,7 @@ section{padding:120px 0;position:relative}
 .iterm .iin{display:flex;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid var(--line)}
 .iterm .iin .pr{color:var(--accent)}
 .iterm .iin input{flex:1;background:transparent;border:0;outline:0;color:var(--text);font-family:inherit;font-size:12.5px;caret-color:var(--accent)}
-.iterm-tab{
-  position:fixed;right:18px;bottom:18px;z-index:54;
-  width:46px;height:46px;border-radius:50%;
-  background:var(--accent);color:#000;display:grid;place-items:center;
-  border:0;cursor:none;font-size:18px;
-  box-shadow:0 12px 36px -6px rgba(0,255,156,0.5);
-  transition:transform .25s;
-}
+.iterm-tab{position:fixed;right:18px;bottom:18px;z-index:54;width:46px;height:46px;border-radius:50%;background:var(--accent);color:#000;display:grid;place-items:center;border:0;cursor:none;font-size:18px;box-shadow:0 12px 36px -6px rgba(0,255,156,0.5);transition:transform .25s}
 @media (hover:none){.iterm-tab{cursor:pointer}}
 .iterm-tab:hover{transform:scale(1.1)}
 .iterm-tab.hidden{opacity:0;pointer-events:none;transform:scale(.6)}
@@ -571,7 +481,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
 <canvas id="binary"></canvas>
 <div class="scan-bg"></div>
 
-<!-- ============= CURSOR ============= -->
+<!-- CURSOR -->
 <div class="cursor" aria-hidden="true">
   <svg viewBox="0 0 38 38" fill="none">
     <circle cx="19" cy="19" r="13" stroke="#00ff9c" stroke-width="1" opacity=".7"/>
@@ -583,7 +493,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
 </div>
 <div class="cursor-dot" aria-hidden="true"></div>
 
-<!-- ============= BOOT LOADER ============= -->
+<!-- BOOT LOADER -->
 <div class="boot" id="boot">
   <div class="logo mono">$ ./initialize_portfolio.sh</div>
   <div class="lines mono">
@@ -596,7 +506,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
   <div class="bar"><i></i></div>
 </div>
 
-<!-- ============= NAV ============= -->
+<!-- NAV -->
 <nav class="nav" aria-label="Primary">
   <div class="brand"><span class="blip"></span><span class="mono">~/ankush</span></div>
   <a class="link active" href="#home">Home</a>
@@ -609,34 +519,28 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
   <a class="link cta" href="#contact">Contact</a>
 </nav>
 
-<!-- ============= HERO ============= -->
+<!-- HERO -->
 <section id="home" class="hero">
   <div class="wrap">
     <div class="hero-grid">
-
       <div>
         <div class="status reveal">
           <span class="live"></span>
           <span>STATUS · AVAILABLE FOR ENGAGEMENTS · TOP 1% THM</span>
         </div>
-
         <h1 class="reveal">Ankush<br/><span class="last">Bhadwar</span><span class="dot">.</span></h1>
-
         <div class="role-line reveal">
           <span class="pr">$</span>
           <span>role:</span>
           <span id="typer">Red Team Operations</span>
           <span class="caret"></span>
         </div>
-
         <div class="headline reveal">
-          <span class="accent">Offensive Security Engineer</span> & Cloud Security Researcher
+          <span class="accent">Offensive Security Engineer</span> &amp; Cloud Security Researcher
         </div>
-
         <p class="lead reveal">
           I dissect systems at the protocol level — API auth flows, Azure misconfigs, attack-surface intel — and build offensive tooling that simulates realistic adversary behavior. Recruiter-clean, blue-team-aware, red-team-deep.
         </p>
-
         <div class="actions reveal">
           <a class="btn btn-primary" href="#projects">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -646,9 +550,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l9 6 9-6M3 8v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8"/></svg>
             Contact
           </a>
-          <a class="btn btn-tertiary" href="#about">
-            About →
-          </a>
+          <a class="btn btn-tertiary" href="#about">About →</a>
         </div>
       </div>
 
@@ -702,7 +604,6 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
           </g>
         </svg>
         <div class="core"></div>
-
         <div class="term-float tf1">
           <div class="h"><b></b><b></b><b></b></div>
           <code>$ nmap -sV target.io<br/><span style="color:#8b95a5">22/tcp · 443/tcp · 8080/tcp</span><br/>scan complete: <span style="color:#00d4ff">3 services</span></code>
@@ -723,12 +624,11 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
         <div class="s"><div class="n">#<span class="a" data-count="529">0</span></div><div class="l">Global Rank</div></div>
         <div class="s"><div class="n"><span class="a">Top 1</span>%</div><div class="l">Worldwide</div></div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ============= ABOUT ============= -->
+<!-- ABOUT -->
 <section id="about">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -736,9 +636,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
       <h2 class="sec-title">Breaking systems<br/>to <span class="grad">understand</span> them.</h2>
       <p class="sec-sub">Offensive mindset, infrastructure-deep, recruiter-clean. No filler, no fluff.</p>
     </div>
-
     <div class="about-grid">
-
       <div class="about-visual reveal">
         <span class="corner c1">┌</span><span class="corner c2">┐</span>
         <span class="corner c3">└</span><span class="corner c4">┘</span>
@@ -749,17 +647,13 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
               <stop offset="100%" stop-color="#00ff9c" stop-opacity="0"/>
             </linearGradient>
           </defs>
-          <!-- hood silhouette -->
           <path d="M100 20 C60 20 30 60 30 110 L30 200 L170 200 L170 110 C170 60 140 20 100 20 Z M55 90 C55 70 75 50 100 50 C125 50 145 70 145 90 L145 130 L130 130 L130 110 C130 95 117 85 100 85 C83 85 70 95 70 110 L70 130 L55 130 Z" fill="url(#hg)" stroke="#00ff9c" stroke-width="0.8" stroke-opacity="0.4"/>
-          <!-- face shadow -->
           <ellipse cx="100" cy="110" rx="35" ry="25" fill="#070809"/>
-          <!-- eyes -->
           <circle cx="88" cy="108" r="2.5" fill="#00ff9c"><animate attributeName="opacity" values="1;0.3;1" dur="3s" repeatCount="indefinite"/></circle>
           <circle cx="112" cy="108" r="2.5" fill="#00ff9c"><animate attributeName="opacity" values="1;0.3;1" dur="3s" repeatCount="indefinite"/></circle>
         </svg>
         <span class="label mono">// operator_silhouette.svg</span>
       </div>
-
       <div class="about-text reveal">
         <div class="about-pill">// operator.profile</div>
         <p>I specialize in <strong>offensive security</strong>, <strong>cloud infrastructure defense</strong>, and adversarial testing across modern web ecosystems. My work focuses on API security, Azure security operations, authentication flaws, attack-surface analysis, and real-world exploitation workflows.</p>
@@ -771,15 +665,14 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
           <li>Vulnerability research</li>
           <li>Offensive automation</li>
           <li>Secure architecture analysis</li>
-          <li>API & auth flaw hunting</li>
+          <li>API &amp; auth flaw hunting</li>
         </ul>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ============= SKILLS ============= -->
+<!-- SKILLS -->
 <section id="skills">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -787,7 +680,6 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
       <h2 class="sec-title">Tools, tactics,<br/><span class="grad">tradecraft</span>.</h2>
       <p class="sec-sub">No progress bars. The stack I actually reach for when there's a system to break or a vulnerability to chase.</p>
     </div>
-
     <div class="skills-cats">
       <div class="skill-cat reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
@@ -798,7 +690,6 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
           <span class="badge">XSS</span><span class="badge">Auth Bypass</span><span class="badge">Metasploit</span>
         </div>
       </div>
-
       <div class="skill-cat reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
         <h3>Cloud</h3>
@@ -808,7 +699,6 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
           <span class="badge">SC-100</span>
         </div>
       </div>
-
       <div class="skill-cat reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
         <h3>Infrastructure</h3>
@@ -818,7 +708,6 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
           <span class="badge">Wireshark</span>
         </div>
       </div>
-
       <div class="skill-cat reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
         <h3>Programming</h3>
@@ -831,7 +720,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
   </div>
 </section>
 
-<!-- ============= EXPERIENCE ============= -->
+<!-- EXPERIENCE -->
 <section id="experience">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -839,7 +728,6 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
       <h2 class="sec-title">Where I've been<br/>breaking <span class="grad">things</span>.</h2>
       <p class="sec-sub">Offensive engagements, internships, and self-driven research.</p>
     </div>
-
     <div class="timeline">
       <div class="tl reveal">
         <div class="when">Mar 2026 — Present · 3 mos</div>
@@ -852,7 +740,6 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
         </ul>
         <div class="stack"><span>VAPT</span><span>Burp Suite</span><span>Python</span><span>OWASP</span></div>
       </div>
-
       <div class="tl reveal">
         <div class="when">Feb 2026 — Mar 2026 · 2 mos</div>
         <h3>Cyber Security Intern</h3>
@@ -863,7 +750,6 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
         </ul>
         <div class="stack"><span>Ethical Hacking</span><span>Red Teaming</span><span>Metasploit</span></div>
       </div>
-
       <div class="tl reveal">
         <div class="when">Feb 2026 · 1 mo</div>
         <h3>Cyber Security Intern</h3>
@@ -875,7 +761,6 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
         </ul>
         <div class="stack"><span>Web App Pentest</span><span>Red Teaming</span><span>Burp Suite</span></div>
       </div>
-
       <div class="tl reveal">
         <div class="when">Self-Driven · Ongoing</div>
         <h3>Independent Researcher · Writer</h3>
@@ -889,7 +774,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
       </div>
     </div>
 
-    <!-- Education sub-block -->
+    <!-- Education -->
     <div class="edu-block reveal">
       <div class="edu-tag mono">// education</div>
       <div class="edu-card">
@@ -909,108 +794,69 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
   </div>
 </section>
 
-<!-- ============= PROJECTS ============= -->
+<!-- PROJECTS -->
 <section id="projects">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-tag">04 · BUILDS</div>
-      <h2 class="sec-title">Offensive tooling<br/>& <span class="grad">research</span>.</h2>
+      <h2 class="sec-title">Offensive tooling<br/>&amp; <span class="grad">research</span>.</h2>
       <p class="sec-sub">Selected red-team, cloud-security, and recon-automation projects.</p>
     </div>
-
     <div class="proj-grid">
-
       <div class="proj reveal">
-        <div class="top">
-          <span class="cat">// API · Recon</span>
-          <span class="diff">MEDIUM</span>
-        </div>
+        <div class="top"><span class="cat">// API · Recon</span><span class="diff">MEDIUM</span></div>
         <h3>API Attack Surface Mapper</h3>
         <p>Python framework that discovers, fingerprints and enumerates REST/GraphQL endpoints from OpenAPI specs and live traffic — auto-classifies auth flows and surfaces high-risk methods.</p>
         <div class="stack"><span>Python</span><span>OpenAPI</span><span>JWT</span><span>HTTPX</span></div>
-        <div class="links">
-          <a href="https://github.com/anku0669" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.36-5.24 5.65.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>repo</a>
-        </div>
+        <div class="links"><a href="https://github.com/anku0669" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.36-5.24 5.65.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>repo</a></div>
       </div>
-
       <div class="proj reveal">
-        <div class="top">
-          <span class="cat">// Cloud · Azure</span>
-          <span class="diff">HARD</span>
-        </div>
+        <div class="top"><span class="cat">// Cloud · Azure</span><span class="diff">HARD</span></div>
         <h3>Azure Misconfiguration Scanner</h3>
         <p>Tooling that enumerates IAM role assignments, storage public-access exposure, and Defender posture gaps across an Azure tenant — outputs CVSS-scored findings.</p>
         <div class="stack"><span>Azure CLI</span><span>Python</span><span>IAM</span><span>Graph API</span></div>
-        <div class="links">
-          <a href="https://github.com/anku0669" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.36-5.24 5.65.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>repo</a>
-        </div>
+        <div class="links"><a href="https://github.com/anku0669" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.36-5.24 5.65.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>repo</a></div>
       </div>
-
       <div class="proj reveal">
-        <div class="top">
-          <span class="cat">// API · Auth</span>
-          <span class="diff">MEDIUM</span>
-        </div>
+        <div class="top"><span class="cat">// API · Auth</span><span class="diff">MEDIUM</span></div>
         <h3>JWT Analysis Toolkit</h3>
         <p>Decodes, audits and fuzzes JWTs — detects weak signing algs, key-confusion vulnerabilities, expired-token replays and insecure claim usage in real authentication workflows.</p>
         <div class="stack"><span>Python</span><span>JWT</span><span>JOSE</span><span>Burp Ext</span></div>
-        <div class="links">
-          <a href="https://github.com/anku0669" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.36-5.24 5.65.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>repo</a>
-        </div>
+        <div class="links"><a href="https://github.com/anku0669" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.36-5.24 5.65.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>repo</a></div>
       </div>
-
       <div class="proj reveal">
-        <div class="top">
-          <span class="cat">// Recon · Automation</span>
-          <span class="diff">HARD</span>
-        </div>
+        <div class="top"><span class="cat">// Recon · Automation</span><span class="diff">HARD</span></div>
         <h3>Recon Automation Framework</h3>
         <p>Modular pipeline chaining subdomain enumeration, port scanning, tech-stack fingerprinting, and screenshot capture — designed for bug-bounty asset discovery at scale.</p>
         <div class="stack"><span>Python</span><span>amass</span><span>httpx</span><span>nuclei</span></div>
-        <div class="links">
-          <a href="https://github.com/anku0669" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.36-5.24 5.65.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>repo</a>
-        </div>
+        <div class="links"><a href="https://github.com/anku0669" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.36-5.24 5.65.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>repo</a></div>
       </div>
-
       <div class="proj reveal">
-        <div class="top">
-          <span class="cat">// Web · Exploitation</span>
-          <span class="diff">MEDIUM</span>
-        </div>
+        <div class="top"><span class="cat">// Web · Exploitation</span><span class="diff">MEDIUM</span></div>
         <h3>Web Enumeration Engine</h3>
         <p>Burp Suite extension + standalone Python tool that maps web-app routes, classifies parameters by behavior, and surfaces probable injection points and IDOR candidates.</p>
         <div class="stack"><span>Python</span><span>Burp Ext</span><span>Selenium</span></div>
-        <div class="links">
-          <a href="https://github.com/anku0669" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.36-5.24 5.65.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>repo</a>
-        </div>
+        <div class="links"><a href="https://github.com/anku0669" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.36-5.24 5.65.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>repo</a></div>
       </div>
-
       <div class="proj reveal">
-        <div class="top">
-          <span class="cat">// Infra · Research</span>
-          <span class="diff">EXPERT</span>
-        </div>
+        <div class="top"><span class="cat">// Infra · Research</span><span class="diff">EXPERT</span></div>
         <h3>Container Escape Research Lab</h3>
         <p>Sandboxed environment exploring known and theoretical container-breakout primitives — capability misuse, hostpath mounts, runc CVEs — with reproducible writeups for blue teams.</p>
         <div class="stack"><span>Docker</span><span>Linux</span><span>K8s</span><span>seccomp</span></div>
-        <div class="links">
-          <a href="https://github.com/anku0669" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.36-5.24 5.65.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>repo</a>
-        </div>
+        <div class="links"><a href="https://github.com/anku0669" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.93 10.93 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.68 5.36-5.24 5.65.41.36.78 1.05.78 2.13v3.16c0 .31.21.67.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>repo</a></div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ============= AI SECURITY PROMPT LAB ============= -->
+<!-- AI PROMPT LAB -->
 <section id="lab">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-tag">05 · PROMPT LAB</div>
       <h2 class="sec-title">AI Security<br/><span class="grad">Prompt Lab</span>.</h2>
-      <p class="sec-sub">Battle-tested prompts I use with AI assistants for real offensive workflows — recon, API auditing, threat modeling, and report writing. Filter, expand, copy.</p>
+      <p class="sec-sub">Battle-tested prompts I use with AI assistants for real offensive workflows — recon, API auditing, threat modeling, and report writing.</p>
     </div>
-
     <div class="lab-controls reveal" id="labCtrl">
       <button class="active" data-filter="all">// all</button>
       <button data-filter="recon">recon</button>
@@ -1024,17 +870,16 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
         add prompt
       </button>
-      <button class="add-btn sync-btn" id="openSyncSettings" type="button" title="Configure GitHub sync to publish prompts site-wide">
+      <button class="add-btn sync-btn" id="openSyncSettings" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         sync
       </button>
     </div>
-
     <div class="prompts" id="prompts"></div>
   </div>
 </section>
 
-<!-- ============= CERTIFICATIONS ============= -->
+<!-- CERTIFICATIONS -->
 <section id="certs">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -1044,7 +889,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
     </div>
 
     <div class="cert-cat reveal">
-      <div class="cert-cat-h"><span class="num mono">01</span><h3>Offensive Security & Penetration Testing</h3></div>
+      <div class="cert-cat-h"><span class="num mono">01</span><h3>Offensive Security &amp; Penetration Testing</h3></div>
       <div class="certs-grid">
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>C-JWAPT — Jr Web App Pen Tester</h4><span>Sturtle Security · Mar 2026</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>CCEP — Certified Cybersec Educator</h4><span>Red Team Leaders · Dec 2025</span></div></div>
@@ -1065,7 +910,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
     <div class="cert-cat reveal">
       <div class="cert-cat-h"><span class="num mono">02</span><h3>AI Security Research</h3></div>
       <div class="certs-grid">
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7 17l3-3M12 22a10 10 0 0 0 7-17l-3 3"/><circle cx="12" cy="12" r="3"/></svg></div><div class="info"><h4>CAISR — AI Security & Risk</h4><span>Red Team Leaders · Feb 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7 17l3-3M12 22a10 10 0 0 0 7-17l-3 3"/><circle cx="12" cy="12" r="3"/></svg></div><div class="info"><h4>CAISR — AI Security &amp; Risk</h4><span>Red Team Leaders · Feb 2026</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7 17l3-3M12 22a10 10 0 0 0 7-17l-3 3"/><circle cx="12" cy="12" r="3"/></svg></div><div class="info"><h4>AI Security</h4><span>TryHackMe · Apr 2026</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7 17l3-3M12 22a10 10 0 0 0 7-17l-3 3"/><circle cx="12" cy="12" r="3"/></svg></div><div class="info"><h4>AI Tools Workshop</h4><span>Be10x · Mar 2026</span></div></div>
       </div>
@@ -1074,7 +919,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
     <div class="cert-cat reveal">
       <div class="cert-cat-h"><span class="num mono">03</span><h3>Claude · MCP · Agent Engineering</h3></div>
       <div class="certs-grid">
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>AI Fluency Framework & Foundations</h4><span>Anthropic · Apr 2026</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>AI Fluency Framework &amp; Foundations</h4><span>Anthropic · Apr 2026</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Teaching the AI Fluency Framework</h4><span>Anthropic · Apr 2026</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>AI Fluency for Educators</h4><span>Anthropic · Apr 2026</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>AI Capabilities and Limitations</h4><span>Anthropic · Apr 2026</span></div></div>
@@ -1102,12 +947,12 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
     </div>
 
     <div class="cert-cat reveal">
-      <div class="cert-cat-h"><span class="num mono">05</span><h3>Cloud Infrastructure & Networking</h3></div>
+      <div class="cert-cat-h"><span class="num mono">05</span><h3>Cloud Infrastructure &amp; Networking</h3></div>
       <div class="certs-grid">
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>AWS Identity & Access Management</h4><span>Amazon Web Services · Nov 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>AWS Identity &amp; Access Management</h4><span>Amazon Web Services · Nov 2025</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>AWS Security Governance at Scale</h4><span>Amazon Web Services · Nov 2025</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>AWS for VMware Administrators</h4><span>Amazon Web Services · Nov 2025</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Networking Devices & Initial Config</h4><span>Cisco · Nov 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Networking Devices &amp; Initial Config</h4><span>Cisco · Nov 2025</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Introduction to Cybersecurity</h4><span>Cisco · Nov 2025</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Cybersecurity Fundamentals</h4><span>IBM · Nov 2025</span></div></div>
       </div>
@@ -1123,23 +968,22 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>Advent of Cyber 2024</h4><span>TryHackMe · Oct 2025</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>Advent of Cyber 2023</h4><span>TryHackMe · Oct 2025</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>Advent of Cyber 2022</h4><span>TryHackMe · Nov 2025</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>In-house Hacking & Pentesting Lab</h4><span>EC-Council</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Dark Web, Anonymity & Crypto</h4><span>EC-Council</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>In-house Hacking &amp; Pentesting Lab</h4><span>EC-Council</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="info"><h4>Dark Web, Anonymity &amp; Crypto</h4><span>EC-Council</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Cybersecurity Analyst Simulation</h4><span>Tata Group · Jul 2025</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Cybersecurity Job Simulation</h4><span>Deloitte · Jul 2025</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Cyber Security Management</h4><span>ANZ · Jul 2025</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Shield Up: Cybersecurity Sim</h4><span>AIG · Jul 2025</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div><div class="info"><h4>Cybersecurity Job Simulation</h4><span>NY Jobs CEO Council · Jul 2025</span></div></div>
-        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Learn Python & Ethical Hacking</h4><span>Udemy · Oct 2025</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Learn Python &amp; Ethical Hacking</h4><span>Udemy · Oct 2025</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="info"><h4>Java 17 Masterclass</h4><span>Udemy · Oct 2024</span></div></div>
       </div>
     </div>
-
     <p class="sec-sub reveal mono" style="margin-top:24px;font-size:12.5px">// 50+ verified certifications · sourced from LinkedIn licenses_and_certifications</p>
   </div>
 </section>
 
-<!-- ============= ACHIEVEMENTS ============= -->
+<!-- ACHIEVEMENTS -->
 <section id="achievements">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -1147,7 +991,6 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
       <h2 class="sec-title">Verifiable <span class="grad">footprint</span>.</h2>
       <p class="sec-sub">Numbers don't lie. Click through and verify.</p>
     </div>
-
     <div class="ach-grid">
       <div class="ach reveal"><div class="big" data-count="725">0+</div><div class="lab">TryHackMe Rooms</div><div class="sub">cleared</div></div>
       <div class="ach reveal"><div class="big" data-count="87">0</div><div class="lab">Badges Earned</div><div class="sub">platforms</div></div>
@@ -1157,7 +1000,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
   </div>
 </section>
 
-<!-- ============= CONTACT ============= -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -1165,7 +1008,6 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
       <h2 class="sec-title">Got a system that<br/>needs <span class="grad">testing</span>?</h2>
       <p class="sec-sub">Open for security engagements, freelance VAPT, cloud-security research, and bug bounty collaboration.</p>
     </div>
-
     <div class="contact-grid">
       <div class="contact-left reveal">
         <h3>Channels.</h3>
@@ -1189,31 +1031,21 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
           </a>
         </div>
         <div class="socials">
-          <a class="soc" href="https://guns.lol/anku0669" target="_blank" rel="noopener" aria-label="guns.lol"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v6c0 5.5 3.8 10.7 10 12 6.2-1.3 10-6.5 10-12V7l-10-5z" opacity=".25"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
-        <a class="soc" href="https://tryhackme.com/" target="_blank" rel="noopener" aria-label="TryHackMe"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L3 7v6c0 5 3.8 9.6 9 11 5.2-1.4 9-6 9-11V7l-9-5zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9l-7 7z"/></svg></a>
+          <a class="soc" href="https://guns.lol/anku0669" target="_blank" rel="noopener" aria-label="guns.lol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="soc" href="https://tryhackme.com/p/ankushbhadwar" target="_blank" rel="noopener" aria-label="TryHackMe"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L3 7v6c0 5 3.8 9.6 9 11 5.2-1.4 9-6 9-11V7l-9-5zm-1 14l-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9l-7 7z"/></svg></a>
           <a class="soc" href="https://medium.com/" target="_blank" rel="noopener" aria-label="Medium"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.85 5.4c.02-.18-.05-.35-.18-.47L1.34 3.32V3h4.6l3.55 7.79L13.6 3h4.39v.32l-1.14 1.1c-.1.07-.15.2-.13.32V16.7c-.02.13.03.26.13.32l1.11 1.1V18.43h-5.6V18.13l1.15-1.13c.11-.11.11-.14.11-.32V7.36l-3.2 8.13H10l-3.7-8.13v5.45c-.03.24.05.48.22.65l1.5 1.82v.32H3.74V18.13l1.5-1.82c.17-.17.24-.41.2-.64V5.4z"/></svg></a>
           <a class="soc" href="https://x.com/" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
         </div>
       </div>
-
       <div class="contact-right reveal">
         <div class="term-h">
           <div class="dots"><i></i><i></i><i></i></div>
           <span class="ttl">~/transmit.sh</span>
         </div>
         <form class="cform" id="cform" onsubmit="return submitForm(event)">
-          <label>
-            <span class="lab">enter_name</span>
-            <input type="text" name="name" required placeholder="your name" autocomplete="off"/>
-          </label>
-          <label>
-            <span class="lab">enter_email</span>
-            <input type="email" name="email" required placeholder="you@domain.com" autocomplete="off"/>
-          </label>
-          <label>
-            <span class="lab">payload</span>
-            <textarea name="msg" required rows="4" placeholder="what are we breaking?"></textarea>
-          </label>
+          <label><span class="lab">enter_name</span><input type="text" name="name" required placeholder="your name" autocomplete="off"/></label>
+          <label><span class="lab">enter_email</span><input type="email" name="email" required placeholder="you@domain.com" autocomplete="off"/></label>
+          <label><span class="lab">payload</span><textarea name="msg" required rows="4" placeholder="what are we breaking?"></textarea></label>
           <button type="submit" class="submit">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             ./transmit_message
@@ -1225,8 +1057,8 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
   </div>
 </section>
 
-<!-- ============= SYNC SETTINGS MODAL ============= -->
-<div class="modal-bg" id="syncModal" role="dialog" aria-modal="true" aria-label="GitHub sync settings">
+<!-- SYNC MODAL -->
+<div class="modal-bg" id="syncModal" role="dialog" aria-modal="true">
   <div class="modal">
     <div class="modal-h">
       <div class="dots"><i></i><i></i><i></i></div>
@@ -1235,41 +1067,33 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
     </div>
     <div class="modal-b">
       <h3>Publish prompts to your live site</h3>
-      <p class="sub">Add a fine-grained GitHub token and every saved prompt commits to <span style="color:var(--accent)">prompts.json</span> on your repo. Visitors see them site-wide. Token stays in your browser only.</p>
+      <p class="sub">Add a fine-grained GitHub token and every saved prompt commits to <span style="color:var(--accent)">prompts.json</span> on your repo.</p>
       <form id="syncForm" onsubmit="return saveSyncSettings(event)">
-        <label>
-          <span class="lab">github_personal_access_token</span>
-          <input type="password" name="pat" placeholder="github_pat_..." autocomplete="off" spellcheck="false"/>
-        </label>
+        <label><span class="lab">github_personal_access_token</span><input type="password" name="pat" placeholder="github_pat_..." autocomplete="off" spellcheck="false"/></label>
         <details style="margin:-6px 0 14px;background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.18);border-radius:8px;padding:10px 14px">
-          <summary style="cursor:pointer;color:var(--cyan);font-size:12px;font-family:'JetBrains Mono',monospace">// how to generate this token  →</summary>
+          <summary style="cursor:pointer;color:var(--cyan);font-size:12px;font-family:'JetBrains Mono',monospace">// how to generate this token →</summary>
           <ol style="margin:12px 0 4px 18px;color:var(--muted);font-size:12px;line-height:1.85;font-family:'JetBrains Mono',monospace">
             <li>Go to <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener" style="color:var(--accent)">github.com/settings/tokens?type=beta</a></li>
-            <li>Repository access → <b>Only select repositories</b> → pick <code style="color:var(--accent)">anku0669.github.io</code></li>
-            <li>Permissions → Repository permissions → <b>Contents</b>: Read and write</li>
+            <li>Repository access → Only select repositories → pick <code style="color:var(--accent)">anku0669.github.io</code></li>
+            <li>Permissions → Contents: Read and write</li>
             <li>Generate · copy · paste here · save</li>
           </ol>
         </details>
-        <div style="display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11.5px;font-family:'JetBrains Mono',monospace">
-          <span id="syncStatus">// status: not configured</span>
-        </div>
+        <div style="display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11.5px;font-family:'JetBrains Mono',monospace"><span id="syncStatus">// status: not configured</span></div>
       </form>
     </div>
     <div class="modal-f">
-      <span class="hint">// token kept in localStorage only · never sent anywhere except github.com</span>
+      <span class="hint">// token kept in localStorage only</span>
       <div class="acts">
         <button type="button" class="btn-cancel" id="clearSyncPat">disconnect</button>
-        <button type="submit" form="syncForm" class="btn-save">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>
-          save
-        </button>
+        <button type="submit" form="syncForm" class="btn-save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>save</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ============= ADD PROMPT MODAL ============= -->
-<div class="modal-bg" id="addModal" role="dialog" aria-modal="true" aria-label="Add new prompt">
+<!-- ADD PROMPT MODAL -->
+<div class="modal-bg" id="addModal" role="dialog" aria-modal="true">
   <div class="modal">
     <div class="modal-h">
       <div class="dots"><i></i><i></i><i></i></div>
@@ -1278,15 +1102,11 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
     </div>
     <div class="modal-b">
       <h3>Add a prompt to your lab</h3>
-      <p class="sub">Stored locally in your browser (localStorage). Refresh-safe. Use it as your personal workflow vault.</p>
+      <p class="sub">Stored locally in your browser. Refresh-safe.</p>
       <form id="addForm" onsubmit="return savePrompt(event)">
-        <label>
-          <span class="lab">title</span>
-          <input type="text" name="title" required maxlength="120" placeholder="e.g. Burp Suite session-fixation hunter" autocomplete="off"/>
-        </label>
+        <label><span class="lab">title</span><input type="text" name="title" required maxlength="120" placeholder="e.g. Burp Suite session-fixation hunter" autocomplete="off"/></label>
         <div class="row">
-          <label>
-            <span class="lab">category</span>
+          <label><span class="lab">category</span>
             <select name="cat" required>
               <option value="recon">Recon</option>
               <option value="web">Web Security</option>
@@ -1297,8 +1117,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
               <option value="custom">Custom / Other</option>
             </select>
           </label>
-          <label>
-            <span class="lab">difficulty</span>
+          <label><span class="lab">difficulty</span>
             <select name="diff" required>
               <option value="easy">EASY</option>
               <option value="medium" selected>MEDIUM</option>
@@ -1306,10 +1125,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
             </select>
           </label>
         </div>
-        <label>
-          <span class="lab">prompt body</span>
-          <textarea name="body" required rows="9" placeholder="Paste your prompt. Markdown-style headings (§ AUTH MODEL etc.) render nicely."></textarea>
-        </label>
+        <label><span class="lab">prompt body</span><textarea name="body" required rows="9" placeholder="Paste your prompt here."></textarea></label>
         <label id="publishOptionWrap" style="display:none;background:rgba(0,255,156,0.04);border:1px solid rgba(0,255,156,0.18);border-radius:8px;padding:12px 14px;margin-bottom:4px">
           <span style="display:flex;align-items:center;gap:10px;cursor:pointer">
             <input type="checkbox" name="publish" id="publishCheck" checked style="width:auto;accent-color:var(--accent);margin:0"/>
@@ -1323,16 +1139,13 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
       <span class="hint">// saved to this device only</span>
       <div class="acts">
         <button type="button" class="btn-cancel" id="cancelAddPrompt">cancel</button>
-        <button type="submit" form="addForm" class="btn-save">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>
-          save prompt
-        </button>
+        <button type="submit" form="addForm" class="btn-save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>save prompt</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ============= INTERACTIVE TERMINAL ============= -->
+<!-- TERMINAL -->
 <button class="iterm-tab mono" id="itermTab" aria-label="Open terminal">$_</button>
 <div class="iterm" id="iterm" role="dialog" aria-label="Interactive terminal">
   <div class="ih">
@@ -1352,7 +1165,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
 <footer>
   <div class="wrap">
     <div class="mono">© 2026 ankush bhadwar · <span class="li"><span class="blip"></span>still online</span></div>
-    <div class="mono">crafted with caffeine, curiosity & a healthy paranoia</div>
+    <div class="mono">crafted with caffeine, curiosity &amp; a healthy paranoia</div>
   </div>
 </footer>
 
@@ -1367,17 +1180,13 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
     hidden = true;
     boot.classList.add('gone');
   }
-  // Primary: hide 2.4s after DOMContentLoaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => setTimeout(hideBoot, 2400));
   } else {
     setTimeout(hideBoot, 2400);
   }
-  // Failsafe: hide after 3.5s no matter what
   setTimeout(hideBoot, 3500);
-  // Click anywhere on the boot to skip
   boot.addEventListener('click', hideBoot);
-  boot.style.cursor = 'pointer';
 })();
 
 /* ============== CURSOR ============== */
@@ -1395,7 +1204,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
   });
 })();
 
-/* ============== BINARY RAIN (very subtle) ============== */
+/* ============== BINARY RAIN ============== */
 (function(){
   const cv = document.getElementById('binary');
   const ctx = cv.getContext('2d');
@@ -1448,294 +1257,88 @@ document.querySelectorAll('section[id]').forEach(s => navIo.observe(s));
 
 /* ============== PROMPT LAB ============== */
 const PROMPTS = [
-  {
-    id:'p1', cat:'recon', diff:'medium', file:'recon_planner.md', title:'Subdomain Triage & Asset Prioritization',
-    catLabel:'Recon',
-    body:`You are an offensive security recon assistant. Given a list of subdomains and basic httpx fingerprints, do the following:
-
-1. Group assets by likely tech stack (CDN, app server, admin panel, staging, API gateway).
-2. Flag any subdomain whose name or fingerprint suggests internal/staging/dev exposure.
-3. Rank assets by attacker priority based on:
-   - Exposure of authentication endpoints
-   - Presence of CMS/admin interfaces
-   - Unusual ports or non-standard tech
-   - Recently issued certificates (signal: new deployment)
-4. For each top-10 asset, propose 2–3 concrete next reconnaissance steps with the exact tool + flags I should run.
-
-Output as a Markdown table. Be terse. No fluff.`
-  },
-  {
-    id:'p2', cat:'web', diff:'medium', file:'idor_hunter.md', title:'IDOR Candidate Surface Mapper',
-    catLabel:'Web Security',
-    body:`Act as a senior web pentester. I'll paste a Burp Suite request/response pair below. Analyze it and:
-
-1. Identify every parameter (path, query, header, body) that references an object identifier — user IDs, order IDs, document IDs, etc.
-2. For each, classify the access-control model implied by its position and value pattern.
-3. Rank the parameters by IDOR likelihood (low/med/high) with one-sentence justification per item.
-4. Propose specific test cases I should run with the exact replayed request payload for each candidate.
-
-Do NOT speculate beyond the request data. If a parameter's purpose is ambiguous, mark it "AMBIGUOUS" and explain what I need to confirm first.`
-  },
-  {
-    id:'p3', cat:'api', diff:'hard', file:'openapi_audit.md', title:'OpenAPI Spec → Attack Surface Report',
-    catLabel:'API Testing',
-    body:`You are an API security auditor. I will paste an OpenAPI 3.x specification. Produce a structured audit:
-
-§ AUTH MODEL
-  - List every authentication scheme. Flag any endpoint that bypasses the primary scheme.
-  - Identify any endpoint accessible without authentication. Justify why each one is or isn't a finding.
-
-§ AUTHZ SURFACE
-  - List every endpoint that accepts an object identifier in the path/query/body.
-  - For each, predict the BOLA / BFLA risk based on naming + scope.
-
-§ DATA EXPOSURE
-  - Identify responses that may leak PII, secrets, or internal IDs.
-
-§ RATE LIMITS
-  - Highlight endpoints likely to need throttling but with no documented limit.
-
-§ TOP 10 PRIORITY TESTS
-  - Concrete, runnable test cases I can execute today.
-
-Format: structured markdown. No marketing language. No CWE list dumps.`
-  },
-  {
-    id:'p4', cat:'cloud', diff:'hard', file:'azure_iam_review.md', title:'Azure IAM Misconfiguration Review',
-    catLabel:'Cloud Security',
-    body:`You are an Azure cloud-security reviewer. I'll paste output from \`az role assignment list --all\` and \`az ad sp list\`. Analyze:
-
-1. Flag any role assignment granting Owner/Contributor/User Access Administrator at the subscription or root management group scope.
-2. Identify service principals that hold elevated roles without an apparent application owner.
-3. Detect role assignments to wildcard or guest principal types.
-4. Identify built-in roles being used where custom roles with least-privilege would be appropriate.
-5. Highlight any "stale" assignments (principals deleted, expired credentials, dormant signins).
-
-For each finding give:
-  - Severity (Low / Med / High / Crit)
-  - One-line impact
-  - Concrete remediation Azure CLI command
-
-No vendor marketing. Just findings.`
-  },
-  {
-    id:'p5', cat:'threat', diff:'medium', file:'stride_model.md', title:'STRIDE Threat Model from Architecture Diagram',
-    catLabel:'Threat Modeling',
-    body:`You are a threat modeler. I'll describe a system's architecture in plain text (services, data stores, trust boundaries). Build a STRIDE threat model:
-
-For each component AND each data flow crossing a trust boundary, produce:
-
-  Spoofing       — concrete threats + mitigations
-  Tampering      — concrete threats + mitigations
-  Repudiation    — concrete threats + mitigations
-  Info Disclosure— concrete threats + mitigations
-  DoS            — concrete threats + mitigations
-  Elev. of Priv. — concrete threats + mitigations
-
-Be specific. "Add authentication" is not an answer; "Require mTLS between service A and service B with cert pinning" is. Output as a flat table sorted by severity.`
-  },
-  {
-    id:'p6', cat:'workflow', diff:'easy', file:'vapt_report.md', title:'VAPT Finding → Client-Ready Writeup',
-    catLabel:'Pentesting Workflow',
-    body:`Convert raw pentest notes into a client-ready finding. I'll paste:
-  - Vulnerability type
-  - Affected endpoint(s)
-  - Reproduction notes
-  - Impact observations
-
-Generate a finding in this exact structure:
-
-  TITLE         — terse, technical
-  SEVERITY      — derived from CVSS 3.1 (provide vector string)
-  AFFECTED      — exact assets/endpoints
-  DESCRIPTION   — 2-3 paragraphs, non-fluffy
-  EVIDENCE      — reproduction steps with HTTP requests/responses, redact sensitive data
-  IMPACT        — business impact in plain language
-  RECOMMENDATION— specific, prioritized remediation
-  REFERENCES    — relevant CWE + OWASP entries
-
-Tone: professional, technical, no padding. Assume the reader is a senior engineer.`
-  },
-  {
-    id:'p7', cat:'web', diff:'hard', file:'jwt_audit.md', title:'JWT Security Audit',
-    catLabel:'Web Security',
-    body:`You are a JWT/JOSE auditor. I'll paste a JWT and the issuing application's context. Analyze:
-
-1. Decode and dump header + payload + signature info.
-2. Check the alg field — flag none, weak HS256 with low-entropy keys, alg confusion candidates (HS256↔RS256).
-3. Inspect kid, jku, x5u headers for SSRF/path traversal potential.
-4. Validate every claim:
-   - iss/aud/sub correctness
-   - exp/nbf/iat sanity (long-lived tokens flagged)
-   - Custom claims for privilege escalation risk (role, admin, scope manipulation)
-5. Identify replay/revocation weaknesses based on application context.
-6. Propose 5 concrete attacks ordered by likelihood + exact reproduction steps.
-
-Format: structured. Cite the JWT field in every claim.`
-  },
-  {
-    id:'p8', cat:'recon', diff:'easy', file:'recon_synth.md', title:'Multi-Source Recon Synthesis',
-    catLabel:'Recon',
-    body:`I'll paste output from amass, subfinder, httpx, and nuclei (mixed). Deduplicate and synthesize:
-
-1. Build a single canonical asset list (host + port + service + tech).
-2. Cross-reference nuclei findings against the asset list. For each finding, attach the corresponding fingerprint.
-3. Group findings by severity AND by attack class (web, infra, misconfig, exposure).
-4. Identify the 5 highest-leverage targets — assets that combine multiple findings or expose authentication.
-5. Output:
-   - asset_table.md     (deduplicated assets)
-   - finding_table.md   (severity-sorted findings)
-   - priority_targets.md (top 5 with attack hypothesis per target)
-
-Be ruthless about deduplication. Don't pad the output.`
-  }
+  {id:'p1',cat:'recon',diff:'medium',file:'recon_planner.md',title:'Subdomain Triage & Asset Prioritization',catLabel:'Recon',body:`You are an offensive security recon assistant. Given a list of subdomains and basic httpx fingerprints, do the following:\n\n1. Group assets by likely tech stack (CDN, app server, admin panel, staging, API gateway).\n2. Flag any subdomain whose name or fingerprint suggests internal/staging/dev exposure.\n3. Rank assets by attacker priority based on:\n   - Exposure of authentication endpoints\n   - Presence of CMS/admin interfaces\n   - Unusual ports or non-standard tech\n   - Recently issued certificates (signal: new deployment)\n4. For each top-10 asset, propose 2–3 concrete next reconnaissance steps with the exact tool + flags I should run.\n\nOutput as a Markdown table. Be terse. No fluff.`},
+  {id:'p2',cat:'web',diff:'medium',file:'idor_hunter.md',title:'IDOR Candidate Surface Mapper',catLabel:'Web Security',body:`Act as a senior web pentester. I'll paste a Burp Suite request/response pair below. Analyze it and:\n\n1. Identify every parameter (path, query, header, body) that references an object identifier — user IDs, order IDs, document IDs, etc.\n2. For each, classify the access-control model implied by its position and value pattern.\n3. Rank the parameters by IDOR likelihood (low/med/high) with one-sentence justification per item.\n4. Propose specific test cases I should run with the exact replayed request payload for each candidate.\n\nDo NOT speculate beyond the request data. If a parameter's purpose is ambiguous, mark it "AMBIGUOUS" and explain what I need to confirm first.`},
+  {id:'p3',cat:'api',diff:'hard',file:'openapi_audit.md',title:'OpenAPI Spec → Attack Surface Report',catLabel:'API Testing',body:`You are an API security auditor. I will paste an OpenAPI 3.x specification. Produce a structured audit:\n\n§ AUTH MODEL\n  - List every authentication scheme. Flag any endpoint that bypasses the primary scheme.\n\n§ AUTHZ SURFACE\n  - List every endpoint that accepts an object identifier in the path/query/body.\n  - For each, predict the BOLA / BFLA risk.\n\n§ DATA EXPOSURE\n  - Identify responses that may leak PII, secrets, or internal IDs.\n\n§ TOP 10 PRIORITY TESTS\n  - Concrete, runnable test cases.\n\nFormat: structured markdown. No marketing language.`},
+  {id:'p4',cat:'cloud',diff:'hard',file:'azure_iam_review.md',title:'Azure IAM Misconfiguration Review',catLabel:'Cloud Security',body:`You are an Azure cloud-security reviewer. I'll paste output from az role assignment list --all. Analyze:\n\n1. Flag any role assignment granting Owner/Contributor/User Access Administrator at subscription scope.\n2. Identify service principals that hold elevated roles without an apparent application owner.\n3. Detect role assignments to wildcard or guest principal types.\n4. Highlight stale assignments (principals deleted, expired credentials, dormant signins).\n\nFor each finding give severity, one-line impact, and concrete remediation Azure CLI command.`},
+  {id:'p5',cat:'threat',diff:'medium',file:'stride_model.md',title:'STRIDE Threat Model from Architecture',catLabel:'Threat Modeling',body:`You are a threat modeler. I'll describe a system's architecture in plain text. Build a STRIDE threat model:\n\nFor each component AND each data flow crossing a trust boundary, produce:\n  Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elev. of Priv.\n\nBe specific. "Add authentication" is not an answer; "Require mTLS between service A and B with cert pinning" is. Output as a flat table sorted by severity.`},
+  {id:'p6',cat:'workflow',diff:'easy',file:'vapt_report.md',title:'VAPT Finding → Client-Ready Writeup',catLabel:'Pentesting Workflow',body:`Convert raw pentest notes into a client-ready finding. I'll paste: vulnerability type, affected endpoints, reproduction notes, impact observations.\n\nGenerate:\n  TITLE, SEVERITY (CVSS 3.1 vector string), AFFECTED, DESCRIPTION, EVIDENCE (reproduction steps), IMPACT, RECOMMENDATION, REFERENCES (CWE + OWASP)\n\nTone: professional, technical, no padding.`},
+  {id:'p7',cat:'web',diff:'hard',file:'jwt_audit.md',title:'JWT Security Audit',catLabel:'Web Security',body:`You are a JWT/JOSE auditor. I'll paste a JWT and application context. Analyze:\n\n1. Decode header + payload + signature info.\n2. Check alg field — flag none, weak HS256, alg confusion (HS256↔RS256).\n3. Inspect kid, jku, x5u headers for SSRF/path traversal.\n4. Validate every claim: iss/aud/sub, exp/nbf/iat (long-lived tokens), custom claims for privilege escalation.\n5. Propose 5 concrete attacks ordered by likelihood with exact reproduction steps.`},
+  {id:'p8',cat:'recon',diff:'easy',file:'recon_synth.md',title:'Multi-Source Recon Synthesis',catLabel:'Recon',body:`I'll paste output from amass, subfinder, httpx, and nuclei. Deduplicate and synthesize:\n\n1. Build a single canonical asset list (host + port + service + tech).\n2. Cross-reference nuclei findings against the asset list.\n3. Group findings by severity AND attack class.\n4. Identify 5 highest-leverage targets.\n5. Output: asset_table.md, finding_table.md, priority_targets.md`}
 ];
 
-/* ============== EDUCATION ============== */
-.edu-block{margin-top:56px;max-width:900px}
-.edu-tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);text-transform:uppercase;letter-spacing:0.22em;margin-bottom:18px;display:inline-flex;align-items:center;gap:10px}
-.edu-tag::before{content:"";width:24px;height:1px;background:var(--accent)}
-.edu-card{
-  display:flex;gap:24px;align-items:flex-start;
-  background:var(--glass);border:1px solid var(--line-2);border-radius:var(--r-lg);
-  padding:28px;backdrop-filter:blur(14px);position:relative;overflow:hidden;
-  transition:all .35s cubic-bezier(.2,.7,.2,1);
-}
-.edu-card::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(500px 220px at 100% 0%, rgba(0,212,255,0.08), transparent);
-  pointer-events:none;
-}
-.edu-card:hover{border-color:var(--line-3);background:var(--glass-2);transform:translateY(-3px)}
-.edu-icon{
-  width:56px;height:56px;border-radius:14px;flex-shrink:0;
-  background:rgba(0,255,156,0.08);border:1px solid rgba(0,255,156,0.2);
-  color:var(--accent);display:grid;place-items:center;position:relative;
-}
-.edu-icon svg{width:26px;height:26px}
-.edu-info{flex:1}
-.edu-when{font-size:11.5px;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px}
-.edu-info h3{font-size:20px;font-weight:600;letter-spacing:-0.015em;margin-bottom:6px;line-height:1.25}
-.edu-info p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
-.edu-stack{display:flex;flex-wrap:wrap;gap:5px}
-.edu-stack span{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--line)}
-@media (max-width:600px){.edu-card{flex-direction:column;gap:16px;padding:22px}.edu-icon{width:48px;height:48px}}
-
-/* ============== USER PROMPTS (localStorage + GitHub sync) ============== */
 const STORAGE_KEY = 'ankush_prompts_v1';
 const PAT_KEY = 'ankush_gh_pat_v1';
 const REPO_OWNER = 'anku0669';
 const REPO_NAME = 'anku0669.github.io';
 const PROMPTS_FILE = 'prompts.json';
 
-let PUBLISHED_PROMPTS = [];     // from prompts.json on the repo (visible to all visitors)
-let publishedSha = null;        // file SHA for committing updates
+let PUBLISHED_PROMPTS = [];
+let publishedSha = null;
 
-function loadUserPrompts(){
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
-  catch(e){ return []; }
-}
-function saveUserPrompts(list){
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
-  catch(e){ console.warn('localStorage save failed', e); }
-}
-function getPAT(){ return localStorage.getItem(PAT_KEY) || ''; }
-function setPAT(t){ if(t) localStorage.setItem(PAT_KEY, t); else localStorage.removeItem(PAT_KEY); }
-function hasPAT(){ return !!getPAT(); }
+function loadUserPrompts(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]')}catch(e){return[]}}
+function saveUserPrompts(list){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(list))}catch(e){console.warn(e)}}
+function getPAT(){return localStorage.getItem(PAT_KEY)||''}
+function setPAT(t){if(t)localStorage.setItem(PAT_KEY,t);else localStorage.removeItem(PAT_KEY)}
+function hasPAT(){return!!getPAT()}
 
-function dedupePrompts(arr){
-  const seen = new Set();
-  return arr.filter(p => p && p.id && !seen.has(p.id) && (seen.add(p.id), true));
-}
+function dedupePrompts(arr){const seen=new Set();return arr.filter(p=>p&&p.id&&!seen.has(p.id)&&(seen.add(p.id),true))}
 
 function getAllPrompts(){
-  const user = loadUserPrompts().map(p => ({...p, user: true}));
-  const published = PUBLISHED_PROMPTS.map(p => ({...p, user: false, published: true}));
-  // Avoid duplicates: if a local prompt has been published, prefer the published version
-  const userIds = new Set(user.map(p => p.id));
-  const publishedFiltered = published.filter(p => !userIds.has(p.id));
-  return dedupePrompts([...user, ...publishedFiltered, ...PROMPTS]);
+  const user=loadUserPrompts().map(p=>({...p,user:true}));
+  const published=PUBLISHED_PROMPTS.map(p=>({...p,user:false,published:true}));
+  const userIds=new Set(user.map(p=>p.id));
+  const publishedFiltered=published.filter(p=>!userIds.has(p.id));
+  return dedupePrompts([...user,...publishedFiltered,...PROMPTS]);
 }
 
 async function fetchPublishedPrompts(){
-  try {
-    const r = await fetch(PROMPTS_FILE + '?_=' + Date.now(), {cache:'no-store'});
-    if (!r.ok) return [];
-    const j = await r.json();
-    return Array.isArray(j) ? j : [];
-  } catch(e) { return []; }
+  try{const r=await fetch(PROMPTS_FILE+'?_='+Date.now(),{cache:'no-store'});if(!r.ok)return[];const j=await r.json();return Array.isArray(j)?j:[]}catch(e){return[]}
 }
 
 async function publishToGitHub(allPrompts){
-  const pat = getPAT();
-  if (!pat) throw new Error('No GitHub token configured');
-  const apiBase = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${PROMPTS_FILE}`;
-  // Try to fetch current SHA
-  try {
-    const r = await fetch(apiBase, {headers:{Authorization:`Bearer ${pat}`, Accept:'application/vnd.github+json'}});
-    if (r.ok) { const m = await r.json(); publishedSha = m.sha; }
-    else if (r.status === 404) { publishedSha = null; }
-    else if (r.status === 401) { throw new Error('Token rejected. Generate a new one.'); }
-  } catch(e){ if(e.message.includes('Token')) throw e; }
-  const content = JSON.stringify(allPrompts, null, 2);
-  const body = {
-    message: 'chore: update prompts from portfolio',
-    content: btoa(unescape(encodeURIComponent(content))),
-    ...(publishedSha ? {sha: publishedSha} : {})
-  };
-  const r2 = await fetch(apiBase, {
-    method:'PUT',
-    headers:{Authorization:`Bearer ${pat}`, 'Content-Type':'application/json', Accept:'application/vnd.github+json'},
-    body: JSON.stringify(body)
-  });
-  if (!r2.ok) {
-    const err = await r2.json().catch(()=>({}));
-    throw new Error(err.message || `Publish failed (HTTP ${r2.status})`);
-  }
-  const result = await r2.json();
-  if (result.content) publishedSha = result.content.sha;
-  return result;
+  const pat=getPAT();if(!pat)throw new Error('No GitHub token configured');
+  const apiBase=`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${PROMPTS_FILE}`;
+  try{const r=await fetch(apiBase,{headers:{Authorization:`Bearer ${pat}`,Accept:'application/vnd.github+json'}});if(r.ok){const m=await r.json();publishedSha=m.sha}else if(r.status===401){throw new Error('Token rejected.')}}catch(e){if(e.message.includes('Token'))throw e;}
+  const content=JSON.stringify(allPrompts,null,2);
+  const body={message:'chore: update prompts from portfolio',content:btoa(unescape(encodeURIComponent(content))),...(publishedSha?{sha:publishedSha}:{})};
+  const r2=await fetch(apiBase,{method:'PUT',headers:{Authorization:`Bearer ${pat}`,'Content-Type':'application/json',Accept:'application/vnd.github+json'},body:JSON.stringify(body)});
+  if(!r2.ok){const err=await r2.json().catch(()=>({}));throw new Error(err.message||`Publish failed (HTTP ${r2.status})`)}
+  const result=await r2.json();if(result.content)publishedSha=result.content.sha;return result;
 }
 
-const CAT_LABELS = {recon:'Recon', web:'Web Security', api:'API Testing', cloud:'Cloud Security', threat:'Threat Modeling', workflow:'Pentesting Workflow', custom:'Custom'};
+const CAT_LABELS={recon:'Recon',web:'Web Security',api:'API Testing',cloud:'Cloud Security',threat:'Threat Modeling',workflow:'Pentesting Workflow',custom:'Custom'};
+let currentFilter='all';
 
-let currentFilter = 'all';
+function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
 function renderPrompts(filter){
-  currentFilter = filter || currentFilter;
-  const grid = document.getElementById('prompts');
-  const all = getAllPrompts();
-  const filtered = all.filter(p => {
-    if (currentFilter === 'all') return true;
-    if (currentFilter === 'custom') return p.user === true || p.published === true;
-    return p.cat === currentFilter;
+  currentFilter=filter||currentFilter;
+  const grid=document.getElementById('prompts');
+  const all=getAllPrompts();
+  const filtered=all.filter(p=>{
+    if(currentFilter==='all')return true;
+    if(currentFilter==='custom')return p.user===true||p.published===true;
+    return p.cat===currentFilter;
   });
-  if (filtered.length === 0) {
-    grid.innerHTML = `<div class="mono" style="grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--muted);border:1px dashed var(--line-2);border-radius:14px;font-size:13px">// no prompts in this category yet — click <span style="color:var(--accent)">+ add prompt</span> to seed one</div>`;
+  if(filtered.length===0){
+    grid.innerHTML=`<div class="mono" style="grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--muted);border:1px dashed var(--line-2);border-radius:14px;font-size:13px">// no prompts in this category yet — click <span style="color:var(--accent)">+ add prompt</span> to seed one</div>`;
     return;
   }
-  grid.innerHTML = '';
-  filtered.forEach(p => {
-    const el = document.createElement('div');
-    const isUser = p.user || p.published;
-    el.className = 'prompt' + (isUser ? ' user-prompt' : '');
-    el.dataset.cat = p.cat;
-    const diffClass = p.diff === 'hard' ? ' hard' : '';
-    const file = p.file || (p.title || 'prompt').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,28) + '.md';
-    const catLabel = p.catLabel || CAT_LABELS[p.cat] || p.cat;
-    const tag = p.published ? '· published' : (p.user ? '· local' : '');
-    const delBtn = p.user ? `<button class="del" data-id="${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>delete</button>` : '';
-    el.innerHTML = `
-      <div class="ph">
-        <div class="dots"><i></i><i></i><i></i></div>
-        <span class="file">~/lab/${escapeHtml(file)}</span>
-        <span class="diff${diffClass}">${escapeHtml((p.diff||'medium').toUpperCase())}</span>
-      </div>
-      <div class="pt">
-        <div class="cat">// ${escapeHtml(catLabel)} ${escapeHtml(tag)}</div>
-        <div class="ttl">${escapeHtml(p.title)}</div>
-        <div class="body">${escapeHtml(p.body)}</div>
-      </div>
+  grid.innerHTML='';
+  filtered.forEach(p=>{
+    const el=document.createElement('div');
+    const isUser=p.user||p.published;
+    el.className='prompt'+(isUser?' user-prompt':'');
+    el.dataset.cat=p.cat;
+    const diffClass=p.diff==='hard'?' hard':'';
+    const file=p.file||(p.title||'prompt').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,28)+'.md';
+    const catLabel=p.catLabel||CAT_LABELS[p.cat]||p.cat;
+    const tag=p.published?'· published':(p.user?'· local':'');
+    const delBtn=p.user?`<button class="del" data-id="${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>delete</button>`:'';
+    el.innerHTML=`
+      <div class="ph"><div class="dots"><i></i><i></i><i></i></div><span class="file">~/lab/${escapeHtml(file)}</span><span class="diff${diffClass}">${escapeHtml((p.diff||'medium').toUpperCase())}</span></div>
+      <div class="pt"><div class="cat">// ${escapeHtml(catLabel)} ${escapeHtml(tag)}</div><div class="ttl">${escapeHtml(p.title)}</div><div class="body">${escapeHtml(p.body)}</div></div>
       <div class="pf">
         <button class="copy" data-id="${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>copy</button>
         <button class="expand" data-id="${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>expand</button>
@@ -1744,316 +1347,173 @@ function renderPrompts(filter){
       </div>`;
     grid.appendChild(el);
   });
-
-  grid.querySelectorAll('.copy').forEach(btn => btn.addEventListener('click', () => {
-    const id = btn.dataset.id; const p = getAllPrompts().find(x => x.id === id);
-    if (!p) return;
-    navigator.clipboard.writeText(p.body).then(() => {
-      const orig = btn.innerHTML;
-      btn.classList.add('ok');
-      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>copied';
-      setTimeout(() => { btn.classList.remove('ok'); btn.innerHTML = orig; }, 1600);
-    });
+  grid.querySelectorAll('.copy').forEach(btn=>btn.addEventListener('click',()=>{
+    const id=btn.dataset.id;const p=getAllPrompts().find(x=>x.id===id);if(!p)return;
+    navigator.clipboard.writeText(p.body).then(()=>{const orig=btn.innerHTML;btn.classList.add('ok');btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>copied';setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML=orig;},1600)});
   }));
-  grid.querySelectorAll('.expand').forEach(btn => btn.addEventListener('click', () => {
-    const card = btn.closest('.prompt'); card.classList.toggle('open');
-    btn.innerHTML = card.classList.contains('open')
-      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>collapse'
-      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>expand';
+  grid.querySelectorAll('.expand').forEach(btn=>btn.addEventListener('click',()=>{
+    const card=btn.closest('.prompt');card.classList.toggle('open');
+    btn.innerHTML=card.classList.contains('open')?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>collapse':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>expand';
   }));
-  grid.querySelectorAll('.del').forEach(btn => btn.addEventListener('click', async () => {
-    const id = btn.dataset.id;
-    if (!confirm('Delete this prompt? Removes from your browser and from the live site (if synced).')) return;
-    const newList = loadUserPrompts().filter(p => p.id !== id);
-    saveUserPrompts(newList);
-    if (hasPAT()) {
-      try {
-        await publishToGitHub(newList);
-      } catch(e){ alert('Local delete done, but failed to update GitHub: ' + e.message); }
-    }
+  grid.querySelectorAll('.del').forEach(btn=>btn.addEventListener('click',async()=>{
+    const id=btn.dataset.id;if(!confirm('Delete this prompt?'))return;
+    const newList=loadUserPrompts().filter(p=>p.id!==id);saveUserPrompts(newList);
+    if(hasPAT()){try{await publishToGitHub(newList)}catch(e){alert('Local delete done, but failed to update GitHub: '+e.message)}}
     renderPrompts();
   }));
 }
 
 (function initLab(){
-  const ctrl = document.getElementById('labCtrl');
-  ctrl.addEventListener('click', e => {
-    const btn = e.target.closest('button');
-    if (!btn || btn.id === 'openAddPrompt' || btn.id === 'openSyncSettings') return;
-    ctrl.querySelectorAll('button:not(.add-btn)').forEach(b => b.classList.remove('active'));
+  const ctrl=document.getElementById('labCtrl');
+  ctrl.addEventListener('click',e=>{
+    const btn=e.target.closest('button');
+    if(!btn||btn.id==='openAddPrompt'||btn.id==='openSyncSettings')return;
+    ctrl.querySelectorAll('button:not(.add-btn)').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     renderPrompts(btn.dataset.filter);
   });
-  // Fetch published prompts then render
-  fetchPublishedPrompts().then(published => {
-    PUBLISHED_PROMPTS = published;
-    renderPrompts('all');
-  });
+  fetchPublishedPrompts().then(published=>{PUBLISHED_PROMPTS=published;renderPrompts('all')});
   renderPrompts('all');
   refreshSyncUI();
 })();
 
 function refreshSyncUI(){
-  const syncBtn = document.getElementById('openSyncSettings');
-  const publishOpt = document.getElementById('publishOptionWrap');
-  if (hasPAT()){
-    syncBtn.classList.add('connected');
-    syncBtn.innerHTML = syncBtn.innerHTML.replace(/(<\/svg>)([^<]*)/, '$1 synced');
-    publishOpt.style.display = 'block';
-  } else {
-    syncBtn.classList.remove('connected');
-    publishOpt.style.display = 'none';
-  }
+  const syncBtn=document.getElementById('openSyncSettings');
+  const publishOpt=document.getElementById('publishOptionWrap');
+  if(hasPAT()){syncBtn.classList.add('connected');publishOpt.style.display='block'}
+  else{syncBtn.classList.remove('connected');publishOpt.style.display='none'}
 }
 
-/* ============== ADD PROMPT MODAL ============== */
 (function initAddPrompt(){
-  const modal = document.getElementById('addModal');
-  const openBtn = document.getElementById('openAddPrompt');
-  const closeBtn = document.getElementById('closeAddPrompt');
-  const cancelBtn = document.getElementById('cancelAddPrompt');
-  const form = document.getElementById('addForm');
-  function open(){ modal.classList.add('open'); document.body.style.overflow='hidden'; setTimeout(()=>form.querySelector('input[name="title"]').focus(),100); refreshSyncUI(); }
-  function close(){ modal.classList.remove('open'); document.body.style.overflow=''; form.reset(); }
-  openBtn.addEventListener('click', open);
-  closeBtn.addEventListener('click', close);
-  cancelBtn.addEventListener('click', close);
-  modal.addEventListener('click', e => { if (e.target === modal) close(); });
-  window.__closeAddModal = close;
+  const modal=document.getElementById('addModal');
+  const openBtn=document.getElementById('openAddPrompt');
+  const closeBtn=document.getElementById('closeAddPrompt');
+  const cancelBtn=document.getElementById('cancelAddPrompt');
+  const form=document.getElementById('addForm');
+  function open(){modal.classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>form.querySelector('input[name="title"]').focus(),100);refreshSyncUI()}
+  function close(){modal.classList.remove('open');document.body.style.overflow='';form.reset()}
+  openBtn.addEventListener('click',open);
+  closeBtn.addEventListener('click',close);
+  cancelBtn.addEventListener('click',close);
+  modal.addEventListener('click',e=>{if(e.target===modal)close()});
+  window.__closeAddModal=close;
 })();
 
-/* ============== SYNC SETTINGS MODAL ============== */
 (function initSyncModal(){
-  const modal = document.getElementById('syncModal');
-  const openBtn = document.getElementById('openSyncSettings');
-  const closeBtn = document.getElementById('closeSyncSettings');
-  const clearBtn = document.getElementById('clearSyncPat');
-  const status = document.getElementById('syncStatus');
-  function refreshStatus(){
-    if (hasPAT()){
-      status.innerHTML = '<span style="color:var(--accent)">// status: connected · prompts will publish to site on save</span>';
-    } else {
-      status.innerHTML = '<span style="color:var(--muted)">// status: not configured · prompts save locally only</span>';
-    }
-  }
-  function open(){ modal.classList.add('open'); document.body.style.overflow='hidden'; refreshStatus(); }
-  function close(){ modal.classList.remove('open'); document.body.style.overflow=''; }
-  openBtn.addEventListener('click', open);
-  closeBtn.addEventListener('click', close);
-  clearBtn.addEventListener('click', () => {
-    if (!confirm('Disconnect GitHub sync? Your token will be cleared from this browser.')) return;
-    setPAT('');
-    refreshStatus(); refreshSyncUI();
-    document.getElementById('syncForm').reset();
-  });
-  modal.addEventListener('click', e => { if (e.target === modal) close(); });
-  window.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && (modal.classList.contains('open') || document.getElementById('addModal').classList.contains('open'))){
-      if (modal.classList.contains('open')) close();
-    }
-  });
-  window.__closeSyncModal = close;
+  const modal=document.getElementById('syncModal');
+  const openBtn=document.getElementById('openSyncSettings');
+  const closeBtn=document.getElementById('closeSyncSettings');
+  const clearBtn=document.getElementById('clearSyncPat');
+  const status=document.getElementById('syncStatus');
+  function refreshStatus(){status.innerHTML=hasPAT()?'<span style="color:var(--accent)">// status: connected</span>':'<span style="color:var(--muted)">// status: not configured</span>'}
+  function open(){modal.classList.add('open');document.body.style.overflow='hidden';refreshStatus()}
+  function close(){modal.classList.remove('open');document.body.style.overflow=''}
+  openBtn.addEventListener('click',open);
+  closeBtn.addEventListener('click',close);
+  clearBtn.addEventListener('click',()=>{if(!confirm('Disconnect GitHub sync?'))return;setPAT('');refreshStatus();refreshSyncUI();document.getElementById('syncForm').reset()});
+  modal.addEventListener('click',e=>{if(e.target===modal)close()});
+  window.addEventListener('keydown',e=>{if(e.key==='Escape'){if(modal.classList.contains('open'))close();if(document.getElementById('addModal').classList.contains('open'))window.__closeAddModal()}});
+  window.__closeSyncModal=close;
 })();
 
 function saveSyncSettings(e){
   e.preventDefault();
-  const pat = e.target.pat.value.trim();
-  if (!pat) { alert('Paste a GitHub token first, or click "disconnect" to clear.'); return false; }
+  const pat=e.target.pat.value.trim();
+  if(!pat){alert('Paste a GitHub token first.');return false}
   setPAT(pat);
-  // Test the token
-  fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`, {
-    headers: {Authorization: `Bearer ${pat}`, Accept:'application/vnd.github+json'}
-  }).then(r => {
-    if (r.ok) {
-      document.getElementById('syncStatus').innerHTML = '<span style="color:var(--accent)">✓ token verified · ready to publish</span>';
-      refreshSyncUI();
-      setTimeout(() => window.__closeSyncModal(), 900);
-    } else {
-      setPAT('');
-      document.getElementById('syncStatus').innerHTML = `<span style="color:#ff6b6b">✗ token rejected (HTTP ${r.status}). Check repo access + permissions.</span>`;
-      refreshSyncUI();
-    }
-  }).catch(err => {
-    document.getElementById('syncStatus').innerHTML = `<span style="color:#ff6b6b">✗ ${err.message}</span>`;
-  });
+  fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`,{headers:{Authorization:`Bearer ${pat}`,Accept:'application/vnd.github+json'}})
+    .then(r=>{
+      if(r.ok){document.getElementById('syncStatus').innerHTML='<span style="color:var(--accent)">✓ token verified</span>';refreshSyncUI();setTimeout(()=>window.__closeSyncModal(),900)}
+      else{setPAT('');document.getElementById('syncStatus').innerHTML=`<span style="color:#ff6b6b">✗ token rejected (HTTP ${r.status})</span>`;refreshSyncUI()}
+    }).catch(err=>{document.getElementById('syncStatus').innerHTML=`<span style="color:#ff6b6b">✗ ${err.message}</span>`});
   return false;
 }
 
 async function savePrompt(e){
   e.preventDefault();
-  const f = e.target;
-  const data = {
-    id: 'u_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6),
-    title: f.title.value.trim(),
-    cat: f.cat.value,
-    catLabel: CAT_LABELS[f.cat.value] || 'Custom',
-    diff: f.diff.value,
-    body: f.body.value.trim(),
-    createdAt: Date.now()
-  };
-  if (!data.title || !data.body) return false;
-  const list = loadUserPrompts();
-  list.unshift(data);
-  saveUserPrompts(list);
-
-  const publishCheck = document.getElementById('publishCheck');
-  const shouldPublish = hasPAT() && publishCheck && publishCheck.checked;
-
-  if (shouldPublish) {
-    // Show in-progress feedback
-    const saveBtn = document.querySelector('#addModal .btn-save');
-    const origHTML = saveBtn.innerHTML;
-    saveBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/></svg>publishing...';
-    saveBtn.disabled = true;
-    try {
-      await publishToGitHub(list);
-      // Refetch published list
-      PUBLISHED_PROMPTS = await fetchPublishedPrompts();
-      saveBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>published ✓';
-      setTimeout(() => {
-        saveBtn.innerHTML = origHTML; saveBtn.disabled = false;
-        window.__closeAddModal();
-        jumpToCustom();
-      }, 1000);
-    } catch(err) {
-      saveBtn.innerHTML = origHTML; saveBtn.disabled = false;
-      alert('Saved locally, but publish failed: ' + err.message + '\n\nThe prompt is still saved in your browser. Check Settings → GitHub token.');
-      window.__closeAddModal();
-      jumpToCustom();
-    }
-  } else {
-    window.__closeAddModal();
-    jumpToCustom();
-  }
+  const f=e.target;
+  const data={id:'u_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),title:f.title.value.trim(),cat:f.cat.value,catLabel:CAT_LABELS[f.cat.value]||'Custom',diff:f.diff.value,body:f.body.value.trim(),createdAt:Date.now()};
+  if(!data.title||!data.body)return false;
+  const list=loadUserPrompts();list.unshift(data);saveUserPrompts(list);
+  const publishCheck=document.getElementById('publishCheck');
+  const shouldPublish=hasPAT()&&publishCheck&&publishCheck.checked;
+  if(shouldPublish){
+    const saveBtn=document.querySelector('#addModal .btn-save');const origHTML=saveBtn.innerHTML;
+    saveBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/></svg>publishing...';saveBtn.disabled=true;
+    try{await publishToGitHub(list);PUBLISHED_PROMPTS=await fetchPublishedPrompts();saveBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>published ✓';setTimeout(()=>{saveBtn.innerHTML=origHTML;saveBtn.disabled=false;window.__closeAddModal();jumpToCustom()},1000)}
+    catch(err){saveBtn.innerHTML=origHTML;saveBtn.disabled=false;alert('Saved locally, but publish failed: '+err.message);window.__closeAddModal();jumpToCustom()}
+  }else{window.__closeAddModal();jumpToCustom()}
   return false;
 }
 
 function jumpToCustom(){
-  const ctrl = document.getElementById('labCtrl');
-  ctrl.querySelectorAll('button:not(.add-btn)').forEach(b => b.classList.toggle('active', b.dataset.filter === 'custom'));
+  const ctrl=document.getElementById('labCtrl');
+  ctrl.querySelectorAll('button:not(.add-btn)').forEach(b=>b.classList.toggle('active',b.dataset.filter==='custom'));
   renderPrompts('custom');
-  document.getElementById('lab').scrollIntoView({behavior:'smooth', block:'start'});
+  document.getElementById('lab').scrollIntoView({behavior:'smooth',block:'start'});
 }
-
-function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
 /* ============== CONTACT FORM ============== */
 function submitForm(e){
   e.preventDefault();
-  const f = e.target; const out = document.getElementById('cout');
-  const name = encodeURIComponent(f.name.value);
-  const msg = encodeURIComponent(`From: ${f.email.value}\n\n${f.msg.value}`);
-  const subj = encodeURIComponent('Portfolio inquiry from ' + f.name.value);
-  out.textContent = '[+] establishing mail handoff...';
-  setTimeout(() => {
-    out.textContent = '[✓] handoff complete · opening client...';
-    window.location.href = `mailto:ankushbhadwar69@gmail.com?subject=${subj}&body=${msg}`;
-  }, 700);
+  const f=e.target;const out=document.getElementById('cout');
+  const msg=encodeURIComponent(`From: ${f.email.value}\n\n${f.msg.value}`);
+  const subj=encodeURIComponent('Portfolio inquiry from '+f.name.value);
+  out.textContent='[+] establishing mail handoff...';
+  setTimeout(()=>{out.textContent='[✓] handoff complete · opening client...';window.location.href=`mailto:ankushbhadwar69@gmail.com?subject=${subj}&body=${msg}`},700);
   return false;
 }
 
 /* ============== INTERACTIVE TERMINAL ============== */
 (function(){
-  const term = document.getElementById('iterm');
-  const tab = document.getElementById('itermTab');
-  const closeBtn = document.getElementById('itermClose');
-  const out = document.getElementById('iout');
-  const inp = document.getElementById('iin');
-  const open = ()=>{term.classList.add('open');tab.classList.add('hidden');setTimeout(()=>inp.focus(),200)};
-  const close = ()=>{term.classList.remove('open');tab.classList.remove('hidden')};
-  tab.addEventListener('click', open);
-  closeBtn.addEventListener('click', close);
-  window.addEventListener('keydown', e=>{
+  const term=document.getElementById('iterm');
+  const tab=document.getElementById('itermTab');
+  const closeBtn=document.getElementById('itermClose');
+  const out=document.getElementById('iout');
+  const inp=document.getElementById('iin');
+  const open=()=>{term.classList.add('open');tab.classList.add('hidden');setTimeout(()=>inp.focus(),200)};
+  const close=()=>{term.classList.remove('open');tab.classList.remove('hidden')};
+  tab.addEventListener('click',open);
+  closeBtn.addEventListener('click',close);
+  window.addEventListener('keydown',e=>{
     if((e.key==='`'||e.key==='~')&&!term.classList.contains('open')){e.preventDefault();open()}
     else if(e.key==='Escape'&&term.classList.contains('open')){close()}
   });
-  const cmds = {
-    help: ()=>`available commands:
-  whoami        — operator profile
-  projects      — list offensive builds
-  certs         — credential index
-  skills        — arsenal dump
-  contact       — establish channel
-  social        — external links
-  banner        — show banner
-  clear         — wipe terminal
-  redteam       — engage red team mode`,
-    whoami: ()=>`ankush_bhadwar :: offensive_security_engineer
-  status        : online
-  focus         : red team / api security / azure / bug bounty
-  thm_rank      : #529 worldwide (top 1%)
-  rooms_cleared : 725+
-  badges        : 87`,
-    projects: ()=>`  [1] api_attack_surface_mapper      (medium)
-  [2] azure_misconfiguration_scanner (hard)
-  [3] jwt_analysis_toolkit            (medium)
-  [4] recon_automation_framework      (hard)
-  [5] web_enumeration_engine          (medium)
-  [6] container_escape_research_lab   (expert)
-  → see #projects`,
-    certs: ()=>`  offensive : C-JWAPT · CCEP · CompTIA Pentest+ · Jr Pentester · Web App Pentest
-  ai sec    : CAISR · AI Security · AI Tools Workshop
-  claude/mcp: 13 Anthropic certs · MCP Fundamentals + Production (Hugging Face)
-  cloud     : AWS IAM · AWS Security Governance · Cisco · IBM Cybersec Fundamentals
-  ctfs      : MetaCTF · Advent of Cyber 2022-2025 · 5 job simulations
-  total     : 50+ verified certs → see #certs`,
-    skills: ()=>`  offensive : Burp Suite, OWASP, JWT, API, SSRF, SQLi, XSS, Auth, Metasploit
-  cloud     : Azure, AWS IAM, Defender, Entra ID, Cloud Sec
-  infra     : Linux, Docker, Containers, Nginx, Nmap, Wireshark
-  programming: Python, Bash, JS, PowerShell, Automation, Git`,
-    contact: ()=>`  email   : ankushbhadwar69@gmail.com
-  linkedin: linkedin.com/in/ankush-bhadwar-396b23365
-  github  : github.com/anku0669
-  → or scroll to #contact`,
-    social: ()=>`  → github   : github.com/anku0669
-  → linkedin : linkedin.com/in/ankush-bhadwar-396b23365
-  → tryhackme: tryhackme.com
-  → medium   : medium.com`,
-    banner: ()=>`
-    ___    _   __ __ __  __  ____ __  __
-   /   |  / | / // //_/ / / / //_/ ____/
-  / /| | /  |/ // ,<   / / / ,<  / __/
- / ___ |/ /|  // /| | / /_/ /| |/___/
-/_/  |_/_/ |_//_/ |_|/____/_/ |_/
-  offensive_security :: prompt_lab :: receipts`,
-    clear: ()=>'__CLEAR__',
-    redteam: ()=>{document.body.classList.toggle('redteam');return document.body.classList.contains('redteam')?'[!] red team mode engaged. crimson protocols active.':'[+] red team mode disengaged.'}
+  const cmds={
+    help:()=>`available commands:\n  whoami    — operator profile\n  projects  — list offensive builds\n  certs     — credential index\n  skills    — arsenal dump\n  contact   — establish channel\n  social    — external links\n  banner    — show banner\n  clear     — wipe terminal\n  redteam   — engage red team mode`,
+    whoami:()=>`ankush_bhadwar :: offensive_security_engineer\n  status        : online\n  focus         : red team / api security / azure / bug bounty\n  thm_rank      : #529 worldwide (top 1%)\n  rooms_cleared : 725+\n  badges        : 87`,
+    projects:()=>`  [1] api_attack_surface_mapper      (medium)\n  [2] azure_misconfiguration_scanner (hard)\n  [3] jwt_analysis_toolkit            (medium)\n  [4] recon_automation_framework      (hard)\n  [5] web_enumeration_engine          (medium)\n  [6] container_escape_research_lab   (expert)\n  → see #projects`,
+    certs:()=>`  offensive : C-JWAPT · CCEP · CompTIA Pentest+ · Jr Pentester\n  ai sec    : CAISR · AI Security · AI Tools Workshop\n  claude/mcp: 13 Anthropic certs · MCP (Hugging Face)\n  cloud     : AWS IAM · Azure AZ-500/SC-100 · Cisco · IBM\n  ctfs      : MetaCTF · Advent of Cyber 2022-2025 · 5 job sims\n  total     : 50+ verified → see #certs`,
+    skills:()=>`  offensive : Burp Suite, OWASP, JWT, API, SSRF, SQLi, XSS, Metasploit\n  cloud     : Azure, AWS IAM, Defender, Entra ID\n  infra     : Linux, Docker, Containers, Nginx, Nmap, Wireshark\n  coding    : Python, Bash, JS, PowerShell, Automation, Git`,
+    contact:()=>`  email   : ankushbhadwar69@gmail.com\n  linkedin: linkedin.com/in/ankush-bhadwar-396b23365\n  github  : github.com/anku0669\n  guns.lol: guns.lol/anku0669\n  → or scroll to #contact`,
+    social:()=>`  → github   : github.com/anku0669\n  → linkedin : linkedin.com/in/ankush-bhadwar-396b23365\n  → tryhackme: tryhackme.com/p/ankushbhadwar\n  → guns.lol : guns.lol/anku0669`,
+    banner:()=>`\n    ___    _   __ __ __  __  ____ __  __\n   /   |  / | / // //_/ / / / //_/ ____/\n  / /| | /  |/ // ,<   / / / ,<  / __/\n / ___ |/ /|  // /| | / /_/ /| |/___/\n/_/  |_/_/ |_//_/ |_|/____/_/ |_/`,
+    clear:()=>'__CLEAR__',
+    redteam:()=>{document.body.classList.toggle('redteam');return document.body.classList.contains('redteam')?'[!] red team mode engaged.':'[+] red team mode disengaged.'}
   };
   function print(html){const d=document.createElement('div');d.className='line';d.innerHTML=html;out.appendChild(d);out.scrollTop=out.scrollHeight}
   function run(raw){
-    const cmd = raw.trim().toLowerCase();
+    const cmd=raw.trim().toLowerCase();
     print(`<span class="pr">$</span> ${escapeHtml(raw)}`);
     if(!cmd)return;
     if(cmd==='clear'){out.innerHTML='<div class="line"><span class="dim">// cleared</span></div>';return}
-    if(cmds[cmd]){
-      const r = cmds[cmd]();
-      r.split('\n').forEach(line => print(escapeHtml(line)));
-    } else {
-      print(`<span class="err">command not found: ${escapeHtml(cmd)}</span> — try <span class="ok">help</span>`);
-    }
+    if(cmds[cmd]){const r=cmds[cmd]();r.split('\n').forEach(line=>print(escapeHtml(line)))}
+    else{print(`<span class="err">command not found: ${escapeHtml(cmd)}</span> — try <span class="ok">help</span>`)}
   }
-  inp.addEventListener('keydown', e=>{if(e.key==='Enter'){run(inp.value);inp.value=''}});
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'){run(inp.value);inp.value=''}});
 })();
 
-/* ============== KONAMI EASTER EGG ============== */
+/* ============== KONAMI ============== */
 (function(){
-  const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-  let i = 0;
-  window.addEventListener('keydown', e => {
-    if (e.key.toLowerCase() === seq[i].toLowerCase()) {
-      i++;
-      if (i === seq.length) {
-        document.body.classList.toggle('redteam');
-        i = 0;
-      }
-    } else { i = 0 }
+  const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let i=0;
+  window.addEventListener('keydown',e=>{
+    if(e.key.toLowerCase()===seq[i].toLowerCase()){i++;if(i===seq.length){document.body.classList.toggle('redteam');i=0}}else{i=0}
   });
 })();
 
-/* ============== CONSOLE SIGNATURE ============== */
-console.log('%c> ankush_bhadwar :: portfolio.online', 'background:#0a0c10;color:#00ff9c;font-family:monospace;padding:8px 14px;border-radius:6px;font-size:13px;font-weight:700');
-console.log('%c> try the terminal ($_) bottom-right · or hit ` anywhere', 'color:#8b95a5;font-family:monospace;font-size:11.5px');
-console.log('%c> konami code → red team mode', 'color:#8b95a5;font-family:monospace;font-size:11.5px');
+console.log('%c> ankush_bhadwar :: portfolio.online','background:#0a0c10;color:#00ff9c;font-family:monospace;padding:8px 14px;border-radius:6px;font-size:13px;font-weight:700');
+console.log('%c> press ` to open terminal · konami code → red team mode','color:#8b95a5;font-family:monospace;font-size:11.5px');
 </script>
 </body>
 </html>
