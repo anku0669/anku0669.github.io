@@ -328,7 +328,11 @@ section{padding:120px 0;position:relative}
 .lab-controls .add-btn{margin-left:auto;color:var(--accent);background:rgba(0,255,156,0.06);border-color:rgba(0,255,156,0.25);display:inline-flex;align-items:center;gap:6px;font-weight:600}
 .lab-controls .add-btn:hover{background:rgba(0,255,156,0.12);border-color:var(--accent)}
 .lab-controls .add-btn svg{width:12px;height:12px}
-@media (max-width:640px){.lab-controls .add-btn{margin-left:0;width:100%;justify-content:center;margin-top:4px}}
+.lab-controls .sync-btn{margin-left:0;color:var(--cyan);background:rgba(0,212,255,0.05);border-color:rgba(0,212,255,0.22)}
+.lab-controls .sync-btn:hover{background:rgba(0,212,255,0.1);border-color:var(--cyan);color:var(--cyan)}
+.lab-controls .sync-btn.connected{background:rgba(0,255,156,0.08);border-color:rgba(0,255,156,0.3);color:var(--accent)}
+.lab-controls .sync-btn.connected::before{content:"●  ";font-size:8px;vertical-align:2px}
+@media (max-width:640px){.lab-controls .add-btn{margin-left:0;width:100%;justify-content:center;margin-top:4px}.lab-controls .sync-btn{width:100%;justify-content:center}}
 
 .prompt.user-prompt::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--cyan));z-index:1}
 .prompt{position:relative}
@@ -1001,6 +1005,10 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
         add prompt
       </button>
+      <button class="add-btn sync-btn" id="openSyncSettings" type="button" title="Configure GitHub sync to publish prompts site-wide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        sync
+      </button>
     </div>
 
     <div class="prompts" id="prompts"></div>
@@ -1066,7 +1074,16 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
     </div>
 
     <div class="cert-cat reveal">
-      <div class="cert-cat-h"><span class="num mono">04</span><h3>Cloud & Infrastructure</h3></div>
+      <div class="cert-cat-h"><span class="num mono">04</span><h3>Cloud Security</h3></div>
+      <div class="certs-grid">
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>AZ-500 Path</h4><span>Microsoft Azure Security</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>SC-100 Path</h4><span>Microsoft Cybersecurity Architect</span></div></div>
+        <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>Azure Defender Operations</h4><span>Microsoft Learn</span></div></div>
+      </div>
+    </div>
+
+    <div class="cert-cat reveal">
+      <div class="cert-cat-h"><span class="num mono">05</span><h3>Cloud Infrastructure & Networking</h3></div>
       <div class="certs-grid">
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>AWS Identity & Access Management</h4><span>Amazon Web Services · Nov 2025</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><div class="info"><h4>AWS Security Governance at Scale</h4><span>Amazon Web Services · Nov 2025</span></div></div>
@@ -1078,7 +1095,7 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
     </div>
 
     <div class="cert-cat reveal">
-      <div class="cert-cat-h"><span class="num mono">05</span><h3>CTFs · Simulations · Workshops</h3></div>
+      <div class="cert-cat-h"><span class="num mono">06</span><h3>CTFs · Simulations · Workshops</h3></div>
       <div class="certs-grid">
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>Capture the Flag</h4><span>SkillBit (MetaCTF) · Apr 2026</span></div></div>
         <div class="cert"><div class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="info"><h4>MetaCTF December 2025 Flash CTF</h4><span>SkillBit · Dec 2025</span></div></div>
@@ -1184,6 +1201,49 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
   </div>
 </section>
 
+<!-- ============= SYNC SETTINGS MODAL ============= -->
+<div class="modal-bg" id="syncModal" role="dialog" aria-modal="true" aria-label="GitHub sync settings">
+  <div class="modal">
+    <div class="modal-h">
+      <div class="dots"><i></i><i></i><i></i></div>
+      <span class="t">~/.config/sync.conf</span>
+      <button class="x" id="closeSyncSettings" aria-label="Close">×</button>
+    </div>
+    <div class="modal-b">
+      <h3>Publish prompts to your live site</h3>
+      <p class="sub">Add a fine-grained GitHub token and every saved prompt commits to <span style="color:var(--accent)">prompts.json</span> on your repo. Visitors see them site-wide. Token stays in your browser only.</p>
+      <form id="syncForm" onsubmit="return saveSyncSettings(event)">
+        <label>
+          <span class="lab">github_personal_access_token</span>
+          <input type="password" name="pat" placeholder="github_pat_..." autocomplete="off" spellcheck="false"/>
+        </label>
+        <details style="margin:-6px 0 14px;background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.18);border-radius:8px;padding:10px 14px">
+          <summary style="cursor:pointer;color:var(--cyan);font-size:12px;font-family:'JetBrains Mono',monospace">// how to generate this token  →</summary>
+          <ol style="margin:12px 0 4px 18px;color:var(--muted);font-size:12px;line-height:1.85;font-family:'JetBrains Mono',monospace">
+            <li>Go to <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener" style="color:var(--accent)">github.com/settings/tokens?type=beta</a></li>
+            <li>Repository access → <b>Only select repositories</b> → pick <code style="color:var(--accent)">anku0669.github.io</code></li>
+            <li>Permissions → Repository permissions → <b>Contents</b>: Read and write</li>
+            <li>Generate · copy · paste here · save</li>
+          </ol>
+        </details>
+        <div style="display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11.5px;font-family:'JetBrains Mono',monospace">
+          <span id="syncStatus">// status: not configured</span>
+        </div>
+      </form>
+    </div>
+    <div class="modal-f">
+      <span class="hint">// token kept in localStorage only · never sent anywhere except github.com</span>
+      <div class="acts">
+        <button type="button" class="btn-cancel" id="clearSyncPat">disconnect</button>
+        <button type="submit" form="syncForm" class="btn-save">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>
+          save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ============= ADD PROMPT MODAL ============= -->
 <div class="modal-bg" id="addModal" role="dialog" aria-modal="true" aria-label="Add new prompt">
   <div class="modal">
@@ -1225,6 +1285,13 @@ body.redteam .iterm-tab,body.redteam .btn-primary{background:var(--accent);color
         <label>
           <span class="lab">prompt body</span>
           <textarea name="body" required rows="9" placeholder="Paste your prompt. Markdown-style headings (§ AUTH MODEL etc.) render nicely."></textarea>
+        </label>
+        <label id="publishOptionWrap" style="display:none;background:rgba(0,255,156,0.04);border:1px solid rgba(0,255,156,0.18);border-radius:8px;padding:12px 14px;margin-bottom:4px">
+          <span style="display:flex;align-items:center;gap:10px;cursor:pointer">
+            <input type="checkbox" name="publish" id="publishCheck" checked style="width:auto;accent-color:var(--accent);margin:0"/>
+            <span style="font-size:12px;color:var(--accent);font-weight:600">Publish to site</span>
+            <span style="font-size:11px;color:var(--muted);margin-left:auto">commits to your live portfolio</span>
+          </span>
         </label>
       </form>
     </div>
@@ -1482,8 +1549,16 @@ Be ruthless about deduplication. Don't pad the output.`
   }
 ];
 
-/* ============== USER PROMPTS (localStorage) ============== */
+/* ============== USER PROMPTS (localStorage + GitHub sync) ============== */
 const STORAGE_KEY = 'ankush_prompts_v1';
+const PAT_KEY = 'ankush_gh_pat_v1';
+const REPO_OWNER = 'anku0669';
+const REPO_NAME = 'anku0669.github.io';
+const PROMPTS_FILE = 'prompts.json';
+
+let PUBLISHED_PROMPTS = [];     // from prompts.json on the repo (visible to all visitors)
+let publishedSha = null;        // file SHA for committing updates
+
 function loadUserPrompts(){
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
   catch(e){ return []; }
@@ -1492,9 +1567,62 @@ function saveUserPrompts(list){
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
   catch(e){ console.warn('localStorage save failed', e); }
 }
+function getPAT(){ return localStorage.getItem(PAT_KEY) || ''; }
+function setPAT(t){ if(t) localStorage.setItem(PAT_KEY, t); else localStorage.removeItem(PAT_KEY); }
+function hasPAT(){ return !!getPAT(); }
+
+function dedupePrompts(arr){
+  const seen = new Set();
+  return arr.filter(p => p && p.id && !seen.has(p.id) && (seen.add(p.id), true));
+}
+
 function getAllPrompts(){
   const user = loadUserPrompts().map(p => ({...p, user: true}));
-  return [...user, ...PROMPTS];
+  const published = PUBLISHED_PROMPTS.map(p => ({...p, user: false, published: true}));
+  // Avoid duplicates: if a local prompt has been published, prefer the published version
+  const userIds = new Set(user.map(p => p.id));
+  const publishedFiltered = published.filter(p => !userIds.has(p.id));
+  return dedupePrompts([...user, ...publishedFiltered, ...PROMPTS]);
+}
+
+async function fetchPublishedPrompts(){
+  try {
+    const r = await fetch(PROMPTS_FILE + '?_=' + Date.now(), {cache:'no-store'});
+    if (!r.ok) return [];
+    const j = await r.json();
+    return Array.isArray(j) ? j : [];
+  } catch(e) { return []; }
+}
+
+async function publishToGitHub(allPrompts){
+  const pat = getPAT();
+  if (!pat) throw new Error('No GitHub token configured');
+  const apiBase = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${PROMPTS_FILE}`;
+  // Try to fetch current SHA
+  try {
+    const r = await fetch(apiBase, {headers:{Authorization:`Bearer ${pat}`, Accept:'application/vnd.github+json'}});
+    if (r.ok) { const m = await r.json(); publishedSha = m.sha; }
+    else if (r.status === 404) { publishedSha = null; }
+    else if (r.status === 401) { throw new Error('Token rejected. Generate a new one.'); }
+  } catch(e){ if(e.message.includes('Token')) throw e; }
+  const content = JSON.stringify(allPrompts, null, 2);
+  const body = {
+    message: 'chore: update prompts from portfolio',
+    content: btoa(unescape(encodeURIComponent(content))),
+    ...(publishedSha ? {sha: publishedSha} : {})
+  };
+  const r2 = await fetch(apiBase, {
+    method:'PUT',
+    headers:{Authorization:`Bearer ${pat}`, 'Content-Type':'application/json', Accept:'application/vnd.github+json'},
+    body: JSON.stringify(body)
+  });
+  if (!r2.ok) {
+    const err = await r2.json().catch(()=>({}));
+    throw new Error(err.message || `Publish failed (HTTP ${r2.status})`);
+  }
+  const result = await r2.json();
+  if (result.content) publishedSha = result.content.sha;
+  return result;
 }
 
 const CAT_LABELS = {recon:'Recon', web:'Web Security', api:'API Testing', cloud:'Cloud Security', threat:'Threat Modeling', workflow:'Pentesting Workflow', custom:'Custom'};
@@ -1507,7 +1635,7 @@ function renderPrompts(filter){
   const all = getAllPrompts();
   const filtered = all.filter(p => {
     if (currentFilter === 'all') return true;
-    if (currentFilter === 'custom') return p.user === true;
+    if (currentFilter === 'custom') return p.user === true || p.published === true;
     return p.cat === currentFilter;
   });
   if (filtered.length === 0) {
@@ -1517,11 +1645,13 @@ function renderPrompts(filter){
   grid.innerHTML = '';
   filtered.forEach(p => {
     const el = document.createElement('div');
-    el.className = 'prompt' + (p.user ? ' user-prompt' : '');
+    const isUser = p.user || p.published;
+    el.className = 'prompt' + (isUser ? ' user-prompt' : '');
     el.dataset.cat = p.cat;
     const diffClass = p.diff === 'hard' ? ' hard' : '';
     const file = p.file || (p.title || 'prompt').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,28) + '.md';
     const catLabel = p.catLabel || CAT_LABELS[p.cat] || p.cat;
+    const tag = p.published ? '· published' : (p.user ? '· local' : '');
     const delBtn = p.user ? `<button class="del" data-id="${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>delete</button>` : '';
     el.innerHTML = `
       <div class="ph">
@@ -1530,7 +1660,7 @@ function renderPrompts(filter){
         <span class="diff${diffClass}">${escapeHtml((p.diff||'medium').toUpperCase())}</span>
       </div>
       <div class="pt">
-        <div class="cat">// ${escapeHtml(catLabel)}${p.user ? ' · saved' : ''}</div>
+        <div class="cat">// ${escapeHtml(catLabel)} ${escapeHtml(tag)}</div>
         <div class="ttl">${escapeHtml(p.title)}</div>
         <div class="body">${escapeHtml(p.body)}</div>
       </div>
@@ -1559,10 +1689,16 @@ function renderPrompts(filter){
       ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>collapse'
       : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>expand';
   }));
-  grid.querySelectorAll('.del').forEach(btn => btn.addEventListener('click', () => {
+  grid.querySelectorAll('.del').forEach(btn => btn.addEventListener('click', async () => {
     const id = btn.dataset.id;
-    if (!confirm('Delete this prompt? This only removes it from your browser.')) return;
-    saveUserPrompts(loadUserPrompts().filter(p => p.id !== id));
+    if (!confirm('Delete this prompt? Removes from your browser and from the live site (if synced).')) return;
+    const newList = loadUserPrompts().filter(p => p.id !== id);
+    saveUserPrompts(newList);
+    if (hasPAT()) {
+      try {
+        await publishToGitHub(newList);
+      } catch(e){ alert('Local delete done, but failed to update GitHub: ' + e.message); }
+    }
     renderPrompts();
   }));
 }
@@ -1571,13 +1707,32 @@ function renderPrompts(filter){
   const ctrl = document.getElementById('labCtrl');
   ctrl.addEventListener('click', e => {
     const btn = e.target.closest('button');
-    if (!btn || btn.id === 'openAddPrompt') return;
+    if (!btn || btn.id === 'openAddPrompt' || btn.id === 'openSyncSettings') return;
     ctrl.querySelectorAll('button:not(.add-btn)').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     renderPrompts(btn.dataset.filter);
   });
+  // Fetch published prompts then render
+  fetchPublishedPrompts().then(published => {
+    PUBLISHED_PROMPTS = published;
+    renderPrompts('all');
+  });
   renderPrompts('all');
+  refreshSyncUI();
 })();
+
+function refreshSyncUI(){
+  const syncBtn = document.getElementById('openSyncSettings');
+  const publishOpt = document.getElementById('publishOptionWrap');
+  if (hasPAT()){
+    syncBtn.classList.add('connected');
+    syncBtn.innerHTML = syncBtn.innerHTML.replace(/(<\/svg>)([^<]*)/, '$1 synced');
+    publishOpt.style.display = 'block';
+  } else {
+    syncBtn.classList.remove('connected');
+    publishOpt.style.display = 'none';
+  }
+}
 
 /* ============== ADD PROMPT MODAL ============== */
 (function initAddPrompt(){
@@ -1586,17 +1741,73 @@ function renderPrompts(filter){
   const closeBtn = document.getElementById('closeAddPrompt');
   const cancelBtn = document.getElementById('cancelAddPrompt');
   const form = document.getElementById('addForm');
-  function open(){ modal.classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(() => form.querySelector('input[name="title"]').focus(), 100); }
-  function close(){ modal.classList.remove('open'); document.body.style.overflow = ''; form.reset(); }
+  function open(){ modal.classList.add('open'); document.body.style.overflow='hidden'; setTimeout(()=>form.querySelector('input[name="title"]').focus(),100); refreshSyncUI(); }
+  function close(){ modal.classList.remove('open'); document.body.style.overflow=''; form.reset(); }
   openBtn.addEventListener('click', open);
   closeBtn.addEventListener('click', close);
   cancelBtn.addEventListener('click', close);
   modal.addEventListener('click', e => { if (e.target === modal) close(); });
-  window.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
   window.__closeAddModal = close;
 })();
 
-function savePrompt(e){
+/* ============== SYNC SETTINGS MODAL ============== */
+(function initSyncModal(){
+  const modal = document.getElementById('syncModal');
+  const openBtn = document.getElementById('openSyncSettings');
+  const closeBtn = document.getElementById('closeSyncSettings');
+  const clearBtn = document.getElementById('clearSyncPat');
+  const status = document.getElementById('syncStatus');
+  function refreshStatus(){
+    if (hasPAT()){
+      status.innerHTML = '<span style="color:var(--accent)">// status: connected · prompts will publish to site on save</span>';
+    } else {
+      status.innerHTML = '<span style="color:var(--muted)">// status: not configured · prompts save locally only</span>';
+    }
+  }
+  function open(){ modal.classList.add('open'); document.body.style.overflow='hidden'; refreshStatus(); }
+  function close(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  clearBtn.addEventListener('click', () => {
+    if (!confirm('Disconnect GitHub sync? Your token will be cleared from this browser.')) return;
+    setPAT('');
+    refreshStatus(); refreshSyncUI();
+    document.getElementById('syncForm').reset();
+  });
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && (modal.classList.contains('open') || document.getElementById('addModal').classList.contains('open'))){
+      if (modal.classList.contains('open')) close();
+    }
+  });
+  window.__closeSyncModal = close;
+})();
+
+function saveSyncSettings(e){
+  e.preventDefault();
+  const pat = e.target.pat.value.trim();
+  if (!pat) { alert('Paste a GitHub token first, or click "disconnect" to clear.'); return false; }
+  setPAT(pat);
+  // Test the token
+  fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`, {
+    headers: {Authorization: `Bearer ${pat}`, Accept:'application/vnd.github+json'}
+  }).then(r => {
+    if (r.ok) {
+      document.getElementById('syncStatus').innerHTML = '<span style="color:var(--accent)">✓ token verified · ready to publish</span>';
+      refreshSyncUI();
+      setTimeout(() => window.__closeSyncModal(), 900);
+    } else {
+      setPAT('');
+      document.getElementById('syncStatus').innerHTML = `<span style="color:#ff6b6b">✗ token rejected (HTTP ${r.status}). Check repo access + permissions.</span>`;
+      refreshSyncUI();
+    }
+  }).catch(err => {
+    document.getElementById('syncStatus').innerHTML = `<span style="color:#ff6b6b">✗ ${err.message}</span>`;
+  });
+  return false;
+}
+
+async function savePrompt(e){
   e.preventDefault();
   const f = e.target;
   const data = {
@@ -1612,14 +1823,44 @@ function savePrompt(e){
   const list = loadUserPrompts();
   list.unshift(data);
   saveUserPrompts(list);
-  window.__closeAddModal();
-  // jump to custom filter to show new prompt
+
+  const publishCheck = document.getElementById('publishCheck');
+  const shouldPublish = hasPAT() && publishCheck && publishCheck.checked;
+
+  if (shouldPublish) {
+    // Show in-progress feedback
+    const saveBtn = document.querySelector('#addModal .btn-save');
+    const origHTML = saveBtn.innerHTML;
+    saveBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/></svg>publishing...';
+    saveBtn.disabled = true;
+    try {
+      await publishToGitHub(list);
+      // Refetch published list
+      PUBLISHED_PROMPTS = await fetchPublishedPrompts();
+      saveBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>published ✓';
+      setTimeout(() => {
+        saveBtn.innerHTML = origHTML; saveBtn.disabled = false;
+        window.__closeAddModal();
+        jumpToCustom();
+      }, 1000);
+    } catch(err) {
+      saveBtn.innerHTML = origHTML; saveBtn.disabled = false;
+      alert('Saved locally, but publish failed: ' + err.message + '\n\nThe prompt is still saved in your browser. Check Settings → GitHub token.');
+      window.__closeAddModal();
+      jumpToCustom();
+    }
+  } else {
+    window.__closeAddModal();
+    jumpToCustom();
+  }
+  return false;
+}
+
+function jumpToCustom(){
   const ctrl = document.getElementById('labCtrl');
   ctrl.querySelectorAll('button:not(.add-btn)').forEach(b => b.classList.toggle('active', b.dataset.filter === 'custom'));
   renderPrompts('custom');
-  // scroll to lab
   document.getElementById('lab').scrollIntoView({behavior:'smooth', block:'start'});
-  return false;
 }
 
 function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
