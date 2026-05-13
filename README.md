@@ -7,7 +7,7 @@
 ![Status](https://img.shields.io/badge/Status-Live-brightgreen)
 ![TryHackMe](https://img.shields.io/badge/TryHackMe-Top%201%25-gold)
 ![Technique](https://img.shields.io/badge/AI%20Jailbreaks-60%2B%20Prompts-purple)
-![University](https://img.shields.io/badge/HIET-B.Tech%20CSE-blue)
+![University](https://img.shields.io/badge/HPTU-B.Tech%20CSE-blue)
 
 </div>
 
