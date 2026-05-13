@@ -16,7 +16,7 @@
 ## 🔐 Ankush Bhadwar | Cybersecurity Analyst & AI Security Researcher
 
 > **Top 1% TryHackMe** · VAPT/WAPT Specialist · AI Jailbreak Researcher  
-> B.Tech CSE @ Himachal Institute of Engineering & Technology (HIET), Shahpur HP
+> B.Tech CSE @ Himachal Institute of Engineering & Technology (HPTU)
 
 ### 🌐 Live Portfolio: https://anku0669.github.io
 
@@ -34,5 +34,5 @@
 - 📧 ankushbhadwar69@gmail.com
 - 💼 [LinkedIn](https://linkedin.com/in/ankush-bhadwar-396b23365)
 - 🐙 [GitHub](https://github.com/anku0669)
-- 🏆 [TryHackMe](https://tryhackme.com/p/ankushbhadwar) — Top 1% Globally
-- 🔬 [AI Research](https://www.unjail.ai)
+- 🏆 [TryHackMe](https://tryhackme.com/p/ANKUSH0669) — Top 1% Globally
+
