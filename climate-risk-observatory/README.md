@@ -1,10 +1,10 @@
 # Climate Shock Lab — Risk Observatory
 
-An evidence-led, multi-page static research site exploring two distinct planetary-risk pathways: **nuclear winter** and **climate-change-driven hydrometeorological hazards**.
+An evidence-led, multi-page research observatory exploring two distinct planetary-risk pathways: **nuclear winter** and **climate-change-driven hydrometeorological hazards**. The deployed experience uses an Astro static build, Tailwind CSS v4 design utilities, and GSAP motion while preserving the lightweight, no-backend research pages and interactive calculators.
 
 ## Project structure
 
-- index.html: project overview and key evidence signals.
+- `index.html`: fallback/static overview source. The production homepage is generated from `site-src/src/pages/climate-risk-observatory/index.astro`.
 - outcomes.html: impact pathways, hazard mechanisms and cascading-system map.
 - simulator.html: interactive educational scenario lab.
 - studio.html: advanced decision workbench, open-data catalogue and model cards.
@@ -12,20 +12,27 @@ An evidence-led, multi-page static research site exploring two distinct planetar
 - research-paper.md: editable/downloadable paper source.
 - response.html: resilience and disaster-risk-reduction playbook.
 - sources.html: annotated source library with search/filter.
-- assets/css/site.css: responsive visual system, animation, charts and accessible reduced-motion support.
+- `assets/css/site.css`: responsive visual system, motion layer, charts and accessible reduced-motion support.
 - assets/js/site.js: navigation, scroll progress, reveal motion and source filtering.
 - assets/js/simulator.js: local calculations and chart rendering; no data sent to a server.
 - assets/css/studio.css and assets/js/studio.js: transparent user-assumption stress-test, sensitivity view, shareable URLs, JSON/CSV exports and research-data filtering.
 
 ## Run locally
 
-Open index.html directly in a browser or use a local static server:
+For the production homepage and all child pages, use Node.js 22+ and npm:
 
-    python3 -m http.server 8000
+    cd site-src
+    npm install
+    npm run dev
 
-Then visit http://localhost:8000/climate-risk-observatory/ if serving the parent directory, or http://localhost:8000/ if serving this directory itself.
+Open the Astro development URL and visit `/climate-risk-observatory/`. The `predev` script stages the existing static research pages and assets into Astro's public directory. To create a production build:
 
-The website uses no build step and does not require an API key. The Advanced Studio links to the May 2026 NWDC open-data article and OSF archive rather than silently copying or modifying its source data. Google Fonts are an optional third-party request; system fallbacks keep the site readable if fonts cannot load.
+    npm run build
+    npm run preview
+
+GitHub Actions builds and deploys the whole profile website, preserving the root portfolio while replacing the deployed observatory homepage with the Astro-generated page. Do not deploy `site-src` as a separate site.
+
+The interactive research pages need no API key or backend. The deployed homepage is built with Astro + Tailwind CSS v4 and GSAP; the build preserves the existing simulator, studio, research paper, resilience guide and source library as static pages. The Advanced Studio links to the May 2026 NWDC open-data article and OSF archive rather than silently copying or modifying its source data. Google Fonts are an optional third-party request; system fallbacks keep the site readable if fonts cannot load.
 
 ## Scenario model disclosure
 
@@ -53,7 +60,9 @@ Advanced Studio: https://anku0669.github.io/climate-risk-observatory/studio.html
 - Keyboard focus indicators
 - Semantic headings and native form controls
 - ARIA labels on chart and controls
-- Reduced-motion support
+- Reduced-motion support (CSS, GSAP and the native fallback)
+- GSAP scroll reveals and restrained pointer-responsive highlights
+- Astro static build and Tailwind CSS v4 utility system on the main landing page
 - Color labels and supporting text so meaning is not conveyed through color alone
 
 ## Sources
