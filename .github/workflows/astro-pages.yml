@@ -33,6 +33,12 @@ jobs:
           cache-dependency-path: site-src/package.json
       - name: Install Astro, Tailwind and animation dependencies
         run: npm install --prefix site-src --no-audit --no-fund
+      - name: Validate browser-side JavaScript
+        run: |
+          node --check climate-risk-observatory/assets/js/command-center.js
+          node --check climate-risk-observatory/assets/js/site.js
+          node --check climate-risk-observatory/assets/js/studio.js
+          node --check climate-risk-observatory/assets/js/simulator.js
       - name: Build static site
         run: npm run build --prefix site-src
       - name: Sync generated homepage for branch-publishing fallback
