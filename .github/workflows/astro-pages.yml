@@ -58,6 +58,9 @@ jobs:
           test -f _site/.nojekyll
           test -f _site/climate-risk-observatory/index.html
           test -f _site/climate-risk-observatory/studio.html
+          test -f _site/climate-risk-observatory/command-center.html
+          test -f _site/climate-risk-observatory/assets/css/command-center.css
+          test -f _site/climate-risk-observatory/assets/js/command-center.js
           test -f _site/climate-risk-observatory/assets/js/simulator.js
           test -d _site/_astro
           echo "Root files, generated Astro homepage, and existing observatory pages staged."
