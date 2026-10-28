@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050812">
+  <meta name="description" content="Interactive systems-risk mission control for comparing hazard pressure, exposure, vulnerability and hypothetical resilience assumptions.">
+  <title>Mission Control | Climate Shock Lab</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/command-center.css">
+  <script defer src="assets/js/site.js"></script>
+  <script defer src="assets/js/command-center.js"></script>
+</head>
+<body>
+<div class="noise" aria-hidden="true"></div><div class="scroll-progress" aria-hidden="true"></div>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">CS<span>∕</span></span><span>CLIMATE SHOCK LAB<small>RISK OBSERVATORY</small></span></a>
+  <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  <nav class="nav" aria-label="Primary navigation">
+    <a href="index.html">Overview</a>
+    <a href="outcomes.html">Impact pathways</a>
+    <a href="simulator.html">Scenario lab</a>
+    <a class="active" href="command-center.html">Mission control</a>
+    <a href="studio.html">Advanced studio</a>
+    <a href="research.html">Research</a>
+    <a href="response.html">Resilience</a>
+    <a href="sources.html">Sources</a>
+  </nav>
+</header>
+
+<main>
+<section class="page-hero wrap cc-hero">
+  <div class="eyebrow"><span class="pulse"></span> SYSTEMS OPERATIONS / DECISION SUPPORT / 001</div>
+  <h1>Mission <em>control.</em></h1>
+  <p>Stress-test a system, compare a reference case with a compound-pressure case, and examine how hypothetical resilience actions change a transparent index. Every slider is an assumption. Nothing here is live telemetry or a local forecast.</p>
+  <div class="cc-hero-meta"><span><b>01</b> SCENARIO ENGINE</span><span><b>02</b> DEPENDENCY NETWORK</span><span><b>03</b> EXPORTABLE BRIEF</span><span class="cc-engine-status"><i></i> RUNS LOCALLY IN YOUR BROWSER</span></div>
+</section>
+
+<section class="cc-shell wrap" aria-label="Scenario controls and results">
+  <div class="cc-toolbar">
+    <div><span class="eyebrow">ACTIVE EXPERIMENT</span><h2 id="activeScenarioTitle">Mountain watershed · rainfall and slope risk</h2></div>
+    <div class="cc-toolbar-actions"><button class="button button-ghost" id="saveScenario" type="button">Save on this device ↓</button><button class="button button-ghost" id="shareScenario" type="button">Share setup ↗</button></div>
+  </div>
+  <div class="cc-grid">
+    <aside class="cc-controls">
+      <div class="cc-card-heading"><span class="cc-count">A1</span><div><b>System profile</b><small>Archetypes, not mapped forecasts</small></div></div>
+      <label for="ccProfile">Choose a risk context</label>
+      <select id="ccProfile" class="cc-select">
+        <option value="hkh">Mountain watershed · intense rainfall / slope risk</option>
+        <option value="urban">Dense urban area · flood / heat / lifelines</option>
+        <option value="food">Food supply network · abrupt production shock</option>
+        <option value="monsoon">Monsoon river basin · flood / seasonal water</option>
+      </select>
+      <p id="ccProfileNote" class="cc-profile-note">Hypothetical setting: steep catchments, exposed transport routes and water services. Values are workshop assumptions, not measurements for a named valley.</p>
+
+      <div class="cc-card-heading"><span class="cc-count">A2</span><div><b>Baseline pressure</b><small>Relative scales from 0–100</small></div></div>
+      <div class="cc-range"><div><label for="ccHazard">Hazard stress</label><output id="ccHazardOut">75 / 100</output></div><input id="ccHazard" type="range" min="0" max="100" value="75"><small>Physical pressure assigned to the scenario.</small></div>
+      <div class="cc-range"><div><label for="ccExposure">Exposure</label><output id="ccExposureOut">60 / 100</output></div><input id="ccExposure" type="range" min="0" max="100" value="60"><small>People, assets or services in harm's way.</small></div>
+      <div class="cc-range"><div><label for="ccVulnerability">Vulnerability</label><output id="ccVulnerabilityOut">65 / 100</output></div><input id="ccVulnerability" type="range" min="0" max="100" value="65"><small>Susceptibility and limited response capacity.</small></div>
+
+      <div class="cc-card-heading"><span class="cc-count">A3</span><div><b>Resilience assumptions</b><small>Hypothetical index reductions</small></div></div>
+      <div class="cc-warning"><strong>Assumption gate.</strong> Set reductions for scenario discussion only. These are not measured intervention effectiveness or avoided-loss estimates.</div>
+      <div class="cc-range"><div><label for="ccWarning">Early warning / last-mile response</label><output id="ccWarningOut">15%</output></div><input id="ccWarning" type="range" min="0" max="50" value="15"></div>
+      <div class="cc-range"><div><label for="ccLifeline">Critical lifeline continuity</label><output id="ccLifelineOut">20%</output></div><input id="ccLifeline" type="range" min="0" max="50" value="20"></div>
+      <div class="cc-range"><div><label for="ccBuffer">Food / water buffers</label><output id="ccBufferOut">15%</output></div><input id="ccBuffer" type="range" min="0" max="50" value="15"></div>
+      <div class="cc-range"><div><label for="ccRecovery">Preparedness and recovery</label><output id="ccRecoveryOut">20%</output></div><input id="ccRecovery" type="range" min="0" max="50" value="20"></div>
+      <div class="cc-control-actions"><button class="button button-secondary" id="ccReset" type="button">Reset profile ↺</button><button class="button button-ghost" id="ccLoadSaved" type="button">Load saved setup</button></div>
+      <p id="ccFeedback" class="cc-feedback" role="status" aria-live="polite">Adjust an input to update the comparison.</p>
+    </aside>
+
+    <div class="cc-results">
+      <div class="cc-result-header"><div><span class="eyebrow">OUTPUT / LIVE CALCULATION</span><h3>Three cases. Same declared formula.</h3></div><span class="cc-tag">CONCEPTUAL INDEX</span></div>
+      <div class="cc-kpis">
+        <article class="cc-kpi"><span>REFERENCE CASE</span><strong id="ccBaseline">42.0</strong><small>Current hazard, exposure and vulnerability</small></article>
+        <article class="cc-kpi cc-kpi-blue"><span>COMPOUND PRESSURE</span><strong id="ccStress">55.2</strong><small>Hazard +15 and exposure +10, capped at 100</small></article>
+        <article class="cc-kpi cc-kpi-green"><span>WITH ASSUMED ACTIONS</span><strong id="ccPrepared">20.6</strong><small>Reference case multiplied by user-set factors</small></article>
+      </div>
+      <div class="cc-compare-panel">
+        <div class="cc-section-title"><div><span class="eyebrow">B1 / CASE COMPARISON</span><h3>Index by scenario</h3></div><span class="cc-unit">0–100 · UNIT-LESS</span></div>
+        <div id="ccBars" class="cc-bars" role="img" aria-label="Comparison of reference, compound pressure and assumed action cases">
+          <div class="cc-bar-row"><div class="cc-bar-meta"><span>Reference case</span><b>42.0</b></div><div class="cc-bar-track"><i class="cc-bar-fill cc-fill-reference" style="width:42%"></i></div></div>
+          <div class="cc-bar-row"><div class="cc-bar-meta"><span>Compound pressure</span><b>55.2</b></div><div class="cc-bar-track"><i class="cc-bar-fill cc-fill-stress" style="width:55.2%"></i></div></div>
+          <div class="cc-bar-row"><div class="cc-bar-meta"><span>Actions · reference hazard</span><b>20.6</b></div><div class="cc-bar-track"><i class="cc-bar-fill cc-fill-prepared" style="width:20.6%"></i></div></div>
+          <div class="cc-axis"><span>LOWER INDEX</span><span>HIGHER INDEX</span></div>
+        </div>
+        <div class="cc-delta-row"><div><span>Assumed index change</span><strong id="ccDelta">−50.9%</strong></div><p>Percentage difference between reference and actions case. It is not a probability or an avoided-loss estimate.</p></div>
+      </div>
+
+      <div class="cc-compare-panel">
+        <div class="cc-section-title"><div><span class="eyebrow">B2 / SENSITIVITY</span><h3>Which assumption moves the baseline?</h3></div><span class="cc-tag">+10 POINT CHECK</span></div>
+        <p class="cc-copy">Raise one input by 10 points at a time, capped at 100. The absolute change is calculated with the same index formula; no physical model is run.</p>
+        <div id="ccSensitivity" class="cc-sensitivity">
+          <div class="cc-sens-row"><span>Hazard</span><div><i style="width:100%"></i></div><b>6.3</b></div>
+          <div class="cc-sens-row"><span>Exposure</span><div><i style="width:58%"></i></div><b>3.7</b></div>
+          <div class="cc-sens-row"><span>Vulnerability</span><div><i style="width:62%"></i></div><b>3.9</b></div>
+        </div>
+      </div>
+
+      <div class="cc-compare-panel cc-network-panel">
+        <div class="cc-section-title"><div><span class="eyebrow">B3 / CASCADE EXPLORER</span><h3>Follow the dependency chain</h3></div><span class="cc-tag">SELECT A NODE</span></div>
+        <p class="cc-copy">Hazards do not translate directly into losses. Explore intermediate dependencies and the evidence needed to assess each one.</p>
+        <div class="cc-network" id="ccNetwork">
+          <svg class="cc-links" viewBox="0 0 680 190" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M85 94 H195 M225 94 H335 M365 94 H475 M505 94 H595" class="cc-link-path"></path>
+            <path d="M85 94 H195 M225 94 H335 M365 94 H475 M505 94 H595" class="cc-link-pulse"></path>
+          </svg>
+          <button class="cc-node selected" data-node="hazard" type="button"><span>01</span><b>Hazard</b><small>Physical pressure</small></button>
+          <button class="cc-node" data-node="exposure" type="button"><span>02</span><b>Exposure</b><small>People / assets</small></button>
+          <button class="cc-node" data-node="lifelines" type="button"><span>03</span><b>Lifelines</b><small>Power / roads / water</small></button>
+          <button class="cc-node" data-node="services" type="button"><span>04</span><b>Essential services</b><small>Food / health / care</small></button>
+          <button class="cc-node" data-node="recovery" type="button"><span>05</span><b>Recovery</b><small>Capacity / equity</small></button>
+        </div>
+        <article class="cc-node-detail" aria-live="polite"><div><span id="ccNodeCode" class="cc-count">NODE / 01</span><h4 id="ccNodeTitle">Hazard pressure</h4></div><p id="ccNodeDescription">Define the physical process and scenario boundary before assigning any number. For rainfall risk, this can include intensity, duration, catchment response and slope conditions.</p><div class="cc-evidence-needed"><b>DATA TO CHECK</b><span id="ccNodeEvidence">Official meteorological records, hydrological observations, terrain and documented scenario assumptions.</span></div></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap cc-brief-section">
+  <div class="cc-brief-head"><div><span class="eyebrow">B4 / PORTABLE OUTPUT</span><h2>Decision brief, <em>generated from your inputs.</em></h2><p>The export captures assumptions, calculated cases, sensitivity and selected dependency notes, with the index formula included for auditability.</p></div><div class="cc-brief-actions"><button class="button button-primary" id="ccExportMd" type="button">Export Markdown ↓</button><button class="button button-ghost" id="ccExportJson" type="button">Export JSON ↓</button><button class="button button-ghost" id="ccExportCsv" type="button">Export CSV ↓</button></div></div>
+  <div class="cc-brief-preview"><div class="cc-preview-top"><span>GENERATED SCENARIO RECORD</span><span id="ccUpdatedAt">READY · LOCAL ONLY</span></div><pre id="ccBriefPreview">Decision brief will update as you change assumptions.</pre></div>
+  <div class="cc-footnotes"><p><strong>Model disclosure:</strong> baseline = hazard × (0.25 + 0.75 × exposure/100) × (0.25 + 0.75 × vulnerability/100). The actions case multiplies the baseline by each (1 − assumed reduction/100). The compound-pressure case uses hazard +15 and exposure +10, both capped at 100. Coefficients and intervention reductions are design assumptions, not empirically calibrated coefficients.</p><p><strong>Interpretation boundary:</strong> these numbers are unit-less teaching indices. They do not estimate deaths, costs, event probabilities, rainfall, flood depth, crop yield or actual intervention effectiveness. Use local data and validated models for operational decisions.</p></div>
+</section>
+</main>
+
+<footer class="footer wrap"><a class="brand" href="index.html"><span class="brand-mark">CS<span>∕</span></span><span>CLIMATE SHOCK LAB<small>RISK OBSERVATORY</small></span></a><div class="footer-note">Interactive educational workbench · Scenario calculations stay in your browser<br>No user inputs are transmitted to a server.</div><div class="footer-links"><a href="research.html">Research</a><a href="studio.html">Advanced studio</a><a href="sources.html">Sources</a></div></footer>
+</body>
+</html>
