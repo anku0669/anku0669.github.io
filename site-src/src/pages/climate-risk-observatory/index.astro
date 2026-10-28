@@ -1,0 +1,307 @@
+---
+import "../../styles/global.css";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#050812" />
+    <meta name="description" content="An evidence-led observatory exploring nuclear winter, climate extremes, cascading system risk and practical resilience through transparent research and interactive scenarios." />
+    <meta property="og:title" content="Climate Shock Lab | Planetary Risk Observatory" />
+    <meta property="og:description" content="Explore the evidence. Stress-test assumptions. Design for resilience." />
+    <title>Climate Shock Lab | Planetary Risk Observatory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="progress-line" aria-hidden="true"></div>
+    <header class="site-nav">
+      <a class="wordmark" href="/climate-risk-observatory/" aria-label="Climate Shock Lab home">
+        <span class="logo-glyph">CS<span aria-hidden="true">∕</span></span>
+        <span>CLIMATE SHOCK LAB<small>PLANETARY RISK OBSERVATORY</small></span>
+      </a>
+      <nav class="nav-links" id="siteNav" aria-label="Primary navigation">
+        <a href="#signals">Evidence</a>
+        <a href="#risk-systems">Risk systems</a>
+        <a href="#cascade">Impact pathways</a>
+        <a href="/climate-risk-observatory/research.html">Research</a>
+        <a href="/climate-risk-observatory/sources.html">Sources</a>
+      </nav>
+      <div class="nav-actions">
+        <span class="status-chip"><span class="status-dot"></span> RESEARCH BUILD / 2026</span>
+        <a class="btn btn-primary hidden sm:inline-flex" href="/climate-risk-observatory/simulator.html">Open scenario lab <span aria-hidden="true">↗</span></a>
+        <button class="nav-menu-button" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="siteNav">☰</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-shell wrap">
+        <div class="hero-copy">
+          <div class="hero-kicker"><span class="status-dot"></span> EVIDENCE · SCENARIOS · RESILIENCE <span aria-hidden="true">/</span> 001</div>
+          <h1 class="hero-title">Stress-test the systems<br /><span class="gradient">before the world</span><br /><span class="quiet">does.</span></h1>
+          <p class="hero-lede">An interactive research observatory for two distinct planetary risks: nuclear-war-induced atmospheric soot and climate-driven hydrometeorological hazards. Follow how disruptions cascade through food, water, health, infrastructure and the systems people depend on.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/climate-risk-observatory/simulator.html">Explore the scenario lab <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-secondary" href="/climate-risk-observatory/research.html">Read the research brief <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-proof">
+            <span><span class="proof-check">✓</span> Source-linked evidence</span>
+            <span><span class="proof-check">✓</span> Assumptions disclosed</span>
+            <span><span class="proof-check">✓</span> No false precision</span>
+          </div>
+        </div>
+
+        <div class="hero-stage" aria-label="Animated scientific illustration of interconnected planetary systems">
+          <div class="stage-grid" aria-hidden="true"></div>
+          <div class="stage-aura" aria-hidden="true"></div>
+          <div class="planet-system" id="planetSystem" aria-hidden="true">
+            <div class="orbit orbit-a"><span class="orbit-node"></span></div>
+            <div class="orbit orbit-b"><span class="orbit-node node-b"></span></div>
+            <div class="orbit orbit-c"></div>
+            <div class="planet-core">
+              <svg class="planet-map" viewBox="0 0 420 420" role="img" aria-label="Abstract globe pattern">
+                <path d="M87 89 125 64 149 78 156 100 185 109 207 139 187 157 156 153 137 172 134 202 110 209 98 181 81 168 77 143 56 129 65 105Z M201 193 229 184 251 200 255 234 242 268 229 309 208 329 194 301 197 269 183 245 192 219Z M267 77 304 65 334 84 344 114 322 125 317 146 288 143 270 157 248 141 254 117 236 97Z M285 213 325 201 355 221 360 247 343 276 308 277 291 255 273 246Z" fill="currentColor" opacity=".73"/>
+                <g fill="none" stroke="#a4ffe4" stroke-opacity=".45" stroke-width="1.1">
+                  <path d="M61 151 Q135 110 210 150 T359 143"/>
+                  <path d="M80 218 Q155 181 221 224 T344 218"/>
+                  <path d="M95 287 Q162 251 237 287 T324 282"/>
+                  <path d="M122 77 Q94 179 147 244 T166 346"/>
+                  <path d="M208 57 Q177 160 226 226 T222 357"/>
+                  <path d="M283 75 Q251 166 286 244 T277 333"/>
+                </g>
+                <circle cx="210" cy="210" r="174" fill="none" stroke="#83f4d3" stroke-opacity=".22" />
+              </svg>
+            </div>
+          </div>
+          <div class="planet-label label-north"><span class="label-glyph">↗</span><span>ATMOSPHERIC FORCING<strong>Planet-scale pressure</strong></span></div>
+          <div class="planet-label label-south"><span class="label-glyph">⌁</span><span>FOOD & WATER<strong>Critical lifelines</strong></span></div>
+          <div class="planet-label label-east"><span class="label-glyph">◎</span><span>COMPOUND RISK<strong>Linked consequences</strong></span></div>
+          <div class="stage-readout"><span><b>01</b> SYSTEMS</span><span>·</span><span><b>02</b> SCENARIOS</span><span>·</span><span><b>03</b> RESILIENCE</span></div>
+        </div>
+      </section>
+
+      <section class="wrap" id="signals" aria-labelledby="signal-title">
+        <div class="metrics-rail">
+          <article class="metric" data-reveal>
+            <div class="metric-tag"><span>01 / WARMING BASELINE</span><span>WMO</span></div>
+            <div class="metric-number">1.43<em>°C</em></div>
+            <h3>Global mean in 2025</h3>
+            <p>WMO assessed 2025 at about 1.43°C above the 1850–1900 average. Global mean temperature is not a local hazard forecast.</p>
+            <a href="https://wmo.int/publication-series/state-of-global-climate/state-of-global-climate-2025" target="_blank" rel="noreferrer">Read the 2025 climate assessment ↗</a>
+          </article>
+          <article class="metric" data-reveal>
+            <div class="metric-tag"><span>02 / FOOD-SYSTEM SHOCK</span><span>NATURE FOOD</span></div>
+            <div class="metric-number">−90<em>%</em></div>
+            <h3>Modeled crop calories, severe scenario</h3>
+            <p>One 150 Tg soot scenario estimated around 90% lower global crop calorie production in years 3–4. It is a modeled scenario, not a prediction.</p>
+            <a href="https://doi.org/10.1038/s43016-022-00573-0" target="_blank" rel="noreferrer">Explore Xia et al. (2022) ↗</a>
+          </article>
+          <article class="metric" data-reveal>
+            <div class="metric-tag"><span>03 / FLOOD DAMAGE</span><span>IPCC AR6</span></div>
+            <div class="metric-number">4–5<em>×</em></div>
+            <h3>Assessed direct damage increase</h3>
+            <p>IPCC assessed direct flood damages at 4°C warming as potentially four to five times those at 1.5°C, with medium confidence.</p>
+            <a href="https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-4/" target="_blank" rel="noreferrer">Read the IPCC water chapter ↗</a>
+          </article>
+        </div>
+        <div class="sr-only" id="signal-title">Three evidence signals</div>
+      </section>
+
+      <section class="section-pad wrap" id="risk-systems">
+        <div class="section-overline"><span class="number">01</span><span class="eyebrow-line"></span> TWO SHOCKS / DISTINCT PHYSICS</div>
+        <div class="section-heading">
+          <h2>Different drivers.<br /><em>Connected consequences.</em></h2>
+          <p>These are not the same process. Nuclear winter is a possible abrupt geopolitical shock; human-driven warming is a persistent shift in climate conditions. The practical task is to understand their distinct mechanisms and shared pressure points.</p>
+        </div>
+        <div class="shock-grid">
+          <article class="shock-card" data-reveal>
+            <div class="card-top"><span class="card-code">PATHWAY / NUCLEAR WINTER</span><span class="card-icon" aria-hidden="true">◉</span></div>
+            <div class="card-visual" aria-hidden="true"><div class="smoke-cloud"></div><div class="smoke-cloud" style="left:48%;top:31%;transform:scale(.62);opacity:.6"></div><svg viewBox="0 0 520 100" preserveAspectRatio="none" width="100%" height="100%"><path d="M0 80 C48 54 64 76 113 56 S188 23 220 46 S290 69 335 49 S413 27 462 47 S493 57 520 42" fill="none" stroke="#9bbcff" stroke-opacity=".6" stroke-width="1.3"/><path d="M0 89 C70 65 89 94 151 72 S250 45 310 72 S432 48 520 65" fill="none" stroke="#83f4d3" stroke-opacity=".45" stroke-width="1"/></svg></div>
+            <h3 class="card-title">Nuclear <span>winter</span></h3>
+            <p class="card-copy">Firestorms may loft black carbon into the upper atmosphere. Reduced sunlight can cool the surface, shorten growing seasons, alter precipitation and pressure food systems over multiple years.</p>
+            <div class="tag-row"><span>SOOT LOADING</span><span>SOLAR REDUCTION</span><span>FOOD SHOCK</span></div>
+            <a class="inline-link mt-6 inline-block" href="/climate-risk-observatory/outcomes.html#nuclear">Follow this impact pathway ↗</a>
+          </article>
+          <article class="shock-card" data-reveal>
+            <div class="card-top"><span class="card-code">PATHWAY / HYDROMETEOROLOGICAL</span><span class="card-icon" aria-hidden="true">⌁</span></div>
+            <div class="card-visual rain-lines" aria-hidden="true"><span style="--x:12%;--delay:-.1s"></span><span style="--x:24%;--delay:-1s"></span><span style="--x:38%;--delay:-.7s"></span><span style="--x:48%;--delay:-1.4s"></span><span style="--x:64%;--delay:-.35s"></span><span style="--x:75%;--delay:-1.2s"></span><span style="--x:88%;--delay:-.8s"></span><svg viewBox="0 0 520 100" preserveAspectRatio="none" width="100%" height="100%"><path d="M0 78 C70 78 65 57 124 62 S190 90 256 76 S352 63 402 75 S465 84 520 70" fill="none" stroke="#9bbcff" stroke-opacity=".9" stroke-width="1.4"/><path d="M0 88 C60 84 91 70 147 78 S237 93 289 84 S396 70 520 83" fill="none" stroke="#83f4d3" stroke-opacity=".4" stroke-width="1"/></svg></div>
+            <h3 class="card-title">Hydrometeorological <span>hazards</span></h3>
+            <p class="card-copy">Warming affects heat extremes and the water cycle. Heavy rainfall, floods, drought, tropical cyclones and coastal hazards interact with land use, exposure, infrastructure and preparedness.</p>
+            <div class="tag-row"><span>HEAT & MOISTURE</span><span>FLOOD / DROUGHT</span><span>COMPOUND RISK</span></div>
+            <a class="inline-link mt-6 inline-block" href="/climate-risk-observatory/outcomes.html#hydro">Trace the cascading impacts ↗</a>
+          </article>
+        </div>
+        <div class="bridge-note" data-reveal>
+          <div class="bridge-mark" aria-hidden="true">∴</div>
+          <p><strong>One shared systems lesson:</strong> a hazard becomes a disaster through its interaction with people, infrastructure, land use, inequality and preparedness. Reducing exposure and vulnerability can reduce harm, even when the physical hazard cannot be switched off.</p>
+          <a class="inline-link" href="/climate-risk-observatory/response.html">Explore resilience →</a>
+        </div>
+      </section>
+
+      <section class="section-pad cascade-section" id="cascade">
+        <div class="wrap">
+          <div class="section-overline"><span class="number">02</span><span class="eyebrow-line"></span> CASCADING SYSTEMS / ONE HAZARD, MANY DEPENDENCIES</div>
+          <div class="section-heading">
+            <h2>Disruption travels<br /><em>through dependencies.</em></h2>
+            <p>Food systems require energy, water, transport and functioning markets. Health systems rely on power, logistics and safe water. Planning around single assets misses the cascade.</p>
+          </div>
+          <div class="cascade-map">
+            <article class="cascade-node" data-reveal><div class="cascade-dot" aria-hidden="true">⌁</div><h3>Hazard pressure</h3><p>Heat · rainfall · soot</p></article>
+            <article class="cascade-node" data-reveal><div class="cascade-dot" aria-hidden="true">⌂</div><h3>Infrastructure</h3><p>Power · roads · water</p></article>
+            <article class="cascade-node" data-reveal><div class="cascade-dot" aria-hidden="true">◎</div><h3>Food & health</h3><p>Production · access · care</p></article>
+            <article class="cascade-node" data-reveal><div class="cascade-dot" aria-hidden="true">⇄</div><h3>Livelihoods</h3><p>Work · markets · income</p></article>
+            <article class="cascade-node" data-reveal><div class="cascade-dot" aria-hidden="true">✳</div><h3>Recovery</h3><p>Equity · repair · learning</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad wrap" id="lab">
+        <div class="lab-promo" data-reveal>
+          <div>
+            <div class="section-overline"><span class="number">03</span><span class="eyebrow-line"></span> INTERACTIVE / ASSUMPTIONS ON DISPLAY</div>
+            <h2>Move from headline<br />to <em>testable scenario.</em></h2>
+            <p>Change transparent inputs, see how an educational index responds, and follow the numbers back to evidence. The tools clearly separate source findings from interpolations and user-defined assumptions.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="/climate-risk-observatory/simulator.html">Launch scenario lab ↗</a>
+              <a class="btn btn-secondary" href="/climate-risk-observatory/studio.html">Open advanced studio ↗</a>
+            </div>
+          </div>
+          <div class="console" aria-label="Illustrative model dashboard preview">
+            <div class="console-head"><span>STRESS INDEX / PREVIEW ONLY</span><span class="console-indicators"><span></span><span></span><span></span></span></div>
+            <div class="console-stat"><span>Hazard pressure</span><strong>75 / 100</strong></div>
+            <div class="mini-bar"><span style="--bar:75%;transform:scaleX(0)"></span></div>
+            <div class="console-stat"><span>Exposure</span><strong>60 / 100</strong></div>
+            <div class="mini-bar"><span style="--bar:60%;transform:scaleX(0)"></span></div>
+            <div class="console-stat"><span>Vulnerability</span><strong>65 / 100</strong></div>
+            <div class="mini-bar"><span style="--bar:65%;transform:scaleX(0)"></span></div>
+            <div class="console-foot"><span>UNITLESS CONCEPTUAL INDEX</span><span>NOT A FORECAST</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap pb-20">
+        <div class="research-strip" data-reveal>
+          <div>
+            <div class="section-overline"><span class="number">04</span><span class="eyebrow-line"></span> EVIDENCE TRAIL</div>
+            <h3>Claims linked to primary sources.</h3>
+          </div>
+          <div>
+            <p>This is a research-learning project, not a peer-reviewed publication or emergency prediction system. It synthesizes published literature and assessment reports, labels simplified calculations, and keeps uncertainty in view.</p>
+            <div class="source-chips">
+              <a href="https://doi.org/10.1002/gdj3.70076" target="_blank" rel="noreferrer">NWDC data paper ↗</a>
+              <a href="https://doi.org/10.1038/s43016-022-00573-0" target="_blank" rel="noreferrer">Xia et al. / Nature Food ↗</a>
+              <a href="https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-11/" target="_blank" rel="noreferrer">IPCC AR6 / extremes ↗</a>
+              <a href="https://www.undrr.org/terminology/hazard" target="_blank" rel="noreferrer">UNDRR / hazard ↗</a>
+              <a href="/climate-risk-observatory/sources.html">Full annotated library ↗</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing-panel">
+        <div class="wrap" data-reveal>
+          <div class="section-overline justify-center"><span class="eyebrow-line"></span> THE PURPOSE IS PREVENTION <span class="eyebrow-line"></span></div>
+          <h2>Make uncertainty visible.<br /><em>Make preparedness practical.</em></h2>
+          <p>Explore the evidence, challenge the assumptions and identify what can reduce harm before a shock becomes a catastrophe.</p>
+          <a class="btn btn-primary" href="/climate-risk-observatory/response.html">Open the resilience playbook <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer wrap">
+      <a class="wordmark" href="/climate-risk-observatory/"><span class="logo-glyph">CS<span aria-hidden="true">∕</span></span><span>CLIMATE SHOCK LAB<small>PLANETARY RISK OBSERVATORY</small></span></a>
+      <span>Evidence-led educational project · Updated October 2026</span>
+      <div class="footer-links"><a href="/climate-risk-observatory/research.html">Research</a><a href="/climate-risk-observatory/studio.html">Advanced studio</a><a href="/climate-risk-observatory/README.md">Project notes</a></div>
+    </footer>
+    <script>
+      import gsap from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+      gsap.registerPlugin(ScrollTrigger);
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const progress = document.querySelector(".progress-line");
+      const navButton = document.querySelector(".nav-menu-button");
+      const nav = document.querySelector("#siteNav");
+      const updateProgress = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        if (progress) progress.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + "%";
+      };
+      window.addEventListener("scroll", updateProgress, { passive: true });
+      updateProgress();
+
+      if (navButton && nav) {
+        navButton.addEventListener("click", () => {
+          const open = nav.classList.toggle("is-open");
+          navButton.setAttribute("aria-expanded", String(open));
+          navButton.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+        });
+        nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+          nav.classList.remove("is-open");
+          navButton.setAttribute("aria-expanded", "false");
+        }));
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            nav.classList.remove("is-open");
+            navButton.setAttribute("aria-expanded", "false");
+            navButton.focus();
+          }
+        });
+      }
+
+      if (!prefersReducedMotion) {
+        document.documentElement.classList.add("motion-ready");
+        const hero = gsap.timeline({ defaults: { ease: "power3.out" } });
+        hero.from(".hero-kicker", { y: 14, autoAlpha: 0, duration: .65 })
+          .from(".hero-title", { y: 28, autoAlpha: 0, duration: .9 }, "-=.25")
+          .from(".hero-lede", { y: 18, autoAlpha: 0, duration: .75 }, "-=.52")
+          .from(".hero-actions .btn", { y: 12, autoAlpha: 0, duration: .55, stagger: .1 }, "-=.45")
+          .from(".hero-proof span", { y: 8, autoAlpha: 0, duration: .4, stagger: .07 }, "-=.3")
+          .from(".planet-system", { scale: .88, autoAlpha: 0, duration: 1.1, ease: "back.out(1.35)" }, "-=1.05")
+          .from(".planet-label", { y: 9, autoAlpha: 0, duration: .55, stagger: .1 }, "-=.55");
+
+        gsap.utils.toArray("[data-reveal]").forEach((node) => {
+          gsap.fromTo(node, { y: 24, autoAlpha: 0 }, {
+            y: 0, autoAlpha: 1, duration: .85, ease: "power3.out",
+            scrollTrigger: { trigger: node, start: "top 88%", once: true }
+          });
+        });
+
+        gsap.to(".planet-core", { y: -8, duration: 3.8, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        gsap.to(".stage-aura", { scale: 1.12, opacity: .8, duration: 4.2, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        gsap.utils.toArray(".mini-bar span").forEach((bar, index) => {
+          const width = getComputedStyle(bar).getPropertyValue("--bar").trim() || "60%";
+          gsap.fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: 1.2, delay: index * .12, ease: "power2.out", scrollTrigger: { trigger: bar, start: "top 92%", once: true } });
+          bar.style.setProperty("--bar-width", width);
+        });
+
+        const stage = document.querySelector(".hero-stage");
+        const planet = document.querySelector(".planet-system");
+        if (stage && planet && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+          stage.addEventListener("pointermove", (event) => {
+            const bounds = stage.getBoundingClientRect();
+            const x = (event.clientX - bounds.left) / bounds.width - .5;
+            const y = (event.clientY - bounds.top) / bounds.height - .5;
+            gsap.to(planet, { x: x * 11, y: y * 9, duration: .55, ease: "power2.out", overwrite: true });
+          });
+          stage.addEventListener("pointerleave", () => gsap.to(planet, { x: 0, y: 0, duration: .7, ease: "elastic.out(1,.6)" }));
+        }
+
+        document.querySelectorAll(".shock-card").forEach((card) => {
+          card.addEventListener("pointermove", (event) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty("--spot-x", (event.clientX - rect.left) + "px");
+            card.style.setProperty("--spot-y", (event.clientY - rect.top) + "px");
+          });
+        });
+      } else {
+        document.querySelectorAll("[data-reveal]").forEach((node) => {
+          node.style.opacity = "1";
+          node.style.transform = "none";
+        });
+      }
+    </script>
+  </body>
+</html>
