@@ -52,6 +52,7 @@
     const b=document.querySelectorAll('.cc-bar-row');
     const values=[base,stressed,prepared];
     const names=['Reference case','Compound pressure','Actions · reference hazard'];
+    $('ccBars').setAttribute('aria-label','Reference case index '+n1(base)+', compound pressure index '+n1(stressed)+', and assumed actions index '+n1(prepared)+'. Unit-less educational index, not a forecast.');
     b.forEach((row,i)=>{
       row.querySelector('.cc-bar-meta span').textContent=names[i];
       row.querySelector('.cc-bar-meta b').textContent=n1(values[i]);
