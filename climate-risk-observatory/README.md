@@ -13,6 +13,7 @@ An evidence-led, multi-page research observatory exploring two distinct planetar
 - response.html: resilience and disaster-risk-reduction playbook.
 - sources.html: annotated source library with search/filter.
 - `assets/css/site.css`: responsive visual system, motion layer, charts and accessible reduced-motion support.
+- `assets/css/command-center.css` and `assets/js/command-center.js`: scenario comparison engine and interactive dependency explorer, with local-only exports.
 - assets/js/site.js: navigation, scroll progress, reveal motion and source filtering.
 - assets/js/simulator.js: local calculations and chart rendering; no data sent to a server.
 - assets/css/studio.css and assets/js/studio.js: transparent user-assumption stress-test, sensitivity view, shareable URLs, JSON/CSV exports and research-data filtering.
@@ -54,6 +55,8 @@ https://anku0669.github.io/climate-risk-observatory/
 
 Advanced Studio: https://anku0669.github.io/climate-risk-observatory/studio.html
 
+Mission Control: https://anku0669.github.io/climate-risk-observatory/command-center.html
+
 ## Accessibility
 
 - Responsive desktop/tablet/mobile layouts
@@ -62,6 +65,7 @@ Advanced Studio: https://anku0669.github.io/climate-risk-observatory/studio.html
 - ARIA labels on chart and controls
 - Reduced-motion support (CSS, GSAP and the native fallback)
 - GSAP scroll reveals and restrained pointer-responsive highlights
+- A scenario comparison workbench with a transparent unit-less index, sensitivity checks and portable decision brief
 - Astro static build and Tailwind CSS v4 utility system on the main landing page
 - Color labels and supporting text so meaning is not conveyed through color alone
 
