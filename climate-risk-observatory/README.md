@@ -7,6 +7,7 @@ An evidence-led, multi-page static research site exploring two distinct planetar
 - index.html: project overview and key evidence signals.
 - outcomes.html: impact pathways, hazard mechanisms and cascading-system map.
 - simulator.html: interactive educational scenario lab.
+- studio.html: advanced decision workbench, open-data catalogue and model cards.
 - research.html: full research synthesis in accessible web layout.
 - research-paper.md: editable/downloadable paper source.
 - response.html: resilience and disaster-risk-reduction playbook.
@@ -14,6 +15,7 @@ An evidence-led, multi-page static research site exploring two distinct planetar
 - assets/css/site.css: responsive visual system, animation, charts and accessible reduced-motion support.
 - assets/js/site.js: navigation, scroll progress, reveal motion and source filtering.
 - assets/js/simulator.js: local calculations and chart rendering; no data sent to a server.
+- assets/css/studio.css and assets/js/studio.js: transparent user-assumption stress-test, sensitivity view, shareable URLs, JSON/CSV exports and research-data filtering.
 
 ## Run locally
 
@@ -23,7 +25,7 @@ Open index.html directly in a browser or use a local static server:
 
 Then visit http://localhost:8000/climate-risk-observatory/ if serving the parent directory, or http://localhost:8000/ if serving this directory itself.
 
-The website uses no build step and does not require an API key. Google Fonts are an optional third-party request; system fallbacks keep the site readable if fonts cannot load.
+The website uses no build step and does not require an API key. The Advanced Studio links to the May 2026 NWDC open-data article and OSF archive rather than silently copying or modifying its source data. Google Fonts are an optional third-party request; system fallbacks keep the site readable if fonts cannot load.
 
 ## Scenario model disclosure
 
@@ -35,13 +37,15 @@ Compound mode deliberately does not pretend to run a coupled Earth-system model.
 
 ## Research quality and limitations
 
-The article is a focused narrative evidence synthesis, not a systematic review, new simulation or peer-reviewed publication. The primary source library includes peer-reviewed papers and assessment reports from Nature Food, the Journal of Geophysical Research: Atmospheres, the IPCC, WMO and UNDRR. Claims are linked to source publications; local decisions should use official meteorological/hydrological services and validated local risk assessments.
+The article is a focused narrative evidence synthesis, not a systematic review, new simulation or peer-reviewed publication. The linked NWDC data article is peer reviewed; this project itself is not. The primary source library includes peer-reviewed papers and assessment reports from Nature Food, the Journal of Geophysical Research: Atmospheres, the IPCC, WMO and UNDRR. Claims are linked to source publications; local decisions should use official meteorological/hydrological services and validated local risk assessments.
 
 ## Hosting
 
 The project is self-contained under the climate-risk-observatory/ directory of the GitHub Pages profile repository. The static pages are intended to be served at:
 
 https://anku0669.github.io/climate-risk-observatory/
+
+Advanced Studio: https://anku0669.github.io/climate-risk-observatory/studio.html
 
 ## Accessibility
 
@@ -61,3 +65,6 @@ https://anku0669.github.io/climate-risk-observatory/
 - IPCC AR6 WGII Chapter 10: https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-10/
 - WMO State of the Global Climate 2025: https://wmo.int/publication-series/state-of-global-climate/state-of-global-climate-2025
 - UNDRR Hazard terminology: https://www.undrr.org/terminology/hazard
+- Harrison et al. (2026), NWDC data article: https://doi.org/10.1002/gdj3.70076
+- NWDC OSF dataset: https://osf.io/e28gq/
+- NWDC processing code: https://github.com/Nuclear-Winter-Data-Commons-NWDC/nw-data-commons

@@ -37,7 +37,7 @@ The synthesis follows four steps:
 3. **Pathway comparison:** trace indirect effects through critical infrastructure and social systems.
 4. **Uncertainty review:** record model limitations, regional heterogeneity and social-response assumptions.
 
-Search and source verification were performed for the project build on 28 October 2026. The included evidence is a focused selection, not an exhaustive systematic literature search. No new gridded climate data, casualty records, econometric models or crop-model outputs were produced.
+Search and source verification were performed for the project build on 28 October 2026. The included evidence is a focused selection, not an exhaustive systematic literature search. No new gridded climate data, casualty records, econometric models or crop-model outputs were produced. The review also incorporates Harrison et al. (2026), an open-access data article describing standardized model-output datasets covering temperature, precipitation, ultraviolet radiation, agriculture, fish catch and sea ice.
 
 ## 3. Results and synthesis
 
@@ -132,13 +132,14 @@ The evidence supports urgent action on climate mitigation and adaptation, disast
 
 ## References
 
-1. Xia, L., Robock, A., Scherrer, K. et al. (2022). Global food insecurity and famine from reduced crop, marine fishery and livestock production due to climate disruption from nuclear war soot injection. *Nature Food*, 3, 586–596. https://doi.org/10.1038/s43016-022-00573-0
-2. Coupe, J., Bardeen, C.G., Robock, A. & Toon, O.B. (2019). Nuclear winter responses to nuclear war between the United States and Russia in WACCM4 and ModelE. *Journal of Geophysical Research: Atmospheres*, 124, 8522–8543. https://doi.org/10.1029/2019JD030509
-3. IPCC (2021). *Climate Change 2021: The Physical Science Basis*, Chapter 11: Weather and Climate Extreme Events in a Changing Climate. https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-11/
-4. IPCC (2022). *Climate Change 2022: Impacts, Adaptation and Vulnerability*, Chapter 4: Water. https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-4/
-5. IPCC (2022). *Climate Change 2022: Impacts, Adaptation and Vulnerability*, Chapter 10: Asia. https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-10/
-6. World Meteorological Organization (2026). *State of the Global Climate 2025*. https://wmo.int/publication-series/state-of-global-climate/state-of-global-climate-2025
-7. United Nations Office for Disaster Risk Reduction. *Hazard: Terminology*. https://www.undrr.org/terminology/hazard
+1. Harrison, C., Faulkner, W., Coupe, J. et al. (2026). Accessible Climate and Impact Model Output for Studying the Human and Environmental Impacts of Nuclear Conflict. *Geoscience Data Journal*, 13(3), e70076. https://doi.org/10.1002/gdj3.70076. Dataset: https://osf.io/e28gq/. Processing code: https://github.com/Nuclear-Winter-Data-Commons-NWDC/nw-data-commons
+2. Xia, L., Robock, A., Scherrer, K. et al. (2022). Global food insecurity and famine from reduced crop, marine fishery and livestock production due to climate disruption from nuclear war soot injection. *Nature Food*, 3, 586–596. https://doi.org/10.1038/s43016-022-00573-0
+3. Coupe, J., Bardeen, C.G., Robock, A. & Toon, O.B. (2019). Nuclear winter responses to nuclear war between the United States and Russia in WACCM4 and ModelE. *Journal of Geophysical Research: Atmospheres*, 124, 8522–8543. https://doi.org/10.1029/2019JD030509
+4. IPCC (2021). *Climate Change 2021: The Physical Science Basis*, Chapter 11: Weather and Climate Extreme Events in a Changing Climate. https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-11/
+5. IPCC (2022). *Climate Change 2022: Impacts, Adaptation and Vulnerability*, Chapter 4: Water. https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-4/
+6. IPCC (2022). *Climate Change 2022: Impacts, Adaptation and Vulnerability*, Chapter 10: Asia. https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-10/
+7. World Meteorological Organization (2026). *State of the Global Climate 2025*. https://wmo.int/publication-series/state-of-global-climate/state-of-global-climate-2025
+8. United Nations Office for Disaster Risk Reduction. *Hazard: Terminology*. https://www.undrr.org/terminology/hazard
 
 ## Citation and reuse note
 
