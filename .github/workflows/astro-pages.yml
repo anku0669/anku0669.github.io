@@ -34,7 +34,7 @@ jobs:
           mkdir -p _site
           rsync -a --exclude='.git' --exclude='.github' --exclude='site-src' --exclude='_site' --exclude='node_modules' ./ _site/
           cp -a site-src/dist/. _site/
-          test -f _site/index.html
+          test -f _site/.nojekyll
           test -f _site/climate-risk-observatory/index.html
           test -f _site/climate-risk-observatory/studio.html
           test -f _site/climate-risk-observatory/assets/js/simulator.js
