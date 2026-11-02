@@ -1,7 +1,9 @@
 # Qoralis Engine website
 
-This directory is published at https://anku0669.github.io/qoralis-engine/ from the existing profile Pages site. The deployment is additive and does not replace other projects in that site.
+**Live product site:** https://anku0669.github.io/qoralis-engine/index.html
 
-The complete Qoralis source bundle is distributed separately in this release package. The public Qoralis source repository has not yet been created; links on this page therefore point only to the upstream Colibri project for technical background.
+**Source repository:** https://github.com/anku0669/qoralis-engine
 
-Qoralis is a downstream rebrand. Original copyright, Apache-2.0 licensing and third-party notices are retained in the source distribution.
+This directory is published from the existing profile Pages repository. It is an additive deployment and does not replace the other projects hosted there.
+
+Qoralis Engine is an independent downstream distribution based on [Colibri](https://github.com/JustVugg/colibri), originally created by Vincenzo Fornaro (JustVugg). The source repository retains the upstream Apache-2.0 license, copyright notices, and third-party notices. Qoralis is not affiliated with or endorsed by the upstream author.
