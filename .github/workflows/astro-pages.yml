@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/astro-pages.yml'
       - 'site-src/**'
+      - 'qoralis-engine/**'
       - 'climate-risk-observatory/*.html'
       - 'climate-risk-observatory/*.md'
       - 'climate-risk-observatory/assets/**'
