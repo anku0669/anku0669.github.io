@@ -84,7 +84,9 @@
     <form id="decisionForm" class="decisionform">
       <div class="field"><label for="decisionState">DOCUMENT / CONTEXT</label><textarea id="decisionState">The service stores user sessions in a cache. The maximum cache size is 500 MB. The proposed change removes the cache size limit and does not add eviction or backpressure. Under sustained traffic this can exhaust available memory and make the service unavailable.</textarea></div>
       <div class="field"><label for="decisionQuestion">DECISION QUESTION</label><input id="decisionQuestion" value="Should this pull request be approved?"></div>
-      <div class="field"><label for="decisionOptions">ALLOWED ANSWERS · ONE PER LINE</label><textarea id="decisionOptions">Approve\nRequest changes\nNeeds more information</textarea></div>
+      <div class="field"><label for="decisionOptions">ALLOWED ANSWERS · ONE PER LINE</label><textarea id="decisionOptions">Approve
+Request changes
+Needs more information</textarea></div>
       <div><button class="send" type="submit">Evaluate decision ↗</button></div>
     </form>
     <div id="decisionResult" class="result hidden" aria-live="polite"></div>
@@ -101,7 +103,9 @@
 </div>
 </div>
 <div class="modalback hidden" id="connectModal" role="dialog" aria-modal="true" aria-labelledby="connectTitle">
-  <div class="modal"><button class="modalclose" id="closeModal">Close</button><div class="eyebrow">REAL LOCAL INFERENCE</div><h2 id="connectTitle">Run Qoralis on your own machine</h2><p>This hosted prototype cannot access your computer's GPU, memory or model files. To use the real engine, install Qoralis locally and run its gateway and UI.</p><pre>qoralis setup\nqoralis serve --model /path/to/your/model\nqoralis ui</pre><p>Open the local UI address printed by the CLI. The local interface proxies requests to the gateway so streaming, health, profiling and expert data work without exposing your machine to this public website.</p><p><a class="source" href="https://github.com/anku0669/qoralis-engine/releases" target="_blank" rel="noreferrer">Download Qoralis ↗</a> <a class="source" href="https://github.com/anku0669/qoralis-engine/blob/main/ui/README.md" target="_blank" rel="noreferrer">Local UI guide ↗</a></p></div>
+  <div class="modal"><button class="modalclose" id="closeModal">Close</button><div class="eyebrow">REAL LOCAL INFERENCE</div><h2 id="connectTitle">Run Qoralis on your own machine</h2><p>This hosted prototype cannot access your computer's GPU, memory or model files. To use the real engine, install Qoralis locally and run its gateway and UI.</p><pre>qoralis setup
+qoralis serve --model /path/to/your/model
+qoralis ui</pre><p>Open the local UI address printed by the CLI. The local interface proxies requests to the gateway so streaming, health, profiling and expert data work without exposing your machine to this public website.</p><p><a class="source" href="https://github.com/anku0669/qoralis-engine/releases" target="_blank" rel="noreferrer">Download Qoralis ↗</a> <a class="source" href="https://github.com/anku0669/qoralis-engine/blob/main/ui/README.md" target="_blank" rel="noreferrer">Local UI guide ↗</a></p></div>
 </div>
 <script>
 (function(){
