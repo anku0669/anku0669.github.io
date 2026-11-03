@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1017">
+<meta name="description" content="Explore an interactive Qoralis Engine prototype: chat, memory, runtime monitoring, expert routing and decision scoring.">
+<title>Qoralis Engine — Interactive Prototype</title>
+<style>
+:root{color-scheme:dark;--bg:#0a1017;--side:#0d151e;--panel:#111b26;--panel2:#162330;--line:#273847;--ink:#eaf2f4;--muted:#95a8b5;--mint:#73e3d0;--blue:#8aa5ff;--lime:#c5f37a;--amber:#efc77b;--red:#ff8f8f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+.shell{min-height:100vh;display:grid;grid-template-columns:250px minmax(0,1fr)}.sidebar{background:linear-gradient(180deg,#0e1822,#0b121a);border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;gap:22px}.brand{padding:4px 8px 18px;border-bottom:1px solid #ffffff12;display:flex;align-items:center;gap:11px}.brandmark{height:34px;width:34px;border-radius:11px;background:linear-gradient(145deg,var(--mint),var(--blue));display:grid;place-items:center;color:#071415;font-weight:900;font-size:17px;box-shadow:0 0 26px #73e3d020}.brand strong{display:block;letter-spacing:.04em;font-size:14px}.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:.2em}.newchat{border:1px solid #38545b;background:#14232c;color:var(--mint);border-radius:9px;padding:11px 12px;text-align:left;font-weight:700}.newchat:hover{border-color:var(--mint);background:#192d36}.navlabel{font-size:9px;color:#6f8492;letter-spacing:.18em;text-transform:uppercase;padding:0 10px;margin-bottom:-12px}.nav{display:grid;gap:5px}.nav button{border:1px solid transparent;background:transparent;color:#a9bac4;padding:10px 11px;border-radius:8px;text-align:left;display:flex;align-items:center;gap:11px;font-size:13px}.nav button .ico{width:18px;text-align:center;color:#7f9ca6}.nav button:hover{background:#ffffff08;color:var(--ink)}.nav button.active{background:#17302f;border-color:#2c5954;color:#9cf0df}.runtime{margin-top:auto;border:1px solid var(--line);background:#101b25;border-radius:11px;padding:13px}.runtime .rhead{display:flex;align-items:center;justify-content:space-between;font-size:10px;color:#8fa4b0;letter-spacing:.12em}.live{color:var(--lime);display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.08em}.live i{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}.runtime p{color:var(--muted);font-size:11px;margin:10px 0 0}.runtime b{color:#d8e5e8}
+.main{min-width:0;display:flex;flex-direction:column}.topbar{min-height:68px;border-bottom:1px solid #ffffff12;padding:12px clamp(18px,4vw,44px);display:flex;align-items:center;justify-content:space-between;gap:16px}.crumb{color:#8ea2af;font-size:11px}.crumb strong{color:#d8e4e8}.topright{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.demoTag{border:1px solid #665332;background:#282214;color:#f3d18c;border-radius:99px;padding:6px 10px;font-size:10px;font-weight:800;letter-spacing:.1em}.source{color:#9ceadd;font-size:11px;border:1px solid #355750;padding:7px 11px;border-radius:99px}.content{width:min(1080px,calc(100% - 48px));margin:0 auto;padding:36px 0 64px}.pagehead{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:24px}.eyebrow{color:var(--mint);font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.pagehead h1{font-size:clamp(28px,4vw,40px);line-height:1.08;letter-spacing:-.05em;margin:7px 0 4px}.pagehead p{color:var(--muted);margin:0;font-size:13px}.modelpick{background:#111c27;border:1px solid var(--line);color:#dce8eb;border-radius:8px;padding:9px 12px;min-width:190px}
+.notice{border:1px solid #655333;background:linear-gradient(90deg,#282314,#171b1d);border-radius:10px;padding:12px 15px;color:#ddcea9;font-size:11px;margin-bottom:18px;display:flex;gap:10px;align-items:flex-start}.notice b{color:#f5dda4}.chatlayout{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:18px}.chatcard,.sidecard,.panel{background:linear-gradient(160deg,#121f2a,#0f1822);border:1px solid var(--line);border-radius:13px}.chatcard{min-height:590px;display:flex;flex-direction:column;overflow:hidden}.chathead{padding:14px 18px;border-bottom:1px solid #ffffff10;display:flex;align-items:center;justify-content:space-between}.chathead strong{font-size:12px}.chathead span{color:var(--muted);font-size:10px}.messages{padding:20px;display:flex;flex-direction:column;gap:16px;min-height:390px;max-height:520px;overflow:auto}.message{display:flex;gap:11px;max-width:92%}.message.user{align-self:flex-end;flex-direction:row-reverse}.avatar{flex:0 0 29px;height:29px;border-radius:9px;display:grid;place-items:center;background:#173b39;color:var(--mint);font-size:11px;font-weight:800}.user .avatar{background:#25344d;color:#b3c6ff}.bubble{padding:12px 14px;border:1px solid #263948;border-radius:4px 12px 12px 12px;background:#14212c;color:#dce7eb;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.user .bubble{background:#1b2a3b;border-color:#364c61;border-radius:12px 4px 12px 12px}.bubble p{margin:0 0 8px}.bubble p:last-child{margin-bottom:0}.msgmeta{font-size:9px;color:#7e929e;margin:6px 2px 0}.demoStamp{display:inline-block;border:1px solid #655333;color:#e9c87e;border-radius:5px;padding:2px 5px;font-size:8px;letter-spacing:.08em;margin-bottom:7px}.suggestions{padding:0 18px 13px;display:flex;gap:7px;flex-wrap:wrap}.suggestions button{border:1px solid #2f4454;background:#101b25;color:#aebfc8;border-radius:99px;padding:7px 10px;font-size:10px}.suggestions button:hover{color:var(--mint);border-color:#507e78}.composer{padding:14px 16px 16px;border-top:1px solid #ffffff10;background:#0e1720}.composebox{display:flex;align-items:end;gap:10px;background:#0a1118;border:1px solid #304452;border-radius:10px;padding:10px}.composebox:focus-within{border-color:#4b8e82;box-shadow:0 0 0 3px #73e3d012}.composebox textarea{resize:vertical;min-height:44px;max-height:130px;flex:1;background:transparent;border:0;outline:0;color:var(--ink);padding:8px 6px}.send{border:0;background:var(--mint);color:#071715;border-radius:8px;padding:10px 14px;font-size:11px;font-weight:850}.send:disabled{opacity:.5;cursor:not-allowed}.hint{font-size:9px;color:#728895;margin:8px 3px 0}.sidecolumn{display:grid;align-content:start;gap:12px}.sidecard{padding:16px}.sidecard h3{font-size:11px;margin:0 0 12px;letter-spacing:.08em}.statrow{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;padding:7px 0;border-bottom:1px solid #ffffff0b}.statrow b{color:#dce7eb;font-weight:650}.statrow:last-child{border:0}.bar{height:5px;border-radius:9px;background:#263846;overflow:hidden;margin:6px 0 12px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--blue));border-radius:9px}.tiny{color:#718693;font-size:10px}.sidecard button,.action{border:1px solid #3b5961;background:#14242b;color:#a4eadd;padding:8px 10px;border-radius:7px;font-size:10px;font-weight:700}
+.panel{padding:20px}.panelgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.metric{padding:17px;border:1px solid var(--line);border-radius:10px;background:#111d27}.metric span{font-size:10px;color:var(--muted)}.metric strong{display:block;font-size:28px;letter-spacing:-.04em;margin-top:6px}.metric small{font-size:10px;color:#8da1ae}.sectiontitle{font-size:12px;letter-spacing:.1em;margin:0 0 14px}.graph{height:190px;display:flex;align-items:end;gap:7px;padding:18px 8px 0;border-bottom:1px solid #344653}.graph i{flex:1;min-width:5px;border-radius:5px 5px 0 0;background:linear-gradient(180deg,var(--mint),#3d827d);opacity:.85}.legend{display:flex;gap:16px;color:var(--muted);font-size:10px;margin-top:12px}.expertgrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:5px}.block{margin-bottom:17px}.blockhead{display:flex;justify-content:space-between;color:#a7bac4;font-size:10px;margin-bottom:7px}.cell{aspect-ratio:1;border-radius:3px;background:#273744;border:1px solid #354a58}.cell.active{background:var(--mint);border-color:#b5fff2;box-shadow:0 0 10px #73e3d045}.cell.hot{background:#a8bbff;border-color:#d5dcff}.decisionform{display:grid;gap:12px}.field label{display:block;font-size:10px;color:#a5b8c3;margin-bottom:6px}.field textarea,.field input{width:100%;background:#0a121a;border:1px solid #344957;color:var(--ink);border-radius:8px;padding:11px;outline:0}.field textarea:focus,.field input:focus{border-color:#5b9c91}.field textarea{min-height:82px;resize:vertical}.result{margin-top:16px;padding:16px;border:1px solid #3a555a;border-radius:10px;background:#101e25}.resultrow{display:grid;grid-template-columns:110px 1fr 45px;align-items:center;gap:10px;margin:10px 0;font-size:11px}.resultrow .track{height:7px;background:#293943;border-radius:8px;overflow:hidden}.resultrow .track i{height:100%;display:block;background:linear-gradient(90deg,var(--mint),var(--blue))}.profilelist{display:grid;gap:13px}.profileitem{display:grid;grid-template-columns:135px 1fr 52px;gap:10px;align-items:center;color:#a9bac4;font-size:11px}.profileitem .track{height:8px;border-radius:9px;background:#293943;overflow:hidden}.profileitem .track i{display:block;height:100%;background:linear-gradient(90deg,#73e3d0,#8aa5ff)}
+.hidden{display:none!important}.footer{padding:18px 24px;border-top:1px solid #ffffff12;color:#657b88;font-size:10px;display:flex;justify-content:space-between;gap:12px}.modalback{position:fixed;inset:0;background:#02070bcf;display:grid;place-items:center;padding:20px;z-index:10}.modal{width:min(560px,100%);background:#111d28;border:1px solid #3b5360;border-radius:15px;padding:23px;box-shadow:0 30px 100px #000b}.modal h2{font-size:23px;margin:0 0 8px}.modal p,.modal li{font-size:12px;color:#aebfc8}.modal pre{padding:12px;background:#080e14;border:1px solid #2b3e4b;border-radius:8px;color:#b9eee3;font-size:11px;white-space:pre-wrap}.modalclose{float:right;border:1px solid #3b505d;background:#182630;color:#d8e6e9;border-radius:7px;padding:6px 9px}
+@media(max-width:930px){.shell{grid-template-columns:210px minmax(0,1fr)}.chatlayout{grid-template-columns:1fr}.sidecolumn{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.shell{display:block}.sidebar{position:sticky;top:0;z-index:5;padding:10px 12px;display:flex;flex-direction:row;align-items:center;gap:8px;border-right:0;border-bottom:1px solid var(--line);overflow:auto}.brand{border:0;padding:0 8px 0 0;flex:0 0 auto}.brandmark{width:29px;height:29px}.brand strong{font-size:11px}.brand small{font-size:8px}.newchat{flex:0 0 auto;padding:8px 10px;font-size:10px}.navlabel,.runtime{display:none}.nav{display:flex;gap:3px}.nav button{white-space:nowrap;padding:8px;font-size:10px}.nav button .ico{display:none}.content{width:calc(100% - 28px);padding:25px 0 40px}.topbar{min-height:50px;padding:8px 15px}.pagehead{display:block}.modelpick{margin-top:14px;width:100%}.panelgrid{grid-template-columns:1fr 1fr}.sidecolumn{grid-template-columns:1fr 1fr}.expertgrid{gap:3px}.profileitem{grid-template-columns:95px 1fr 38px}.footer{display:block}.footer span{display:block;margin-top:5px}}
+@media(max-width:420px){.nav button{padding:7px}.sidecolumn{grid-template-columns:1fr}.panelgrid{grid-template-columns:1fr 1fr}.metric strong{font-size:22px}.message{max-width:100%}.resultrow{grid-template-columns:80px 1fr 40px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../index.html"><span class="brandmark">Q</span><span><strong>QORALIS</strong><small>ENGINE / PROTOTYPE</small></span></a>
+  <button class="newchat" id="newChat">＋ New chat</button>
+  <div class="navlabel">Workspace</div>
+  <nav class="nav" aria-label="Prototype views">
+    <button class="active" data-view="chat"><span class="ico">◫</span>Chat</button>
+    <button data-view="monitor"><span class="ico">◉</span>Monitor</button>
+    <button data-view="experts"><span class="ico">▦</span>Expert map</button>
+    <button data-view="system"><span class="ico">⌁</span>System One</button>
+    <button data-view="profiling"><span class="ico">⌁</span>Profiling</button>
+  </nav>
+  <div class="runtime">
+    <div class="rhead"><span>RUNTIME</span><span class="live"><i></i> SIMULATED</span></div>
+    <p><b>Browser demo</b><br>No GPU, model weights or API server are contacted in this prototype.</p>
+  </div>
+</aside>
+<div class="main">
+<header class="topbar">
+  <div class="crumb">Qoralis Engine <span style="color:#506875">/</span> <strong id="crumb">Chat</strong></div>
+  <div class="topright"><span class="demoTag">INTERACTIVE DEMO</span><button class="source" id="connectBtn">Run the real engine ↗</button></div>
+</header>
+<div class="content">
+<section class="view" id="view-chat">
+  <div class="pagehead"><div><div class="eyebrow">01 / Conversation</div><h1>Chat</h1><p>Explore the Qoralis chat workflow with simulated responses.</p></div><select class="modelpick" id="modelPick" aria-label="Select demo model"><option>Qwen3.6-35B</option><option>GLM-5.2</option><option>OLMoE</option><option>Inkling</option><option>Kimi K3</option></select></div>
+  <div class="notice"><span>ⓘ</span><span><b>Prototype mode:</b> replies are generated by a small in-browser demo script. They are not produced by an AI model. Connect a locally running Qoralis Engine for real inference.</span></div>
+  <div class="chatlayout">
+    <div class="chatcard">
+      <div class="chathead"><div><strong id="chatModel">Qwen3.6-35B</strong><br><span>Local inference workspace · simulated</span></div><span id="chatState">READY</span></div>
+      <div class="messages" id="messages" aria-live="polite">
+        <div class="message"><div class="avatar">Q</div><div><div class="bubble"><span class="demoStamp">DEMO OUTPUT</span><p>Welcome to the Qoralis Engine prototype.</p><p>Try a prompt about memory tiers, runtime performance, model routing or local deployment. This demo shows the product flow; it does not run the selected model.</p></div><div class="msgmeta">QORALIS · SAMPLE SESSION</div></div></div>
+      </div>
+      <div class="suggestions" id="suggestions"><button data-prompt="Explain how Qoralis uses RAM, NVMe and GPU memory.">Explain memory tiers</button><button data-prompt="Show me a sample runtime performance report.">Show runtime metrics</button><button data-prompt="How does expert routing work in a mixture-of-experts model?">Explain expert routing</button></div>
+      <form class="composer" id="chatForm"><div class="composebox"><textarea id="prompt" placeholder="Message Qoralis..." rows="2" aria-label="Message Qoralis"></textarea><button class="send" id="sendBtn" type="submit">Send ↗</button></div><div class="hint">Enter to send · Shift + Enter for a new line · Demo output is simulated</div></form>
+    </div>
+    <aside class="sidecolumn">
+      <div class="sidecard"><h3>SESSION METRICS</h3><div class="statrow"><span>Model</span><b id="metricModel">Qwen3.6-35B</b></div><div class="statrow"><span>Backend</span><b>Demo simulator</b></div><div class="statrow"><span>Requests</span><b id="requestCount">0</b></div><div class="statrow"><span>Tokens</span><b id="tokenCount">0</b></div></div>
+      <div class="sidecard"><h3>RESOURCE SNAPSHOT</h3><span class="tiny">Illustrative values, not machine telemetry</span><div class="statrow"><span>RAM working set</span><b>10.8 GB</b></div><div class="bar"><i style="width:68%"></i></div><div class="statrow"><span>GPU residency</span><b>5.2 GB</b></div><div class="bar"><i style="width:43%"></i></div><div class="statrow"><span>NVMe cache</span><b>126 GB</b></div><div class="bar"><i style="width:82%"></i></div></div>
+      <div class="sidecard"><h3>WHAT IS REAL HERE?</h3><p class="tiny">Navigation, chat composition, demo replies, expert routing animation and decision scoring all run in your browser. Inference and hardware metrics are simulated.</p><button id="learnConnect">Connect a local engine</button></div>
+    </aside>
+  </div>
+</section>
+
+<section class="view hidden" id="view-monitor">
+  <div class="pagehead"><div><div class="eyebrow">02 / Observability</div><h1>Runtime monitor</h1><p>A sample view of the signals Qoralis can expose while a model runs.</p></div><button class="action" id="refreshMonitor">↻ Refresh sample</button></div>
+  <div class="notice"><span>ⓘ</span><span>Illustrative telemetry for the prototype. A connected Qoralis gateway provides actual health and hardware readings.</span></div>
+  <div class="panelgrid" style="margin-bottom:16px"><div class="metric"><span>CPU UTILIZATION</span><strong id="cpuMetric">38%</strong><small>8 logical cores · sample</small></div><div class="metric"><span>RAM IN USE</span><strong id="ramMetric">10.8 GB</strong><small>of 32 GB · sample</small></div><div class="metric"><span>GPU RESIDENCY</span><strong id="gpuMetric">5.2 GB</strong><small>of 12 GB · sample</small></div></div>
+  <div class="panel" style="margin-bottom:16px"><h3 class="sectiontitle">TOKENS PER SECOND · SAMPLE TRACE</h3><div class="graph" id="monitorGraph"></div><div class="legend"><span>● Generated tokens / second</span><span>Window: last 32 samples</span></div></div>
+  <div class="panel"><h3 class="sectiontitle">ENGINE STATUS</h3><div class="statrow"><span>Scheduler</span><b>Idle · queue 0</b></div><div class="statrow"><span>Model state</span><b>Loaded · sample</b></div><div class="statrow"><span>Weight source</span><b>RAM + NVMe cache</b></div><div class="statrow"><span>Accelerator</span><b>Vulkan · simulated</b></div></div>
+</section>
+
+<section class="view hidden" id="view-experts">
+  <div class="pagehead"><div><div class="eyebrow">03 / Model internals</div><h1>Expert map</h1><p>See how a token route can activate a subset of experts in a mixture-of-experts network.</p></div><button class="action" id="routeBtn">▶ Simulate token route</button></div>
+  <div class="notice"><span>ⓘ</span><span>Illustrative 12-block / 16-expert map. The active cells are generated locally for this animation and are not read from a model.</span></div>
+  <div class="panel"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:18px"><h3 class="sectiontitle" style="margin:0">ROUTING LAYERS</h3><span class="tiny" id="routeStatus">Waiting for route simulation</span></div><div id="expertMap"></div><div class="legend"><span style="color:var(--mint)">■ Selected this token</span><span style="color:var(--blue)">■ Resident in accelerator (sample)</span><span>■ Inactive experts</span></div></div>
+</section>
+
+<section class="view hidden" id="view-system">
+  <div class="pagehead"><div><div class="eyebrow">04 / Decision workflow</div><h1>System One</h1><p>Give a model a document, a question and the only allowed answers.</p></div></div>
+  <div class="notice"><span>ⓘ</span><span>This prototype uses simple word-overlap scoring in your browser to demonstrate the flow. Real System One decisions require a connected model gateway.</span></div>
+  <div class="panel">
+    <form id="decisionForm" class="decisionform">
+      <div class="field"><label for="decisionState">DOCUMENT / CONTEXT</label><textarea id="decisionState">The service stores user sessions in a cache. The maximum cache size is 500 MB. The proposed change removes the cache size limit and does not add eviction or backpressure. Under sustained traffic this can exhaust available memory and make the service unavailable.</textarea></div>
+      <div class="field"><label for="decisionQuestion">DECISION QUESTION</label><input id="decisionQuestion" value="Should this pull request be approved?"></div>
+      <div class="field"><label for="decisionOptions">ALLOWED ANSWERS · ONE PER LINE</label><textarea id="decisionOptions">Approve\nRequest changes\nNeeds more information</textarea></div>
+      <div><button class="send" type="submit">Evaluate decision ↗</button></div>
+    </form>
+    <div id="decisionResult" class="result hidden" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="view hidden" id="view-profiling">
+  <div class="pagehead"><div><div class="eyebrow">05 / Performance analysis</div><h1>Profiling</h1><p>Understand where a sample inference turn spends its time.</p></div></div>
+  <div class="notice"><span>ⓘ</span><span>Sample timing distribution only. Actual values come from a running engine's profiling endpoint.</span></div>
+  <div class="panel"><h3 class="sectiontitle">SAMPLE TURN · 4.82 SECONDS TOTAL</h3><div class="profilelist" id="profileBars"></div><div class="statrow" style="margin-top:20px"><span>Prompt tokens</span><b>128</b></div><div class="statrow"><span>Completion tokens</span><b>64</b></div><div class="statrow"><span>Decode speed</span><b>13.3 tok/s · sample</b></div></div>
+</section>
+</div>
+<footer class="footer"><span>QORALIS ENGINE · INTERACTIVE PROTOTYPE</span><span>Browser simulation · no model inference or telemetry is sent</span><a href="https://github.com/anku0669/qoralis-engine">Source code ↗</a></footer>
+</div>
+</div>
+<div class="modalback hidden" id="connectModal" role="dialog" aria-modal="true" aria-labelledby="connectTitle">
+  <div class="modal"><button class="modalclose" id="closeModal">Close</button><div class="eyebrow">REAL LOCAL INFERENCE</div><h2 id="connectTitle">Run Qoralis on your own machine</h2><p>This hosted prototype cannot access your computer's GPU, memory or model files. To use the real engine, install Qoralis locally and run its gateway and UI.</p><pre>qoralis setup\nqoralis serve --model /path/to/your/model\nqoralis ui</pre><p>Open the local UI address printed by the CLI. The local interface proxies requests to the gateway so streaming, health, profiling and expert data work without exposing your machine to this public website.</p><p><a class="source" href="https://github.com/anku0669/qoralis-engine/releases" target="_blank" rel="noreferrer">Download Qoralis ↗</a> <a class="source" href="https://github.com/anku0669/qoralis-engine/blob/main/ui/README.md" target="_blank" rel="noreferrer">Local UI guide ↗</a></p></div>
+</div>
+<script>
+(function(){
+"use strict";
+const $ = (id)=>document.getElementById(id);
+const views = {
+ chat:["Chat","01 / Conversation","Simulated chat workspace"],
+ monitor:["Runtime monitor","02 / Observability","Sample runtime telemetry"],
+ experts:["Expert map","03 / Model internals","Illustrative expert routing"],
+ system:["System One","04 / Decision workflow","Browser-based decision scoring"],
+ profiling:["Profiling","05 / Performance analysis","Sample inference timing"]
+};
+let currentView="chat",requests=0,tokens=0,busy=false,routeTurn=0;
+const modelPick=$("modelPick"),messages=$("messages"),prompt=$("prompt"),sendBtn=$("sendBtn");
+function setView(name){
+ currentView=name;
+ document.querySelectorAll(".view").forEach(v=>v.classList.toggle("hidden",v.id!=="view-"+name));
+ document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
+ $("crumb").textContent=views[name][0];
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>setView(b.dataset.view)));
+function addMessage(role,text,typing){
+ const row=document.createElement("div");row.className="message "+(role==="user"?"user":"");
+ const avatar=document.createElement("div");avatar.className="avatar";avatar.textContent=role==="user"?"YOU":"Q";
+ const wrap=document.createElement("div");
+ const bubble=document.createElement("div");bubble.className="bubble";
+ if(role==="assistant"){
+   const stamp=document.createElement("span");stamp.className="demoStamp";stamp.textContent="DEMO OUTPUT";bubble.appendChild(stamp);
+ }
+ const body=document.createElement("p");body.textContent=text;bubble.appendChild(body);
+ const meta=document.createElement("div");meta.className="msgmeta";meta.textContent=role==="user"?"YOU · JUST NOW":"QORALIS · SIMULATED";
+ wrap.appendChild(bubble);wrap.appendChild(meta);row.appendChild(avatar);row.appendChild(wrap);messages.appendChild(row);messages.scrollTop=messages.scrollHeight;
+ return body;
+}
+function responseFor(text){
+ const q=text.toLowerCase(),model=modelPick.value;
+ if(/memory|ram|nvme|storage|tier/.test(q)) return "Qoralis organizes model data across memory tiers. The dense working set stays in RAM, frequently used experts can be cached in accelerator memory, and colder expert weights can be read from NVMe storage when routing asks for them. The goal is to fit a larger model to the machine you already own without silently changing its model semantics.\n\nSelected demo model: "+model+". This is an explanatory sample, not an engine response.";
+ if(/expert|routing|moe|mixture/.test(q)) return "A mixture-of-experts layer contains multiple expert networks and a router. For each token, the router scores the candidates and selects a small subset. Qoralis can then coordinate where those selected weights are resident and how they are moved for execution.\n\nUse the Expert map view to animate an illustrative route across the sample layers.";
+ if(/speed|performance|benchmark|metric|monitor/.test(q)) return "The runtime monitor tracks signals such as active requests, queue depth, memory residency, token throughput and hardware use. Profiling can separate time spent reading expert weights, waiting for I/O, multiplying expert matrices and running attention.\n\nOpen Monitor and Profiling to inspect illustrative sample data. The numbers shown there are not measured on your device.";
+ if(/install|start|deploy|local/.test(q)) return "For real local inference, install the release for your platform, run the setup command, start a model through the Qoralis gateway, then open the local UI. The hosted prototype cannot access your local model files or GPU.\n\nUse “Run the real engine” at the top for the local workflow and download links.";
+ if(/system one|decision|approve|pull request|review/.test(q)) return "System One frames a decision as a fixed set of allowed answers. It asks the model to choose among those options and returns a probability for each, rather than generating an unrestricted paragraph. The System One view demonstrates the input and result layout using simple browser-side word overlap, not a language model.";
+ return "You asked: “"+text+"”\n\nIn a live Qoralis session, the selected model would process this prompt and stream its answer into the conversation. This prototype keeps the interaction local and returns a sample response so you can explore the interface without a running inference server.\n\nTry asking about memory tiers, expert routing, performance or System One.";
+}
+function send(text){
+ const value=(text||"").trim();if(!value||busy)return;
+ addMessage("user",value);prompt.value="";requests++;$("requestCount").textContent=requests;
+ const answer=responseFor(value),body=addMessage("assistant","",true);
+ busy=true;sendBtn.disabled=true;$("chatState").textContent="GENERATING · DEMO";
+ let i=0;const timer=setInterval(()=>{
+   i=Math.min(answer.length,i+4);body.textContent=answer.slice(0,i);messages.scrollTop=messages.scrollHeight;
+   if(i>=answer.length){clearInterval(timer);busy=false;sendBtn.disabled=false;$("chatState").textContent="READY";const count=Math.max(1,Math.round(value.length/4));tokens+=count+Math.round(answer.length/4);$("tokenCount").textContent=tokens; if(!body.parentElement.querySelector(".demoStamp")){}}
+ },13);
+}
+$("chatForm").addEventListener("submit",e=>{e.preventDefault();send(prompt.value)});
+prompt.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();$("chatForm").requestSubmit()}});
+$("suggestions").addEventListener("click",e=>{const b=e.target.closest("[data-prompt]");if(b)send(b.dataset.prompt)});
+$("newChat").addEventListener("click",()=>{if(busy)return;messages.innerHTML="";addMessage("assistant","New demo conversation ready. Ask a question about Qoralis Engine, memory tiers or runtime behavior.");setView("chat")});
+modelPick.addEventListener("change",()=>{$("chatModel").textContent=modelPick.value;$("metricModel").textContent=modelPick.value});
+$("connectBtn").addEventListener("click",()=>$("connectModal").classList.remove("hidden"));
+$("learnConnect").addEventListener("click",()=>$("connectModal").classList.remove("hidden"));
+$("closeModal").addEventListener("click",()=>$("connectModal").classList.add("hidden"));
+$("connectModal").addEventListener("click",e=>{if(e.target===$("connectModal"))$("connectModal").classList.add("hidden")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$("connectModal").classList.add("hidden")});
+
+function graph(){
+ const el=$("monitorGraph");el.innerHTML="";
+ const vals=[38,42,46,40,52,58,51,62,55,67,60,72,63,69,74,66,58,70,77,68,73,64,59,71,76,68,82,73,66,71,78,74];
+ vals.forEach((v)=>{const bar=document.createElement("i");bar.style.height=v+"%";bar.title=v+" tok/s · sample";el.appendChild(bar)});
+}
+graph();
+$("refreshMonitor").addEventListener("click",()=>{
+ const rand=(min,max)=>Math.round(min+Math.random()*(max-min));
+ $("cpuMetric").textContent=rand(28,67)+"%";$("ramMetric").textContent=(8+Math.random()*5).toFixed(1)+" GB";$("gpuMetric").textContent=(3+Math.random()*5).toFixed(1)+" GB";
+ const el=$("monitorGraph");[...el.children].forEach(b=>b.style.height=rand(32,88)+"%");
+});
+function drawExperts(){
+ const root=$("expertMap");root.innerHTML="";
+ for(let layer=0;layer<12;layer++){
+  const block=document.createElement("div");block.className="block";
+  const head=document.createElement("div");head.className="blockhead";
+  const name=document.createElement("span");name.textContent="BLOCK "+String(layer+1).padStart(2,"0");
+  const stats=document.createElement("span");stats.textContent="16 experts · sample";
+  head.append(name,stats);
+  const grid=document.createElement("div");grid.className="expertgrid";
+  for(let e=0;e<16;e++){
+   const cell=document.createElement("i");cell.className="cell";
+   if((layer*5+e*3)%17===0)cell.classList.add("hot");
+   cell.dataset.layer=layer;cell.dataset.expert=e;cell.title="Block "+(layer+1)+" · Expert "+(e+1);
+   grid.appendChild(cell);
+  }
+  block.append(head,grid);root.appendChild(block);
+ }
+}
+drawExperts();
+$("routeBtn").addEventListener("click",()=>{
+ routeTurn++;document.querySelectorAll(".cell").forEach(c=>c.classList.remove("active"));
+ const chosen=[];for(let l=0;l<12;l++){const a=(routeTurn*3+l*7)%16,b=(routeTurn*5+l*3+4)%16;chosen.push([l,a],[l,b])}
+ chosen.forEach(([l,e])=>{const c=document.querySelector('.cell[data-layer="'+l+'"][data-expert="'+e+'"]');if(c)c.classList.add("active")});
+ $("routeStatus").textContent="Token #"+routeTurn+" · 24 illustrative expert activations";
+});
+$("decisionForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const context=$("decisionState").value.toLowerCase(),question=$("decisionQuestion").value.trim();
+ const options=$("decisionOptions").value.split(/\n/).map(s=>s.trim()).filter(Boolean).slice(0,8);
+ const result=$("decisionResult");result.classList.remove("hidden");result.innerHTML="";
+ if(!question||options.length<2){result.textContent="Enter a decision question and at least two allowed answers.";return}
+ const words=(s)=>new Set(s.toLowerCase().match(/[a-z0-9-]{3,}/g)||[]);
+ const all=words(context+" "+question);
+ const scored=options.map((option,idx)=>{const ow=words(option),overlap=[...ow].filter(w=>all.has(w)).length;let bias=0;if(/request changes|reject|no|block|fail|unsafe/i.test(option)&&/without|remove|exhaust|unavailable|risk|limit|attack|vulnerab/i.test(context))bias+=1.7;if(/approve|yes|accept|safe/i.test(option)&&/secure|tested|bounded|validated|safe/i.test(context))bias+=1.2;return {option,score:1+overlap*1.25+bias+(options.length-idx)*.04}});
+ const sum=scored.reduce((s,x)=>s+x.score,0);scored.forEach(x=>x.p=x.score/sum);scored.sort((a,b)=>b.p-a.p);
+ const title=document.createElement("h3");title.textContent="SIMULATED DECISION";title.style.cssText="margin:0 0 5px;font-size:12px;letter-spacing:.12em;color:#73e3d0";
+ const top=document.createElement("div");top.style.cssText="font-size:18px;font-weight:800;margin-bottom:5px";top.textContent=scored[0].option;
+ const sub=document.createElement("p");sub.className="tiny";sub.textContent="Illustrative word-overlap score · not an AI model prediction";
+ result.append(title,top,sub);
+ scored.forEach(x=>{const row=document.createElement("div");row.className="resultrow";const label=document.createElement("span");label.textContent=x.option;const track=document.createElement("div");track.className="track";const fill=document.createElement("i");fill.style.width=(x.p*100).toFixed(1)+"%";track.appendChild(fill);const pct=document.createElement("b");pct.textContent=(x.p*100).toFixed(1)+"%";row.append(label,track,pct);result.appendChild(row)});
+});
+const profile=[["Expert disk reads",38],["Expert I/O wait",24],["Expert matrix multiply",21],["Attention",11],["LM head / other",6]];
+profile.forEach(([name,pct])=>{const row=document.createElement("div");row.className="profileitem";const label=document.createElement("span");label.textContent=name;const track=document.createElement("div");track.className="track";const fill=document.createElement("i");fill.style.width=pct+"%";track.appendChild(fill);const amount=document.createElement("b");amount.textContent=pct+"%";row.append(label,track,amount);$("profileBars").appendChild(row)});
+})();
+</script>
+</body>
+</html>
